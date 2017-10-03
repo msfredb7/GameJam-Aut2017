@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 80c8a4706bab12d4a9eaa523b6b65982
+timeCreated: 1506994643
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - hsvShader: {instanceID: 0}
+  - material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
