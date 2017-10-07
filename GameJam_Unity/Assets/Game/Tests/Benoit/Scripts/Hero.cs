@@ -158,6 +158,7 @@ public class Hero : MonoBehaviour
         Pizza pizz = col.gameObject.GetComponent<Pizza>();
         if (pizz != null)
         {
+            if(brain.currentMode == Brain.Mode.pickup)
             carriedPizza = pizz;
             col.enabled = false;
         }
@@ -165,7 +166,8 @@ public class Hero : MonoBehaviour
 
     public void Drop()
     {
-
+        carriedPizza.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        carriedPizza = null;
     }
 
 }
