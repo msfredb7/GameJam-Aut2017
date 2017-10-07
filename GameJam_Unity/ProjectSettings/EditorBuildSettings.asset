@@ -31,4 +31,7 @@ EditorBuildSettings:
     guid: f7ad29bd7c51eb0409c68ffe15e7541a
   - enabled: 1
     path: Assets/Game/InGame Framework/DEMO/GameUI.unity
-    guid: 00000000000000000000000000000000
+    guid: 1e73f61cb3364b44aa50696396dd692b
+  - enabled: 1
+    path: Assets/Game/Tests/Alex/CharacterOptions.unity
+    guid: 9b27762271c846b46be536d778c9b25c
