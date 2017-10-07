@@ -12,7 +12,7 @@ public class ClientManager : MonoBehaviour
     private List<Vector2> regularOrderList;
 
     [SerializeField] private GameObject SpawnCircleCenter;
-    [SerializeField] private GameObject UICanvas;
+
     private int spawnCircleRadius = 5;
 
     [SerializeField] private GameObject OrderPrefab;
@@ -27,13 +27,15 @@ public class ClientManager : MonoBehaviour
 
     public int TimeRemainingWarning = 4;
 
-    private FAStar faStar;
-
     private float spawnTime;
 
     void Start ()
     {
-        faStar = GetComponent<FAStar>();
+        enabled = false;
+        Game.OnGameReady += delegate
+        {
+            enabled = true;
+        };
         orders = new List<GameObject>();
         spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
         regularOrderList = new List<Vector2>
@@ -45,23 +47,23 @@ public class ClientManager : MonoBehaviour
 
 	void Update ()
 	{
-	    spawnTime -= Time.deltaTime;
+	    //spawnTime -= Time.deltaTime;
 
-	    if (spawnTime < 0)
-	    {
-	        int isSpawnPoint = UnityEngine.Random.Range(0, 2);
-	        if (isSpawnPoint == 1)
-	        {
-                //spawn in the spawn point range
-                SpawnAtRandomClient();
-	        }
-	        else
-	        {
-                //spawn on one of the regulars point
-                SpawnAtRandomRegularClient();
-            }
-	        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
-	    }
+	    //if (spawnTime < 0)
+	    //{
+	    //    int isSpawnPoint = UnityEngine.Random.Range(0, 2);
+	    //    if (isSpawnPoint == 1)
+	    //    {
+     //           //spawn in the spawn point range
+     //           SpawnAtRandomClient();
+	    //    }
+	    //    else
+	    //    {
+     //           //spawn on one of the regulars point
+     //           SpawnAtRandomRegularClient();
+     //       }
+	    //    spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
+	    //}
 	}
 
     public void RemoveFromOrderList(GameObject gameObject)
@@ -71,8 +73,7 @@ public class ClientManager : MonoBehaviour
 
     public void SpawnAtRandomClient()
     {
-        Vector2 spawnPos = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)].Position;
-        Node spawnNode = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)];
+        Node spawnNode = Game.Fastar.nodes[UnityEngine.Random.Range(0, Game.Fastar.nodes.Count)];
         SpawnOrder(spawnNode);
     }
 
@@ -83,25 +84,31 @@ public class ClientManager : MonoBehaviour
         SpawnOrder(SpawnNode);
     }
 
+    public void SpawnOrder(ScriptedOrder order)
+    {
+        SpawnOrder(order.Node).TimeRemaining = order.OrderDuration;
+    }
+
     private Node GetNodeAt(Vector2 pos)
     {
-        for (int i = 0; i < faStar.nodes.Count; i++)
+        for (int i = 0; i < Game.Fastar.nodes.Count; i++)
         {
-            if (faStar.nodes[i].Position == pos)
+            if (Game.Fastar.nodes[i].Position == pos)
             {
-                return faStar.nodes[i];
+                return Game.Fastar.nodes[i];
             }
         }
         return null;
     }
 
-    private void SpawnOrder(Node currentNode)
+    private Order SpawnOrder(Node currentNode)
     {
         Vector2 nodePos = currentNode.Position;
         if (!isClientAlreadyOrdering(nodePos))
         {
             GameObject orderObject = Instantiate(OrderPrefab);
-            orderObject.transform.SetParent(UICanvas.transform);
+            orderObject.transform.SetParent(Game.GameUI.transform);
+            orderObject.transform.SetAsFirstSibling();
             orderObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(nodePos);
 
             Order order = orderObject.GetComponent<Order>();
@@ -112,8 +119,10 @@ public class ClientManager : MonoBehaviour
 
             orders.Add(orderObject);
 
-            Debug.Log("Spawned at : " + order.Node.Position);
+            Debug.Log("Spawned at Node : " + order.Node + ". | World to screen Position : " + Camera.main.ScreenToWorldPoint(order.transform.position));
+            return order;
         }
+        return null;
     }
 
     private bool isClientAlreadyOrdering(Vector2 newOrderPos)
