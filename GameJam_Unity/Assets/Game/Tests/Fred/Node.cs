@@ -9,7 +9,7 @@ public class Node : BaseBehavior
     public int index;
 
 
-    [InspectorMargin(12),InspectorHeader("Editor")]
+    [InspectorMargin(12), InspectorHeader("Editor")]
     public Node other;
 
     [InspectorButton]
@@ -46,16 +46,18 @@ public class Node : BaseBehavior
 
     public void OnDrawGizmos()
     {
-        for (int i = 0; i < voisins.Count; i++)
-        {
-            if(voisins[i] == null)
+        if (voisins != null)
+            for (int i = 0; i < voisins.Count; i++)
             {
-                voisins.RemoveAt(i);
-                break;
+                if (voisins[i] == null)
+                {
+                    voisins.RemoveAt(i);
+                    break;
+                }
+                Vector2 delta = voisins[i].Position - Position;
+                Vector2 offset = delta.Rotate(90).normalized * 0.25f;
+                Gizmos.color = new Color(1, 0, 1);
+                Gizmos.DrawLine(Position + offset, voisins[i].Position + offset);
             }
-            Vector2 delta = voisins[i].Position - Position;
-            Vector2 offset = delta.Rotate(90).normalized * 0.25f;
-            Gizmos.DrawLine(Position + offset, voisins[i].Position + offset);
-        }
     }
 }
