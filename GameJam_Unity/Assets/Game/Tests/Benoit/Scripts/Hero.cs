@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +16,8 @@ public class Hero : MonoBehaviour {
         //  Maximum turning angle in radian
     [ReadOnlyInPlayMode]
     public float maxTuringAngle = Mathf.PI / 9;
+
+    public Brain brain;
 
 
     private float currentSpeed;

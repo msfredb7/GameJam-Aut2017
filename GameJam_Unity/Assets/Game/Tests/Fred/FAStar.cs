@@ -123,9 +123,17 @@ public class FAStar : BaseBehavior
 public class PathOfDoom
 {
     public List<Node> nodes = new List<Node>();
-    public Node GetNext()
+    public Node GetDestination()
+    {
+        return nodes[0];
+    }
+    public Node GetClosest()
     {
         return nodes[nodes.Count - 1];
+    }
+    public Node Get2ndClosest()
+    {
+        return nodes[nodes.Count - 2];
     }
     public void RemoveClosest()
     {
