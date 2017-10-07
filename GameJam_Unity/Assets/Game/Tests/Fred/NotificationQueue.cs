@@ -43,6 +43,9 @@ public class NotificationQueue : Singleton<NotificationQueue>
     }
     protected void DisplayNotif(Notification notif)
     {
+        if (notif.onShow != null)
+            notif.onShow();
+
         text.text = notif.text;
         RectTransform rt = GetComponent<RectTransform>();
         isAnimating = true;
@@ -51,6 +54,9 @@ public class NotificationQueue : Singleton<NotificationQueue>
         rt.DOAnchorPos(hiddenPosition, goOutDuration).SetDelay(stayDuration).SetEase(Ease.InSine).OnComplete(
             () =>
             {
+                if (notif.onHide != null)
+                    notif.onHide();
+
                 isAnimating = false;
                 CheckNotif();
             });
