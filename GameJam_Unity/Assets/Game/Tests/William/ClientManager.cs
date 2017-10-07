@@ -45,23 +45,6 @@ public class ClientManager : MonoBehaviour
 
 	void Update ()
 	{
-	    //spawnTime -= Time.deltaTime;
-
-	    //if (spawnTime < 0)
-	    //{
-	    //    int isSpawnPoint = UnityEngine.Random.Range(0, 2);
-	    //    if (isSpawnPoint == 1)
-	    //    {
-     //           //spawn in the spawn point range
-     //           SpawnAtRandomClient();
-	    //    }
-	    //    else
-	    //    {
-     //           //spawn on one of the regulars point
-     //           SpawnAtRandomRegularClient();
-     //       }
-	    //    spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
-	    //}
 	}
 
     public void RemoveFromOrderList(GameObject gameObject)
@@ -81,11 +64,13 @@ public class ClientManager : MonoBehaviour
         Vector2 spawnPos = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]).Position;
         Node SpawnNode = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]);
         SpawnOrder(SpawnNode);
-    }
+    }   
 
-    public void SpawnOrder(ScriptedOrder order)
+    public void SpawnOrder(ScriptedOrder scriptedOrder)
     {
-        SpawnOrder(order.Node).TimeRemaining = order.OrderDuration;
+        Order orderItem = SpawnOrder(scriptedOrder.Node);
+        orderItem.TimeRemaining = scriptedOrder.OrderDuration;
+        orderItem.PizzaAmount = scriptedOrder.PizzaAmount;
     }
 
     private Node GetNodeAt(Vector2 pos)

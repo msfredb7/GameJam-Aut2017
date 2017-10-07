@@ -13,7 +13,7 @@ namespace Assets.Game.Tests.William
         public float OrderDuration;
         [HideInInspector]
         public bool IsActive;
-        public int pizzaAmount;
+        public int PizzaAmount;
     }
 
     [RequireComponent(typeof(ClientManager))]
