@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Game.Tests.William;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClientManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class ClientManager : MonoBehaviour
     private List<Vector2> regularOrderList;
 
     [SerializeField] private GameObject SpawnCircleCenter;
+    [SerializeField] private GameObject UICanvas;
     private int spawnCircleRadius = 5;
 
     [SerializeField] private GameObject OrderPrefab;
+    [SerializeField] private GameObject OrderUiPrefab; 
 
     [SerializeField] private int minPositionChange = 5;
     [SerializeField] private int maxPositionChange = 15;
@@ -22,6 +25,8 @@ public class ClientManager : MonoBehaviour
     [SerializeField] private float maxSpawnRate = 5f;
 
     [SerializeField] private int maxPizzaPerOrder = 6;
+
+    public int TimeRemainingWarning = 4;
 
     private FAStar faStar;
 
@@ -104,7 +109,15 @@ public class ClientManager : MonoBehaviour
             order.Node = currentNode;
 
             order.SetClientManager(this);
-            order.NbPizza = UnityEngine.Random.Range(0, maxPizzaPerOrder);
+            
+            GameObject uiCountdown = Instantiate(OrderUiPrefab);
+            uiCountdown.name = order.name + uiCountdown.name;
+            uiCountdown.transform.SetParent(UICanvas.transform);
+
+            order.OrderUI = uiCountdown.GetComponent<OrderUI>();
+
+            uiCountdown.transform.position = Camera.main.WorldToScreenPoint(order.transform.position);
+
             orders.Add(orderObject);
         }
     }

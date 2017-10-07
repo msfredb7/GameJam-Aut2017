@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class Cash_Script : MonoBehaviour {
 
-    public float m_Cash, m_CashTarget;
+    public int m_Cash, m_CashTarget;
 
     public Text m_CashDisplay;
 
     void Start()
     {
-        m_Cash = 15000.0f;
-        m_CashTarget = 30000.0f;
-        //m_CashDisplay.text = "Cash : " + m_Cash.ToString();
+        AfficheCash();
+
+        Game.OnGameReady += () => Game.GameUI.objectiveDisplay.SetObjectiveAmount(m_CashTarget);
     }
 
 
     //  Depense d'argent du joueur
     //  dep : montant depenser
-    public void OutcomeCash(float dep)
+    public void OutcomeCash(int dep)
     {
         m_Cash -= dep;
         AfficheCash();
@@ -27,7 +27,7 @@ public class Cash_Script : MonoBehaviour {
 
     //  Revenus d'argent du joueur
     //  Rev : montant de revenus
-    public void IncomeCash(float rev)
+    public void IncomeCash(int rev)
     {
         m_Cash += rev;
         AfficheCash();
@@ -43,11 +43,6 @@ public class Cash_Script : MonoBehaviour {
     //  Methode qui va set l'affiche de l'UI du montant d'argent
     public void AfficheCash()
     {
-        if (m_Cash >= 0)
-            m_CashDisplay.color = Color.black;
-        else
-            m_CashDisplay.color = Color.red;
-
-        m_CashDisplay.text = "Cash : " + m_Cash.ToString();
+        Game.GameUI.objectiveDisplay.SetCashAmount(m_Cash);
     }
 }
