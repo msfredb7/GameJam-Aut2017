@@ -14,6 +14,7 @@ public class DisplayBehavior : MonoBehaviour {
     public Transform countainer;
     public GameObject emptyIndicatior;
     public CanvasGroup canvasGroup;
+    public GameObject selectionNotif;
 
     // Character Behavior
     [HideInInspector]
@@ -74,10 +75,24 @@ public class DisplayBehavior : MonoBehaviour {
     public void Hide()
     {
         canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
     }
 
     public void Show()
     {
         canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+    }
+
+    public void WaitForChoice()
+    {
+        Hide();
+        selectionNotif.GetComponent<FadeFlash>().Play();
+    }
+
+    public void ChoiceMade()
+    {
+        selectionNotif.GetComponent<FadeFlash>().Stop();
+        Show();
     }
 }
