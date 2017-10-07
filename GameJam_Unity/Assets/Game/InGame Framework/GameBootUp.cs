@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameBootUp : MonoBehaviour
 {
+    public string mapName = "Map1";
+
     void Start()
     {
         if (SceneManager.sceneCount != 1)
@@ -29,7 +31,7 @@ public class GameBootUp : MonoBehaviour
     private void OnGameLoaded(Scene scene)
     {
         Debug.Log("Game boot up");
-        scene.FindRootObject<GameBuilder>().Build();
+        scene.FindRootObject<GameBuilder>().Build(mapName);
     }
 
     public void BootUp()

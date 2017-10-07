@@ -21,27 +21,38 @@ public class Hero : MonoBehaviour
     //  Max turning Speed
     [ReadOnlyInPlayMode]
     public float turningSpeed = Mathf.PI / 4;
+    [ReadOnlyInPlayMode]
+    public HeroDescription heroDescription;
 
+    public Pizza carriedPizza;
+
+    public CharacterBehavior behavior;
     public Brain brain;
 
 
     private float currentSpeed;
 
-    private Node currentNode = null;
-
-    private Node previousNode = null;
-    private Node nextNode = null;
+    public Node currentNode = null;
+    public Node previousNode = null;
+    public Node nextNode = null;
 
     private bool moving = false;
-    public Action onReachNode;
 
+    public delegate void HeroEvent(Hero hero);
+
+    public Action onReachNode;
+    public event HeroEvent onClick;
 
     private void Update()
     {
+        if (carriedPizza != null)
+        {
+            carriedPizza.transform.position = transform.position - new Vector3(0, 0, -10);
+        }
+
         if (moving)
             Move();
     }
-
 
     public void SetNode(Node node)
     {
@@ -78,10 +89,11 @@ public class Hero : MonoBehaviour
         float dot = Vector2.Dot(previousLink, nextLink);
         float sumMag = previousLink.magnitude * nextLink.magnitude;
         float angle = Mathf.Acos(dot / sumMag);
+        
 
         //print(angle);
 
-        if (angle > maxTuringAngle)
+        if (angle * Mathf.Rad2Deg > maxTuringAngle)
             currentSpeed = 0;
         else if (currentSpeed > turningSpeed)
             currentSpeed = turningSpeed;
@@ -90,7 +102,8 @@ public class Hero : MonoBehaviour
 
     void OnMouseDown()
     {
-        print("tortue de terre");
+        if (onClick != null)
+            onClick(this);
     }
 
     public void DestinationReached()
@@ -128,32 +141,26 @@ public class Hero : MonoBehaviour
     // Use this for initialization
     public void SnapToNode()
     {
-        float minSqrDistance = float.PositiveInfinity;
-        Node closestNode = null;
-
-        Node[] nodes = FindObjectsOfType(typeof(Node)) as Node[];
-        foreach (Node node in nodes)
-        {
-            float sqrDistance = (node.Position - (Vector2)transform.position).sqrMagnitude;
-            if (sqrDistance < minSqrDistance)
-            {
-                minSqrDistance = sqrDistance;
-                closestNode = node;
-            }
-        }
+        Node closestNode = Game.Fastar.GetClosestNode((Vector2)transform.position);
 
         if (closestNode != null)
         {
-            //print("exist");
             SetToNode(closestNode);
             brain.state.stayNode = closestNode;
         }
         else
             Destroy(gameObject);
-
-
-
-
-
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        print("Bang!");
+        Pizza pizz = col.gameObject.GetComponent<Pizza>();
+        if (pizz != null)
+        {
+            //col.gameObject.SetActive(false);
+            carriedPizza = pizz;
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Game.Tests.William;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClientManager : MonoBehaviour
 {
@@ -11,10 +12,11 @@ public class ClientManager : MonoBehaviour
     private List<Vector2> regularOrderList;
 
     [SerializeField] private GameObject SpawnCircleCenter;
+    [SerializeField] private GameObject UICanvas;
     private int spawnCircleRadius = 5;
 
     [SerializeField] private GameObject OrderPrefab;
-
+    
     [SerializeField] private int minPositionChange = 5;
     [SerializeField] private int maxPositionChange = 15;
 
@@ -22,6 +24,8 @@ public class ClientManager : MonoBehaviour
     [SerializeField] private float maxSpawnRate = 5f;
 
     [SerializeField] private int maxPizzaPerOrder = 6;
+
+    public int TimeRemainingWarning = 4;
 
     private FAStar faStar;
 
@@ -97,15 +101,18 @@ public class ClientManager : MonoBehaviour
         if (!isClientAlreadyOrdering(nodePos))
         {
             GameObject orderObject = Instantiate(OrderPrefab);
-            orderObject.transform.position = nodePos;
+            orderObject.transform.SetParent(UICanvas.transform);
+            orderObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(nodePos);
 
             Order order = orderObject.GetComponent<Order>();
             currentNode.Order = order;
             order.Node = currentNode;
 
             order.SetClientManager(this);
-            order.NbPizza = UnityEngine.Random.Range(0, maxPizzaPerOrder);
+
             orders.Add(orderObject);
+
+            Debug.Log("Spawned at : " + order.Node.Position);
         }
     }
 
@@ -113,7 +120,7 @@ public class ClientManager : MonoBehaviour
     {
         for (int i = 0; i < orders.Count; i++)
         {
-            if (newOrderPos == (Vector2)orders[i].transform.position)
+            if (newOrderPos == (Vector2)orders[i].GetComponent<Order>().Node.Position)
             {
                 return true;
             }

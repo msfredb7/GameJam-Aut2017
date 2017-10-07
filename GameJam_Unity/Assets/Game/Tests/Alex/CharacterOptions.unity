@@ -238,8 +238,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -169, y: 34}
-  m_SizeDelta: {x: 259, y: -385}
+  m_AnchoredPosition: {x: -148, y: 32}
+  m_SizeDelta: {x: 236, y: -387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73400545
 MonoBehaviour:
@@ -541,8 +541,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 390.8, y: 330.34}
-  m_SizeDelta: {x: 780, y: 660}
+  m_AnchoredPosition: {x: 362, y: 330}
+  m_SizeDelta: {x: 721, y: 660}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418485379
 MonoBehaviour:
@@ -1068,8 +1068,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -169, y: 34}
-  m_SizeDelta: {x: 272, y: -380}
+  m_AnchoredPosition: {x: -148, y: 31.999992}
+  m_SizeDelta: {x: 248, y: -382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375324948
 MonoBehaviour:
@@ -1186,7 +1186,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1859924696}
-  - component: {fileID: 1859924695}
   - component: {fileID: 1859924697}
   - component: {fileID: 1859924698}
   m_Layer: 0
@@ -1196,19 +1195,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1859924695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1859924694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34923ebf6a9a7684cbb36a343d61c828, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  display: {fileID: 818574084}
-  behavior: {fileID: 1859924697}
 --- !u!4 &1859924696
 Transform:
   m_ObjectHideFlags: 0
@@ -1233,6 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb282f6a67c55314ba346572ed9cea16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero: {fileID: 0}
   looping: 1
 --- !u!114 &1859924698
 MonoBehaviour:
@@ -1245,6 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76a9423a4e38884aa699ed3793e2864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapName: Map1
 --- !u!1 &1921194621
 GameObject:
   m_ObjectHideFlags: 0

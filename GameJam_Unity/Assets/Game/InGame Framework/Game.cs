@@ -6,20 +6,27 @@ public class Game : PublicSingleton<Game>
 {
     public static DelayedEvents DelayedEvents { get { return instance != null ? instance.delayedEvents : null; } }
     public static GameUI GameUI { get { return instance != null ? instance.gameUI : null; } }
-    public static FAStar Fastar { get { return instance != null ? instance.fastar : null; } }
+    public static FAStar Fastar { get { return instance != null ? instance.map.fastar : null; } }
+    public static HeroManager HeroManager { get { return instance != null ? instance.heroManager : null; } }
+    public static Map Map { get { return instance != null ? instance.map : null; } }
 
     [SerializeField]
     private DelayedEvents delayedEvents;
     [SerializeField]
-    private FAStar fastar;
+    private HeroManager heroManager;
     [SerializeField, ReadOnly]
     private GameUI gameUI;
+    [SerializeField, ReadOnly]
+    private Map map;
+
 
     // GAME STATE
-    [HideInInspector]
+    [ReadOnly]
     public bool gameStarted = false;
-    [HideInInspector]
+    [ReadOnly]
     public bool gameReady = false;
+    [ReadOnly]
+    public bool gameEnded = false;
 
     static private event SimpleEvent onGameReady;
     static private event SimpleEvent onGameStart;
@@ -61,9 +68,10 @@ public class Game : PublicSingleton<Game>
         onGameStart = null;
     }
 
-    public void PrepareLaunch(GameUI gameUI)
+    public void PrepareLaunch(GameUI gameUI, Map map)
     {
         this.gameUI = gameUI;
+        this.map = map;
 
         //Ready up !
         ReadyGame();
@@ -109,8 +117,21 @@ public class Game : PublicSingleton<Game>
         }
     }
 
-    public void EndGame()
+    public void Win()
     {
-        // End Game Screen
+        if (gameEnded)
+            return;
+        gameEnded = true;
+
+        NotificationQueue.PushNotification("You won");
+    }
+
+    public void Lose()
+    {
+        if (gameEnded)
+            return;
+        gameEnded = true;
+
+        NotificationQueue.PushNotification("You lost");
     }
 }

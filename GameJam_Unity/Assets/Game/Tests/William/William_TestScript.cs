@@ -10,7 +10,7 @@ public class William_TestScript : MonoBehaviour
     public static float MAP_SIZE_Y = 10;
 
     public static int MIN_ORDER_TIMER = 1;
-    public static int MAX_ORDER_TIMER = 5;
+    public static int MAX_ORDER_TIMER = 15;
 
     public static Bounds MAP_BOUNDS = new Bounds(new Vector2(0,0), new Vector2(MAP_SIZE_X, MAP_SIZE_Y));
 
