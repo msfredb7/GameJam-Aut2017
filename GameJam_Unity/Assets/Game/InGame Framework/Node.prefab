@@ -94,9 +94,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectReferences: []
   _serializedStateKeys:
+  - Order
   - voisins
   - heroTransitions
   _serializedStateValues:
+  - 
   - '[]'
   - '[]'
   voisins: []
