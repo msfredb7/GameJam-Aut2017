@@ -1,4 +1,4 @@
-﻿using CCC.Manager;
+using CCC.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using Tutorial;
@@ -13,7 +13,7 @@ public class TutorialUI : MonoBehaviour {
 
 	void Start ()
     {
-        gameBootUp.onGameBooted += ShowHeroSelected;
+        //gameBootUp.onGameBooted += ShowHeroSelected;
     }
 
     void ShowHeroSelected()

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212503712169435042}
   - component: {fileID: 114582607985421310}
   - component: {fileID: 135307422076875366}
+  - component: {fileID: 114741183114294176}
   m_Layer: 0
   m_Name: Hero1
   m_TagString: Untagged
@@ -57,6 +58,20 @@ MonoBehaviour:
   accelerationRate: 0.2
   carryingCapacity: 1
   maxTuringAngle: 0.34906587
+  turningSpeed: 0.7853982
+  brain: {fileID: 114741183114294176}
+--- !u!114 &114741183114294176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121505304613864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e671fe3f2302aad41a0af6d378d8243e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hero: {fileID: 114582607985421310}
 --- !u!135 &135307422076875366
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -98,11 +113,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1220224665
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 281d27699e6e6a141a71e6d0482f167d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.006896496, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

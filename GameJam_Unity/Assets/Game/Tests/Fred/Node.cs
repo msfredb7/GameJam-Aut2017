@@ -5,11 +5,30 @@ using FullInspector;
 
 public class Node : BaseBehavior
 {
-    public struct HeroTransition
+    public class HeroTransition
     {
         public Node from;
         public Node to;
         public Hero theHero;
+        public void Flip()
+        {
+            Node lastFrom = from;
+            from = to;
+            to = lastFrom;
+        }
+
+        public void NoticeDelete()
+        {
+            from.heroTransitions.Remove(this);
+            to.heroTransitions.Remove(this);
+            theHero.brain.state.transition = null;
+        }
+        public void NoticeCreate()
+        {
+            from.heroTransitions.Add(this);
+            to.heroTransitions.Add(this);
+            theHero.brain.state.transition = this;
+        }
     }
     public List<Node> voisins;
     public int index;
