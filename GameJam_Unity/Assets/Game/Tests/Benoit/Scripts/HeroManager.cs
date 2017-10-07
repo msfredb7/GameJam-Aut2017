@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,10 +10,21 @@ public class HeroManager : MonoBehaviour
     private List<Hero> listOwnedHero = new List<Hero>();
     private Hero activeHero;
 
+    public Action<Hero> onHeroAdded;
+
     public void AddHero(Hero newHero)
     {
         listOwnedHero.Add(newHero);
+        activeHero = newHero;
         newHero.onClick += SetActiveHero;
+
+        if (onHeroAdded != null)
+            onHeroAdded(newHero);
+    }
+
+    public Hero getActiveHero()
+    {
+        return activeHero;
     }
 
     public void SetActiveHero(Hero hero)
@@ -45,7 +57,8 @@ public class HeroManager : MonoBehaviour
 
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Node node = Game.Fastar.GetClosestNode(pos);
-            activeHero.brain.GoToNode(node);
+            if(node != null)
+                activeHero.brain.GoToNode(node);
         }
     }
 
