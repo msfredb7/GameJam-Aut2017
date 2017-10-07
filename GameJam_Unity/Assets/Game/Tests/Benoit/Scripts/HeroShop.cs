@@ -20,7 +20,6 @@ public class HeroShop : MonoBehaviour {
     {
         heroSelected = false;
         heroInstance.SnapToNode();
-        heroInstance.SnapToNode();
     }
 
     // Update is called once per frame
@@ -30,7 +29,6 @@ public class HeroShop : MonoBehaviour {
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            print(pos);
 
             heroInstance.transform.position = pos;
         }

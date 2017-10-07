@@ -13,64 +13,149 @@ public class Hero : MonoBehaviour {
         //  Amount of pizza you carry at once
     [ReadOnlyInPlayMode]
     public float carryingCapacity;
-        
+        //  Maximum turning angle in radian
+    [ReadOnlyInPlayMode]
+    public float maxTuringAngle = Mathf.PI / 9;
+
+
     private float currentSpeed;
+
+    private List<nodesTest> currentPath = new List<nodesTest>();
+    private int pathIterator;
+
+    private nodesTest startingPoint;
+    private bool moving = false;
 
 
 
 
     /*TEST*/
-    private nodesTest currentNode;
-    private nodesTest nextNode;
-    public void SetNode(nodesTest node)
+
+
+    private void DebugNextNode()
     {
-        currentNode = node;
-        moving = false;
+        List<nodesTest> wooo = new List<nodesTest>();
+        print(currentPath.Count);
+        if (currentPath.Count == 0)
+        {
+            wooo.Add(startingPoint.nextNode);
+        }
+        else
+            wooo.Add(currentPath[currentPath.Count - 1].nextNode);
+
+
+        AppendPath(wooo);
     }
-    private bool moving = true;
 
+    private void DebugPreviousNode()
+    {
+        List<nodesTest> wooo = new List<nodesTest>();
 
+        if (currentPath.Count == 0)
+        { 
+            wooo.Add(startingPoint.previousNode);
+        }
+        else
+            wooo.Add(currentPath[currentPath.Count - 1].previousNode);
+
+        AppendPath(wooo);
+    }
 
 
     private void Update()
     {
+        if (startingPoint == null)
+            return;
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            print("WWWWWWWWWWW");
-            MoveTo(currentNode.previousNode);
+            DebugPreviousNode();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            MoveTo(currentNode.nextNode);
+            DebugNextNode();
         }
 
 
         /*TEST*/
 
-        if (nextNode != null)
-            MoveTo(nextNode);
+        if (moving)
+            Move();
     }
+
+
+    public void AppendPath(List<nodesTest> newPath)
+    {
+        if (currentPath == null)
+            currentPath = new List<nodesTest>();
+
+        int size = newPath.Count;
+        for (int i = 0; i < size; i++)
+        { 
+            currentPath.Add(newPath[i]);
+        }
+
+        moving = true;
+    }
+
+    public void SetToNode(nodesTest node)
+    {
+        transform.position = node.transform.position;
+        startingPoint = node;
+    }
+
+    public void ToNextNode()
+    {
+        
+        if (currentPath.Count == 1)
+        {
+            DestinationReached();
+            return;
+        }
+
+        currentPath.RemoveAt(0);
+
+        if (0 < pathIterator && pathIterator + 1 < currentPath.Count)
+        {
+            Vector2 previousLink = currentPath[pathIterator].transform.position - currentPath[pathIterator - 1].transform.position;
+            Vector2 nextLink = currentPath[pathIterator].transform.position - currentPath[pathIterator + 1].transform.position;
+            float dot = Vector2.Dot(previousLink, nextLink);
+            float sumMag = previousLink.magnitude * nextLink.magnitude;
+            float angle = Mathf.Acos(dot / sumMag);
+
+            if (angle < maxTuringAngle)
+                currentSpeed = 0;
+        }
+    }
+
+    void OnMouseDown()
+    {
+        print("tortue de terre");
+    }
+
+
 
 
     public void DestinationReached()
     {
+        moving = false;
+        startingPoint = currentPath[0];
+        currentPath.RemoveAt(0);
+        pathIterator = 0;
         currentSpeed = 0;
-        currentNode = nextNode;
-        nextNode = null;
     }
 
-    public void MoveTo(nodesTest nextNo)
+    public void Move()
     {
-        nextNode = nextNo;
+        if (currentPath == null)
+            return;
 
-        Vector2 destination = (Vector2)nextNode.transform.position;
-
+        Vector2 destination = (Vector2)currentPath[0].transform.position;
         Vector2 delta = destination - (Vector2)transform.position;
 
         if (delta.magnitude < currentSpeed)   {
             transform.position = (Vector3)destination;
-            DestinationReached();
+            ToNextNode();
             return;
         }
         else { 
@@ -86,7 +171,6 @@ public class Hero : MonoBehaviour {
     // Use this for initialization
     public void SnapToNode()
     {
-        print("asd");
         float minSqrDistance = float.PositiveInfinity;
         nodesTest closestNode = null;
 
@@ -99,21 +183,13 @@ public class Hero : MonoBehaviour {
                 minSqrDistance = sqrDistance;
                 closestNode = node;
             }
-
-
         }
+
+
         if (closestNode != null)
         {
-            transform.position = closestNode.transform.position;
-
-
-            /*TEST*/
-
-            currentNode = closestNode;
-
-            /*TEST*/
-
-
+            print("exist");
+            SetToNode(closestNode);
         }
 
         else
