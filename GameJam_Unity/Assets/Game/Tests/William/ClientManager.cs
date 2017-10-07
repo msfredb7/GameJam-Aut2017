@@ -18,8 +18,8 @@ public class ClientManager : MonoBehaviour
     [SerializeField] private int minPositionChange = 5;
     [SerializeField] private int maxPositionChange = 15;
 
-    [SerializeField] private float minSpawnTime = 1f;
-    [SerializeField] private float maxSpawnTime = 2f;
+    [SerializeField] private float minSpawnRate = 1f;
+    [SerializeField] private float maxSpawnRate = 5f;
 
     private FAStar faStar;
 
@@ -29,14 +29,11 @@ public class ClientManager : MonoBehaviour
     {
         faStar = GetComponent<FAStar>();
         orders = new List<GameObject>();
-        spawnTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
+        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
         regularOrderList = new List<Vector2>
         {
-            new Vector2(0, 0),
-            new Vector2(1, 1),
-            new Vector2(2, 2),
-            new Vector2(3, 5),
-            new Vector2(4, 2)
+            new Vector2(0.99f, 3.98f),
+            new Vector2(-4.95f, -0.06f),
         };
     }
 
@@ -49,32 +46,18 @@ public class ClientManager : MonoBehaviour
 	        int isSpawnPoint = UnityEngine.Random.Range(0, 2);
 	        if (isSpawnPoint == 1)
 	        {
-	            //spawn in the spawn point range
-	            SpawnRandomClient();
+                //spawn in the spawn point range
+                SpawnRandomClient();
 	        }
 	        else
 	        {
-	            //spawn on one of the regulars point
-	            //SpawnRandomRegularClient();
-	        }
-	        spawnTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
+                //spawn on one of the regulars point
+                SpawnRandomRegularClient();
+            }
+	        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
             Debug.Log(spawnTime);
 	    }
 	}
-
-
-
-    private bool isClientAlreadyOrdering(Vector2 newOrderPos)
-    {
-        for (int i = 0; i < orders.Count; i++)
-        {
-            if (newOrderPos == (Vector2)orders[i].transform.position)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void RemoveFromOrderList(GameObject gameObject)
     {
@@ -96,6 +79,35 @@ public class ClientManager : MonoBehaviour
     public void SpawnRandomRegularClient()
     {
         Vector2 randomRegular = regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)];
-        
+        if (!isClientAlreadyOrdering(randomRegular))
+        {
+            GameObject order = Instantiate(OrderPrefab);
+            order.transform.position = randomRegular;
+            order.GetComponent<Order>().SetClientManager(this);
+            orders.Add(order);
+        }
+    }
+
+    private void SpawnClient(Vector2 pos)
+    {
+        if (!isClientAlreadyOrdering(pos))
+        {
+            GameObject order = Instantiate(OrderPrefab);
+            order.transform.position = pos;
+            order.GetComponent<Order>().SetClientManager(this);
+            orders.Add(order);
+        }
+    }
+
+    private bool isClientAlreadyOrdering(Vector2 newOrderPos)
+    {
+        for (int i = 0; i < orders.Count; i++)
+        {
+            if (newOrderPos == (Vector2)orders[i].transform.position)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
