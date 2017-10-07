@@ -11,13 +11,13 @@ public class HeroShop_Script : MonoBehaviour {
 
     public void showList()
     {
-        RectTransform mashit = GetComponent<RectTransform>();
-        mashit.DOAnchorPos(m_VisiblePos, 0.5f).SetEase(Ease.OutSine);
+        RectTransform malist = GetComponent<RectTransform>();
+        malist.DOAnchorPos(m_VisiblePos, 0.5f).SetEase(Ease.OutSine);
     }
 
     public void hideList()
     {
-        RectTransform mashit = GetComponent<RectTransform>();
-        mashit.DOAnchorPos(m_HidenPos, 0.5f).SetEase(Ease.OutSine);
+        RectTransform malist = GetComponent<RectTransform>();
+        malist.DOAnchorPos(m_HidenPos, 0.5f).SetEase(Ease.OutSine);
     }
 }
