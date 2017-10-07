@@ -15,7 +15,8 @@ public class Fred_TestScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            hero.brain.GoToNode(tNode);
+            NotificationQueue.PushNotification(new Notification() { text = "Hola, this is an emergency!" });
+            NotificationQueue.PushNotification(new Notification() { text = "BOBOBOBOBO" });
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
