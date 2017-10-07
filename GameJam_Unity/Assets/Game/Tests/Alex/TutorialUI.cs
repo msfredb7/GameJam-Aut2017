@@ -9,6 +9,8 @@ public class TutorialUI : MonoBehaviour {
     public GameBootUp gameBootUp;
     public Spotlight spotlight;
 
+    public RectTransform heroPanel;
+
 	void Start ()
     {
         gameBootUp.onGameBooted += ShowHeroSelected;
@@ -16,8 +18,8 @@ public class TutorialUI : MonoBehaviour {
 
     void ShowHeroSelected()
     {
-        //spotlight.On
-        //DelayManager.LocalCallTo()
+        spotlight.On()
+        DelayManager.LocalCallTo()
 
     }
 
