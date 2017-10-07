@@ -28,7 +28,7 @@ public class GameBuilder : MonoBehaviour
 
 
         if (!Scenes.Exists(mapName))
-            Scenes.LoadAsync(mapName, LoadSceneMode.Additive, OnUILoaded);
+            Scenes.LoadAsync(mapName, LoadSceneMode.Additive, OnMapLoaded);
         else
             OnMapLoaded(Scenes.GetActive(mapName));
     }

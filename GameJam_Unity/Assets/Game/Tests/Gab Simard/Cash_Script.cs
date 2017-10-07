@@ -13,7 +13,7 @@ public class Cash_Script : MonoBehaviour {
     {
         m_Cash = 15000.0f;
         m_CashTarget = 30000.0f;
-        m_CashDisplay.text = "Cash : " + m_Cash.ToString();
+        //m_CashDisplay.text = "Cash : " + m_Cash.ToString();
     }
 
 
