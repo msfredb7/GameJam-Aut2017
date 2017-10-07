@@ -162,9 +162,14 @@ public class Hero : MonoBehaviour
         Pizza pizz = col.gameObject.GetComponent<Pizza>();
         if (pizz != null)
         {
-            //col.gameObject.SetActive(false);
             carriedPizza = pizz;
+            col.enabled = false;
         }
+    }
+
+    public void Drop()
+    {
+
     }
 
 }

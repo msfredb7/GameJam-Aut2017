@@ -14,45 +14,39 @@ namespace Assets.Game.Tests.William
 
         public Node Node { get; set; }
         public GameObject UICountdown { get; set; }
-        private float timeRemaining;
+        public float TimeRemaining { get; set; }
         private bool isOrderStarted;
         private ClientManager clientManager;
 
         void Start()
         {
             rectTransform = GetComponent<RectTransform>();
-            timeRemaining = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
             transform.localScale = Vector3.one;
         }
 
         void Update()
         {
-            rectTransform.position = Camera.main.WorldToScreenPoint(Node.Position);   
-            timeRemaining -= Time.deltaTime;
-            if (timeRemaining < 0)
+            rectTransform.position = Camera.main.WorldToScreenPoint(Node.Position);
+            TimeRemaining -= Time.deltaTime;
+            if (TimeRemaining < 0)
             {
                 clientManager.RemoveFromOrderList(gameObject);
                 Node.Order = null;
                 Destroy(gameObject);
             }
-            else if (timeRemaining <= clientManager.TimeRemainingWarning)
+            else if (TimeRemaining <= clientManager.TimeRemainingWarning)
             {
                 objectiveWarningObject.GetComponent<Image>().enabled = true;
-                countdownObject.GetComponent<Text>().color = Color.black;
+                countdownObject.GetComponent<Text>().color = Color.white;
             }
 
-            countdownObject.GetComponent<Text>().text = Convert.ToString((int)timeRemaining);
+            countdownObject.GetComponent<Text>().text = Convert.ToString((int)TimeRemaining);
             pizzaCountObject.GetComponent<Text>().text = "0";
         }
 
         public void SetClientManager(ClientManager clientManager)
         {
             this.clientManager = clientManager;
-        }
-
-        public int GetTimeRemaining()
-        {
-            return (int)timeRemaining;
         }
     }
 }
