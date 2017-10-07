@@ -5923,6 +5923,11 @@ Prefab:
       propertyPath: ScriptedOrders.Array.data[0].pizzaAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114516230562792118, guid: 0b68d40ec0f563e44aac214d5bb6226b,
+        type: 2}
+      propertyPath: ScriptedOrders.Array.data[0].PizzaAmount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b68d40ec0f563e44aac214d5bb6226b, type: 2}
   m_IsPrefabParent: 0

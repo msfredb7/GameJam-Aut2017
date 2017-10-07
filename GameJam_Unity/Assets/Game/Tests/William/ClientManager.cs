@@ -45,12 +45,24 @@ public class ClientManager : MonoBehaviour
 
 	void Update ()
 	{
+        for (int i = 0; i < orders.Count; i++)
+        {
+            Order currentOrder = orders[i].GetComponent<Order>();
+            if (currentOrder != null)
+            {
+                if(currentOrder.Node.pizza.Count >= currentOrder.PizzaAmount)
+                {
+                    // Commande reussit !
+                    RemoveFromOrderList(currentOrder.gameObject);
+                    CommandCompleted(currentOrder.Node);
+                }
+            }
+        }
 	}
 
     public void RemoveFromOrderList(GameObject gameObject)
     {
         orders.Remove(gameObject);
-        NotificationQueue.PushNotification("Vous avez manquer une livraison !");
     }
 
     public void SpawnAtRandomClient()
@@ -119,5 +131,14 @@ public class ClientManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    void CommandCompleted(Node node)
+    {
+        NotificationQueue.PushNotification("Vous avez complété une commande !");
+        for (int i = 0; i < node.pizza.Count; i++)
+        {
+            Destroy(node.pizza[i].gameObject);
+        }
     }
 }

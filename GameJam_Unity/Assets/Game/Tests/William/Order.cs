@@ -33,6 +33,7 @@ namespace Assets.Game.Tests.William
             {
                 clientManager.RemoveFromOrderList(gameObject);
                 Node.Order = null;
+                NotificationQueue.PushNotification("Vous avez manquer une livraison !");
                 Destroy(gameObject);
             }
             else if (TimeRemaining <= clientManager.TimeRemainingWarning)
