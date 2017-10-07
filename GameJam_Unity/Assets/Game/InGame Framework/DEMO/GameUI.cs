@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
     public Action onHeroSelected;
 
     public HeroShop heroShop;
+    public ObjectiveDisplay objectiveDisplay;
 
     public HeroPortrait portrait;
 

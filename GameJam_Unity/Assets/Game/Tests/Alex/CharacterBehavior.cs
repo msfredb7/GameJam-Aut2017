@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterBehavior : MonoBehaviour {
+public class CharacterBehavior : MonoBehaviour
+{
 
     [HideInInspector]
     public List<CharacterAction> characterActions = new List<CharacterAction>();
@@ -11,19 +12,36 @@ public class CharacterBehavior : MonoBehaviour {
 
     public Action<CharacterAction> onAddAction;
 
+    public Hero hero;
+
     public bool looping = false;
     private bool readyForNext = false;
 
-	public void AddAction(CharacterAction.CharacterActionType actionType)
+    void Start()
+    {
+        looping = true;
+        if (hero == null)
+        {
+            Hero theHero = GetComponent<Hero>();
+            if (theHero != null)
+                hero = theHero;
+        }
+    }
+
+    public void AddAction(CharacterAction.CharacterActionType actionType)
     {
         characterActions.Add(new CharacterAction(actionType));
-        if(onAddAction != null)
-            onAddAction.Invoke(characterActions[characterActions.Count-1]);
+        if (characterActions.Count <= 1)
+            readyForNext = true;
+        if (onAddAction != null)
+            onAddAction.Invoke(characterActions[characterActions.Count - 1]);
     }
 
     public void AddAction(CharacterAction newAction)
     {
         characterActions.Add(newAction);
+        if (characterActions.Count <= 1)
+            readyForNext = true;
         if (onAddAction != null)
             onAddAction.Invoke(characterActions[characterActions.Count - 1]);
     }
@@ -42,7 +60,7 @@ public class CharacterBehavior : MonoBehaviour {
         if (characterActions.Count <= 0)
             return;
         currentAction = characterActions[0];
-        currentAction.Execute(ReadyForNextAction);
+        currentAction.Execute(hero, ReadyForNextAction);
     }
 
     private void ReadyForNextAction()
@@ -55,13 +73,13 @@ public class CharacterBehavior : MonoBehaviour {
         int currentActionIndex = characterActions.FindIndex(isCurrentAction);
         if (characterActions.Count <= currentActionIndex + 1)
         {
-            if(looping)
+            if (looping)
                 ExecuteAll();
             return;
         }
         CharacterAction newAction = characterActions[currentActionIndex + 1];
         currentAction = newAction;
-        newAction.Execute(ExecuteNext);
+        newAction.Execute(hero, ExecuteNext);
     }
 
     private bool isCurrentAction(CharacterAction action)

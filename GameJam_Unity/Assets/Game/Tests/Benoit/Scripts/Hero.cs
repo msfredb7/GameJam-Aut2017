@@ -21,9 +21,10 @@ public class Hero : MonoBehaviour
     //  Max turning Speed
     [ReadOnlyInPlayMode]
     public float turningSpeed = Mathf.PI / 4;
+    [ReadOnlyInPlayMode]
+    public HeroDescription heroDescription;
 
     public Pizza carriedPizza;
-    
 
     public CharacterBehavior behavior;
     public Brain brain;
@@ -31,10 +32,9 @@ public class Hero : MonoBehaviour
 
     private float currentSpeed;
 
-    private Node currentNode = null;
-
-    private Node previousNode = null;
-    private Node nextNode = null;
+    public Node currentNode = null;
+    public Node previousNode = null;
+    public Node nextNode = null;
 
     private bool moving = false;
 
@@ -45,10 +45,14 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
+        if (carriedPizza != null)
+        {
+            carriedPizza.transform.position = transform.position - new Vector3(0, 0, -10);
+        }
+
         if (moving)
             Move();
     }
-
 
     public void SetNode(Node node)
     {
@@ -85,10 +89,11 @@ public class Hero : MonoBehaviour
         float dot = Vector2.Dot(previousLink, nextLink);
         float sumMag = previousLink.magnitude * nextLink.magnitude;
         float angle = Mathf.Acos(dot / sumMag);
+        
 
         //print(angle);
 
-        if (angle > maxTuringAngle)
+        if (angle * Mathf.Rad2Deg > maxTuringAngle)
             currentSpeed = 0;
         else if (currentSpeed > turningSpeed)
             currentSpeed = turningSpeed;
@@ -146,4 +151,16 @@ public class Hero : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        print("Bang!");
+        Pizza pizz = col.gameObject.GetComponent<Pizza>();
+        if (pizz != null)
+        {
+            //col.gameObject.SetActive(false);
+            carriedPizza = pizz;
+        }
+    }
+
 }

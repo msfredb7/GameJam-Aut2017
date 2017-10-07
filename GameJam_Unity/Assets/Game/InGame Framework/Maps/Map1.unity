@@ -7974,7 +7974,7 @@ GameObject:
   - component: {fileID: 1942873262}
   - component: {fileID: 1942873261}
   m_Layer: 0
-  m_Name: Cash Script
+  m_Name: Objectives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7993,7 +7993,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Cash: 15000
   m_CashTarget: 30000
-  m_CashDisplay: {fileID: 0}
+  minutes: 15
+  seconds: 0
 --- !u!4 &1942873262
 Transform:
   m_ObjectHideFlags: 0

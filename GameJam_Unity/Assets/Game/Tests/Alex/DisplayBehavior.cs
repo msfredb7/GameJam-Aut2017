@@ -66,6 +66,7 @@ public class DisplayBehavior : MonoBehaviour {
     {
         GetComponent<WindowAnimation>().Close(delegate ()
         {
+            behavior.onAddAction = null;
             Scenes.UnloadAsync(SCENE_NAME);
         });
     }

@@ -8,7 +8,7 @@ public class HeroManager : MonoBehaviour
 {
 
     private List<Hero> listOwnedHero = new List<Hero>();
-    private Hero activeHero;
+    private Hero activeHero = null;
 
     public Action<Hero> onHeroAdded;
 
