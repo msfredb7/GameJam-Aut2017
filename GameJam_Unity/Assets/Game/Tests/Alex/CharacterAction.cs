@@ -15,16 +15,19 @@ public class CharacterAction {
         this.actionType = actionType;
     }
 
-    public virtual void Execute(Action onComplete)
+    public virtual void Execute(Hero hero, Action onComplete)
     {
+        if (hero == null)
+            return;
         switch (actionType)
         {
             case CharacterActionType.GoNPickup:
-                "Go and Pickup".LogWarning();
+                List<Node> nodes = hero.brain.state.GetNextOrStayNode().voisins;
+                hero.brain.GoToNode(nodes[UnityEngine.Random.Range(0, nodes.Count)]);
                 onComplete.Invoke();
                 break;
             case CharacterActionType.GoNDrop:
-                "Go and Drop".LogWarning();
+                hero.brain.GoToNode(nodes[UnityEngine.Random.Range(0, nodes.Count)]);
                 onComplete.Invoke();
                 break;
             default:

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HeroPortrait : MonoBehaviour {
 
@@ -35,7 +36,13 @@ public class HeroPortrait : MonoBehaviour {
 
 	public void OnPortraitClicked()
     {
-        Scenes.LoadAsync(DisplayBehavior.SCENE_NAME,UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        if (Game.HeroManager.getActiveHero() != null)
+            Scenes.LoadAsync(DisplayBehavior.SCENE_NAME,UnityEngine.SceneManagement.LoadSceneMode.Additive, OnDisplayBehaviorLoaded);
+    }
+
+    public void OnDisplayBehaviorLoaded(Scene scene)
+    {
+        scene.FindRootObject<DisplayBehavior>().Init(Game.HeroManager.getActiveHero().behavior);
     }
 
     public void OnHeroTeamClicked()
