@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Game.Tests.William;
 using UnityEngine;
 using FullInspector;
 
@@ -17,6 +18,8 @@ public class Node : BaseBehavior
     public List<HeroTransition> heroTransitions = new List<HeroTransition>();
 
     public Vector2 Position { get { return transform.position; } }
+
+    public Order Order { get; set; }
 
     public static float DistBetween(Node a, Node b)
     {

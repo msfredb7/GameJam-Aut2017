@@ -49,12 +49,12 @@ public class ClientManager : MonoBehaviour
 	        if (isSpawnPoint == 1)
 	        {
                 //spawn in the spawn point range
-                SpawnRandomClient();
+                SpawnAtRandomClient();
 	        }
 	        else
 	        {
                 //spawn on one of the regulars point
-                SpawnRandomRegularClient();
+                SpawnAtRandomRegularClient();
             }
 	        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
 	    }
@@ -65,25 +65,44 @@ public class ClientManager : MonoBehaviour
         orders.Remove(gameObject);
     }
 
-    public void SpawnRandomClient()
+    public void SpawnAtRandomClient()
     {
         Vector2 spawnPos = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)].Position;
-        SpawnClient(spawnPos);
+        Node spawnNode = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)];
+        SpawnOrder(spawnNode);
     }
 
-    public void SpawnRandomRegularClient()
+    public void SpawnAtRandomRegularClient()
     {
-        Vector2 randomRegular = regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)];
-        SpawnClient(randomRegular);
+        Vector2 spawnPos = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]).Position;
+        Node SpawnNode = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]);
+        SpawnOrder(SpawnNode);
     }
 
-    private void SpawnClient(Vector2 pos)
+    private Node GetNodeAt(Vector2 pos)
     {
-        if (!isClientAlreadyOrdering(pos))
+        for (int i = 0; i < faStar.nodes.Count; i++)
+        {
+            if (faStar.nodes[i].Position == pos)
+            {
+                return faStar.nodes[i];
+            }
+        }
+        return null;
+    }
+
+    private void SpawnOrder(Node currentNode)
+    {
+        Vector2 nodePos = currentNode.Position;
+        if (!isClientAlreadyOrdering(nodePos))
         {
             GameObject orderObject = Instantiate(OrderPrefab);
-            orderObject.transform.position = pos;
+            orderObject.transform.position = nodePos;
+
             Order order = orderObject.GetComponent<Order>();
+            currentNode.Order = order;
+            order.Node = currentNode;
+
             order.SetClientManager(this);
             order.NbPizza = UnityEngine.Random.Range(0, maxPizzaPerOrder);
             orders.Add(orderObject);
