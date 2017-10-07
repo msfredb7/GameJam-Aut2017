@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,10 +10,16 @@ public class HeroManager : MonoBehaviour
     private List<Hero> listOwnedHero = new List<Hero>();
     private Hero activeHero;
 
+    public Action<Hero> onHeroAdded;
+
     public void AddHero(Hero newHero)
     {
         listOwnedHero.Add(newHero);
+        activeHero = newHero;
         newHero.onClick += SetActiveHero;
+
+        if (onHeroAdded != null)
+            onHeroAdded(newHero);
     }
 
     public void SetActiveHero(Hero hero)
