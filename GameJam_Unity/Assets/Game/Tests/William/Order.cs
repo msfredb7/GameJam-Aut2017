@@ -14,7 +14,7 @@ namespace Assets.Game.Tests.William
         void Start()
         {
             DropPoint = transform.position;
-            timeToDeliver = UnityEngine.Random.Range(OrderManager.MIN_ORDER_TIMER, OrderManager.MAX_ORDER_TIMER);
+            timeToDeliver = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
             timeSinceStart = 0;
         }
 
