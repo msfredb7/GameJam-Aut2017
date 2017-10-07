@@ -3460,7 +3460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayedEvents: {fileID: 818783955}
-  fastar: {fileID: 0}
+  fastar: {fileID: 818783959}
   gameUI: {fileID: 0}
   gameStarted: 0
   gameReady: 0
