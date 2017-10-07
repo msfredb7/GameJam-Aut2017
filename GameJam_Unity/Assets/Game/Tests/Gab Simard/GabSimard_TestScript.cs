@@ -11,6 +11,10 @@ public class GabSimard_TestScript : MonoBehaviour {
     public GameObject PannelInfo;
     public bool m_HireHide;
 
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+
     void Start()
     {
         m_HireHide = false;
@@ -30,9 +34,8 @@ public class GabSimard_TestScript : MonoBehaviour {
     {
         if(m_HireHide == false)
         {
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
             m_HireHide = true;
-            //m_btnHire.image 
-
             ScriptHire.showList();
         }
         else
