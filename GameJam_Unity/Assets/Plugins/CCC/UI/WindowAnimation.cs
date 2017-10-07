@@ -107,6 +107,12 @@ namespace CCC.UI
 
         public void Close(TweenCallback onComplete = null)
         {
+            if (!isOpen)
+            {
+                if (onComplete != null)
+                    onComplete.Invoke();
+            }
+
             isOpen = false;
 
             float delay = content == null || instantHideContent ? 0 : exitTime * 0.75f;
