@@ -6,9 +6,12 @@ public class Game : PublicSingleton<Game>
 {
     public static DelayedEvents DelayedEvents { get { return instance != null ? instance.delayedEvents : null; } }
     public static GameUI GameUI { get { return instance != null ? instance.gameUI : null; } }
+    public static FAStar Fastar { get { return instance != null ? instance.fastar : null; } }
 
     [SerializeField]
     private DelayedEvents delayedEvents;
+    [SerializeField]
+    private FAStar fastar;
     [SerializeField, ReadOnly]
     private GameUI gameUI;
 
