@@ -896,7 +896,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Choose your Level
+  m_Text: Choisissez  votre  niveau
 --- !u!222 &1221779360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1229,7 +1229,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Play
+  m_Text: Jouer
 --- !u!222 &1556400141
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1386,7 +1386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: level 1
+  m_Text: Niveau 1
 --- !u!222 &2091437655
 CanvasRenderer:
   m_ObjectHideFlags: 0

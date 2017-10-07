@@ -176,7 +176,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press  Enter  To  launch
+  m_Text: "Appuyer  sur  'Espace' \npour  continuer"
 --- !u!222 &190842495
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -11,8 +11,6 @@ public class ClientManager : MonoBehaviour
     private List<GameObject> orders;
     private List<Vector2> regularOrderList;
 
-    [SerializeField] private GameObject SpawnCircleCenter;
-
     private int spawnCircleRadius = 5;
 
     [SerializeField] private GameObject OrderPrefab;
@@ -69,6 +67,7 @@ public class ClientManager : MonoBehaviour
     public void RemoveFromOrderList(GameObject gameObject)
     {
         orders.Remove(gameObject);
+        NotificationQueue.PushNotification("Vous avez manquer une livraison !");
     }
 
     public void SpawnAtRandomClient()

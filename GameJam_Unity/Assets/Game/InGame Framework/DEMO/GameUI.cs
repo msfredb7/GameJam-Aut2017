@@ -12,13 +12,5 @@ public class GameUI : MonoBehaviour
     public HeroShop heroShop;
     public ObjectiveDisplay objectiveDisplay;
 
-    public Texture2D cursorSprite;
-
     public HeroPortrait portrait;
-
-    void Start()
-    {
-        if(cursorSprite != null)
-            Cursor.SetCursor(cursorSprite, new Vector2(0, 0), CursorMode.Auto);
-    }
 }
