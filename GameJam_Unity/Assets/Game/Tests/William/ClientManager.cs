@@ -57,7 +57,6 @@ public class ClientManager : MonoBehaviour
                 SpawnRandomRegularClient();
             }
 	        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
-            Debug.Log(spawnTime);
 	    }
 	}
 
