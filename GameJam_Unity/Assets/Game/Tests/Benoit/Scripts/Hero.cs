@@ -45,6 +45,11 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
+        if (carriedPizza != null)
+        {
+            carriedPizza.transform.position = transform.position - new Vector3(0, 0, -10);
+        }
+
         if (moving)
             Move();
     }
@@ -146,4 +151,16 @@ public class Hero : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        print("Bang!");
+        Pizza pizz = col.gameObject.GetComponent<Pizza>();
+        if (pizz != null)
+        {
+            //col.gameObject.SetActive(false);
+            carriedPizza = pizz;
+        }
+    }
+
 }
