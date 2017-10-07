@@ -11,11 +11,12 @@ public class GameBuilder : MonoBehaviour
     int waitingToLoadCount = 0;
 
     private GameUI gameUI;
+    private Map map;
 
-    public void Build()
+    public void Build(string mapName)
     {
         Debug.Log("Building game ...");
-        waitingToLoadCount = 1;
+        waitingToLoadCount = 2;
 
         string sceneName = GameUI.SCENENAME;
 
@@ -24,11 +25,25 @@ public class GameBuilder : MonoBehaviour
             Scenes.LoadAsync(sceneName, LoadSceneMode.Additive, OnUILoaded);
         else
             OnUILoaded(Scenes.GetActive(sceneName));
+
+
+        if (!Scenes.Exists(mapName))
+            Scenes.LoadAsync(mapName, LoadSceneMode.Additive, OnUILoaded);
+        else
+            OnMapLoaded(Scenes.GetActive(mapName));
     }
 
     void OnUILoaded(Scene scene)
     {
         gameUI = scene.FindRootObject<GameUI>();
+        //...
+
+        waitingToLoadCount--;
+        CheckInitGame();
+    }
+    void OnMapLoaded(Scene scene)
+    {
+        map = scene.FindRootObject<Map>();
         //...
 
         waitingToLoadCount--;
@@ -40,7 +55,7 @@ public class GameBuilder : MonoBehaviour
         if (waitingToLoadCount <= 0)
         {
             Debug.Log("Game built");
-            Game.instance.PrepareLaunch(gameUI);
+            Game.instance.PrepareLaunch(gameUI, map);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +8,7 @@ public class Cash_Script : MonoBehaviour {
     public float m_Cash, m_CashTarget;
 
     public Text m_CashDisplay;
-    //public Button m_btnAdd, m_btnRemove;
 
-    // Use this for initialization
     void Start()
     {
         m_Cash = 15000.0f;
