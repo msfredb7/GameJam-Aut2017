@@ -3484,7 +3484,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroShop: {fileID: 1855913344}
   objectiveDisplay: {fileID: 1849104395}
-  cursorSprite: {fileID: 0}
   portrait: {fileID: 0}
 --- !u!114 &1421496999
 MonoBehaviour:
@@ -5663,7 +5662,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84498916}
   m_HandleRect: {fileID: 84498915}
   m_Direction: 2
-  m_Value: 0.9999998
+  m_Value: 1
   m_Size: 0.43008125
   m_NumberOfSteps: 0
   m_OnValueChanged:
