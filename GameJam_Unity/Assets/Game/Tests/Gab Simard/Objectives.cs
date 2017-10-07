@@ -3,17 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Cash_Script : MonoBehaviour {
+public class Objectives : MonoBehaviour {
 
     public int m_Cash, m_CashTarget;
 
-    public Text m_CashDisplay;
+    public float minutes = 12;
+    public float seconds = 30;
 
     void Start()
     {
         AfficheCash();
 
-        Game.OnGameReady += () => Game.GameUI.objectiveDisplay.SetObjectiveAmount(m_CashTarget);
+        enabled = false;
+        Game.OnGameReady += () =>
+        {
+            enabled = true;
+            Game.GameUI.objectiveDisplay.SetObjectiveAmount(m_CashTarget);
+        };
+    }
+
+    void Update()
+    {
+        float dt = Time.deltaTime;
+
+        seconds -= dt;
+
+        if(seconds <= 0)
+        {
+            minutes--;
+            seconds += 60;
+        }
+        AfficheTimer();
     }
 
 
@@ -44,5 +64,11 @@ public class Cash_Script : MonoBehaviour {
     public void AfficheCash()
     {
         Game.GameUI.objectiveDisplay.SetCashAmount(m_Cash);
+    }
+
+
+    public void AfficheTimer()
+    {
+        Game.GameUI.objectiveDisplay.SetObjectiveDuration(minutes, seconds);
     }
 }
