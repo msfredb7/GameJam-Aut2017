@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GabSimard_TestScript : MonoBehaviour {
 
     public float m_Cash, m_CashTarget;
 
     public Text m_CashDisplay;
-    //public Button m_btnAdd, m_btnRemove;
 
     // Use this for initialization
     void Start()
     {
         m_Cash = 15000.0f;
         m_CashTarget = 30000.0f;
-        m_CashDisplay.text = "Cash : " + m_Cash.ToString();
+        m_CashDisplay.text = "Cash : " + m_Cash.ToString() + "\r\n Objectif : " + m_CashTarget.ToString();
+
     }
 
 
@@ -37,7 +38,7 @@ public class GabSimard_TestScript : MonoBehaviour {
         if (m_Cash >= m_CashTarget)
         {
             print("Ta gagner winner !!!!!!!");
-
+            m_CashTarget += 30000;
             //Call fin de mission, objectif atteint
         }
     }
@@ -50,6 +51,6 @@ public class GabSimard_TestScript : MonoBehaviour {
         else
             m_CashDisplay.color = Color.red;
 
-        m_CashDisplay.text = "Cash : " + m_Cash.ToString();
+        m_CashDisplay.text = "Cash : " + m_Cash.ToString() + "\r\n Objectif : " + m_CashTarget.ToString();
     }
 }
