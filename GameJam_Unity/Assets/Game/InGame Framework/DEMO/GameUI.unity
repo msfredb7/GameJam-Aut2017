@@ -4023,6 +4023,7 @@ GameObject:
   - component: {fileID: 1933804169}
   - component: {fileID: 1933804168}
   - component: {fileID: 1933804167}
+  - component: {fileID: 1933804170}
   m_Layer: 5
   m_Name: HireHeroes
   m_TagString: Untagged
@@ -4123,6 +4124,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1933804165}
+--- !u!114 &1933804170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933804165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ef8d30436b7714d9e7a457b8f3f3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptHire: {fileID: 0}
+  m_HireHide: 0
 --- !u!1 &1965405294
 GameObject:
   m_ObjectHideFlags: 1

@@ -199,6 +199,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7deb04103b2d9345be281ac7535b549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroPortrait: {fileID: 0}
+  heroIconPrefab: {fileID: 0}
+  teamOverlay: {fileID: 0}
+  teamContent: {fileID: 0}
+  endPositionY: 0
+  teamOverlayAnimDuration: 0
 --- !u!1 &42175443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2906,6 +2912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76a9423a4e38884aa699ed3793e2864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapName: Map1
 --- !u!114 &1421496998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2918,6 +2925,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroShop: {fileID: 0}
+  objectiveDisplay: {fileID: 0}
+  portrait: {fileID: 0}
 --- !u!114 &1421496999
 MonoBehaviour:
   m_ObjectHideFlags: 0

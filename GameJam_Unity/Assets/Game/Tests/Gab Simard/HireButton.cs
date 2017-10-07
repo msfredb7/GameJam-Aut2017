@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
 
-public class GabSimard_TestScript : MonoBehaviour {
+public class HireButton : MonoBehaviour {
 
     public HeroShop_Script ScriptHire;
-    public Button m_btnHire;
-    public GameObject PannelInfo;
     public bool m_HireHide;
 
     void Start()
@@ -16,23 +12,12 @@ public class GabSimard_TestScript : MonoBehaviour {
         m_HireHide = false;
     }
 
-
-    /*void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-            ScriptHire.showList();
-        else if (Input.GetKeyDown(KeyCode.Y))
-            ScriptHire.hideList();
-    }*/
-
     //  Afficher ou cacher la liste des héros disponible a l'embauche
     public void toggleHire()
     {
-        if(m_HireHide == false)
+        if (m_HireHide == false)
         {
             m_HireHide = true;
-            //m_btnHire.image 
-
             ScriptHire.showList();
         }
         else
