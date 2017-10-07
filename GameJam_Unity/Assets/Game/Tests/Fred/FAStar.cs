@@ -125,6 +125,23 @@ public class FAStar : BaseBehavior
         }
         return total_path;
     }
+
+    public Node GetClosestNode(Vector2 position)
+    {
+        float minSqrDistance = float.PositiveInfinity;
+        Node closestNode = null;
+        Node[] nodes = FindObjectsOfType(typeof(Node)) as Node[];
+        foreach (Node node in nodes)
+        {
+            float sqrDistance = (node.Position - position).sqrMagnitude;
+            if (sqrDistance < minSqrDistance)
+            {
+                minSqrDistance = sqrDistance;
+                closestNode = node;
+            }
+        }
+        return closestNode;
+    }
 }
 
 public class PathOfDoom
@@ -147,3 +164,4 @@ public class PathOfDoom
         nodes.RemoveAt(nodes.Count - 1);
     }
 }
+

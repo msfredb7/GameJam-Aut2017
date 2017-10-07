@@ -2919,6 +2919,7 @@ GameObject:
   - component: {fileID: 818783956}
   - component: {fileID: 818783955}
   - component: {fileID: 818783959}
+  - component: {fileID: 818783960}
   m_Layer: 0
   m_Name: GAME
   m_TagString: Untagged
@@ -2987,6 +2988,7 @@ MonoBehaviour:
   delayedEvents: {fileID: 818783955}
   fastar: {fileID: 818783959}
   gameUI: {fileID: 0}
+  heroManager: {fileID: 818783960}
   gameStarted: 0
   gameReady: 0
 --- !u!114 &818783959
@@ -3014,6 +3016,17 @@ MonoBehaviour:
   - {fileID: 908995559}
   - {fileID: 1382064998}
   - {fileID: 1134436454}
+--- !u!114 &818783960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 818783953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0995079b5087f24e9f1c1bfe6fc8024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &858704630
 Prefab:
   m_ObjectHideFlags: 0
