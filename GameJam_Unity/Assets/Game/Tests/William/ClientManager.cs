@@ -18,8 +18,10 @@ public class ClientManager : MonoBehaviour
     [SerializeField] private int minPositionChange = 5;
     [SerializeField] private int maxPositionChange = 15;
 
-    [SerializeField] private float minSpawnTime = 1f;
-    [SerializeField] private float maxSpawnTime = 2f;
+    [SerializeField] private float minSpawnRate = 1f;
+    [SerializeField] private float maxSpawnRate = 5f;
+
+    [SerializeField] private int maxPizzaPerOrder = 6;
 
     private FAStar faStar;
 
@@ -29,14 +31,11 @@ public class ClientManager : MonoBehaviour
     {
         faStar = GetComponent<FAStar>();
         orders = new List<GameObject>();
-        spawnTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
+        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
         regularOrderList = new List<Vector2>
         {
-            new Vector2(0, 0),
-            new Vector2(1, 1),
-            new Vector2(2, 2),
-            new Vector2(3, 5),
-            new Vector2(4, 2)
+            new Vector2(0.99f, 3.98f),
+            new Vector2(-4.95f, -0.06f),
         };
     }
 
@@ -49,20 +48,47 @@ public class ClientManager : MonoBehaviour
 	        int isSpawnPoint = UnityEngine.Random.Range(0, 2);
 	        if (isSpawnPoint == 1)
 	        {
-	            //spawn in the spawn point range
-	            SpawnRandomClient();
+                //spawn in the spawn point range
+                SpawnRandomClient();
 	        }
 	        else
 	        {
-	            //spawn on one of the regulars point
-	            //SpawnRandomRegularClient();
-	        }
-	        spawnTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
-            Debug.Log(spawnTime);
+                //spawn on one of the regulars point
+                SpawnRandomRegularClient();
+            }
+	        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
 	    }
 	}
 
+    public void RemoveFromOrderList(GameObject gameObject)
+    {
+        orders.Remove(gameObject);
+    }
 
+    public void SpawnRandomClient()
+    {
+        Vector2 spawnPos = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)].Position;
+        SpawnClient(spawnPos);
+    }
+
+    public void SpawnRandomRegularClient()
+    {
+        Vector2 randomRegular = regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)];
+        SpawnClient(randomRegular);
+    }
+
+    private void SpawnClient(Vector2 pos)
+    {
+        if (!isClientAlreadyOrdering(pos))
+        {
+            GameObject orderObject = Instantiate(OrderPrefab);
+            orderObject.transform.position = pos;
+            Order order = orderObject.GetComponent<Order>();
+            order.SetClientManager(this);
+            order.NbPizza = UnityEngine.Random.Range(0, maxPizzaPerOrder);
+            orders.Add(orderObject);
+        }
+    }
 
     private bool isClientAlreadyOrdering(Vector2 newOrderPos)
     {
@@ -74,28 +100,5 @@ public class ClientManager : MonoBehaviour
             }
         }
         return false;
-    }
-
-    public void RemoveFromOrderList(GameObject gameObject)
-    {
-        orders.Remove(gameObject);
-    }
-
-    public void SpawnRandomClient()
-    {
-        Vector2 spawnPos = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)].Position;
-        if (!isClientAlreadyOrdering(spawnPos))
-        {
-            GameObject order = Instantiate(OrderPrefab);
-            order.transform.position = spawnPos;
-            order.GetComponent<Order>().SetClientManager(this);
-            orders.Add(order);
-        }
-    }
-
-    public void SpawnRandomRegularClient()
-    {
-        Vector2 randomRegular = regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)];
-        
     }
 }
