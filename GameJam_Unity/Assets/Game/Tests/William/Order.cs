@@ -6,7 +6,6 @@ namespace Assets.Game.Tests.William
 {
     public class Order : MonoBehaviour
     {
-        public int NbPizza { get; set; }
         public Node Node { get; set; }
         private float timeRemaining;
         private bool isOrderStarted;

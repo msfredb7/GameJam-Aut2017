@@ -104,7 +104,6 @@ public class ClientManager : MonoBehaviour
             order.Node = currentNode;
 
             order.SetClientManager(this);
-            order.NbPizza = UnityEngine.Random.Range(0, maxPizzaPerOrder);
             orders.Add(orderObject);
         }
     }
