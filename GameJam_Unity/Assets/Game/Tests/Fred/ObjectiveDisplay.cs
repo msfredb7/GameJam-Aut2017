@@ -17,11 +17,11 @@ public class ObjectiveDisplay : MonoBehaviour
     }
     public void SetObjectiveDuration(float minutes, float seconds)
     {
-        string minutesTxt = minutes.Rounded().ToString();
+        string minutesTxt = minutes.Floored().ToString();
         if (minutesTxt.Length <= 1)
             minutesTxt = "0" + minutesTxt;
 
-        string secondsTxt = seconds.Rounded().ToString();
+        string secondsTxt = seconds.Floored().ToString();
         if (secondsTxt.Length <= 1)
             secondsTxt = "0" + secondsTxt;
 
