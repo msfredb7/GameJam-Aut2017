@@ -1,12 +1,17 @@
 ﻿using System;
 using CCC.Manager;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Tests.William
 {
     public class Order : MonoBehaviour
     {
+        [SerializeField] private GameObject objectiveWarning;
+
         public Node Node { get; set; }
+        public GameObject UICountdown { get; set; }
+        public OrderUI OrderUI { get; set; }
         private float timeRemaining;
         private bool isOrderStarted;
         private ClientManager clientManager;
@@ -23,8 +28,16 @@ namespace Assets.Game.Tests.William
             {
                 clientManager.RemoveFromOrderList(gameObject);
                 Node.Order = null;
+                Destroy(OrderUI.gameObject);
                 Destroy(gameObject);
             }
+            else if (timeRemaining <= clientManager.TimeRemainingWarning)
+            {
+                objectiveWarning.GetComponent<SpriteRenderer>().enabled = true;
+            }
+
+            OrderUI.CountDownObject.GetComponent<Text>().text = Convert.ToString((int)timeRemaining);
+            OrderUI.PizzaCountObject.GetComponent<Text>().text = "0";
         }
 
         public void SetClientManager(ClientManager clientManager)
@@ -32,9 +45,9 @@ namespace Assets.Game.Tests.William
             this.clientManager = clientManager;
         }
 
-        public float GetTimeRemaining()
+        public int GetTimeRemaining()
         {
-            return timeRemaining;
+            return (int)timeRemaining;
         }
     }
 }
