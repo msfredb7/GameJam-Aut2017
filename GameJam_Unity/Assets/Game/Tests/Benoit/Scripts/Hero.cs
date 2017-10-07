@@ -22,6 +22,8 @@ public class Hero : MonoBehaviour
     [ReadOnlyInPlayMode]
     public float turningSpeed = Mathf.PI / 4;
 
+    public Pizza carriedPizza;
+    
 
     public CharacterBehavior behavior;
     public Brain brain;

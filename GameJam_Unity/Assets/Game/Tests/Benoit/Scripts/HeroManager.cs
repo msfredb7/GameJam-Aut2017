@@ -22,6 +22,11 @@ public class HeroManager : MonoBehaviour
             onHeroAdded(newHero);
     }
 
+    public Hero getActiveHero()
+    {
+        return activeHero;
+    }
+
     public void SetActiveHero(Hero hero)
     {
         activeHero = hero;
@@ -52,7 +57,8 @@ public class HeroManager : MonoBehaviour
 
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Node node = Game.Fastar.GetClosestNode(pos);
-            activeHero.brain.GoToNode(node);
+            if(node != null)
+                activeHero.brain.GoToNode(node);
         }
     }
 
