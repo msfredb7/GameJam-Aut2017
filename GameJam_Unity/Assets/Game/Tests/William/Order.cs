@@ -10,6 +10,7 @@ namespace Assets.Game.Tests.William
         [SerializeField] private GameObject objectiveWarningObject;
         [SerializeField] private GameObject countdownObject;
         [SerializeField] private GameObject pizzaCountObject;
+        private RectTransform rectTransform;
 
         public Node Node { get; set; }
         public GameObject UICountdown { get; set; }
@@ -19,12 +20,14 @@ namespace Assets.Game.Tests.William
 
         void Start()
         {
+            rectTransform = GetComponent<RectTransform>();
             timeRemaining = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
             transform.localScale = Vector3.one;
         }
 
         void Update()
         {
+            rectTransform.position = Camera.main.WorldToScreenPoint(Node.Position);   
             timeRemaining -= Time.deltaTime;
             if (timeRemaining < 0)
             {
