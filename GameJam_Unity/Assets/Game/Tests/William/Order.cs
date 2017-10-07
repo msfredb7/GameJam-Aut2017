@@ -6,21 +6,19 @@ namespace Assets.Game.Tests.William
 {
     public class Order : MonoBehaviour
     {
-        private int timeToDeliver;
-        private float timeSinceStart;
+        private float timeRemaining;
         private bool isOrderStarted;
         private ClientManager clientManager;
 
         void Start()
         {
-            timeToDeliver = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
-            timeSinceStart = 0;
+            timeRemaining = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER); ;
         }
 
         void Update()
         {
-            timeSinceStart += Time.deltaTime;
-            if (timeSinceStart > timeToDeliver)
+            timeRemaining -= Time.deltaTime;
+            if (timeRemaining < 0)
             {
                 clientManager.RemoveFromOrderList(gameObject);
                 Destroy(gameObject);
@@ -30,6 +28,11 @@ namespace Assets.Game.Tests.William
         public void SetClientManager(ClientManager clientManager)
         {
             this.clientManager = clientManager;
+        }
+
+        public float GetTimeRemaining()
+        {
+            return timeRemaining;
         }
     }
 }
