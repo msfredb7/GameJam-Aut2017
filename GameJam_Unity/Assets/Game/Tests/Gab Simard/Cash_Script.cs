@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GabSimard_TestScript : MonoBehaviour {
+public class Cash_Script : MonoBehaviour {
 
     public float m_Cash, m_CashTarget;
 
