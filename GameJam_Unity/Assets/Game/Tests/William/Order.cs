@@ -6,13 +6,14 @@ namespace Assets.Game.Tests.William
 {
     public class Order : MonoBehaviour
     {
+        public int NbPizza { get; set; }
         private float timeRemaining;
         private bool isOrderStarted;
         private ClientManager clientManager;
 
         void Start()
         {
-            timeRemaining = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER); ;
+            timeRemaining = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
         }
 
         void Update()

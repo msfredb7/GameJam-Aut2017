@@ -21,6 +21,8 @@ public class ClientManager : MonoBehaviour
     [SerializeField] private float minSpawnRate = 1f;
     [SerializeField] private float maxSpawnRate = 5f;
 
+    [SerializeField] private int maxPizzaPerOrder = 6;
+
     private FAStar faStar;
 
     private float spawnTime;
@@ -67,35 +69,25 @@ public class ClientManager : MonoBehaviour
     public void SpawnRandomClient()
     {
         Vector2 spawnPos = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)].Position;
-        if (!isClientAlreadyOrdering(spawnPos))
-        {
-            GameObject order = Instantiate(OrderPrefab);
-            order.transform.position = spawnPos;
-            order.GetComponent<Order>().SetClientManager(this);
-            orders.Add(order);
-        }
+        SpawnClient(spawnPos);
     }
 
     public void SpawnRandomRegularClient()
     {
         Vector2 randomRegular = regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)];
-        if (!isClientAlreadyOrdering(randomRegular))
-        {
-            GameObject order = Instantiate(OrderPrefab);
-            order.transform.position = randomRegular;
-            order.GetComponent<Order>().SetClientManager(this);
-            orders.Add(order);
-        }
+        SpawnClient(randomRegular);
     }
 
     private void SpawnClient(Vector2 pos)
     {
         if (!isClientAlreadyOrdering(pos))
         {
-            GameObject order = Instantiate(OrderPrefab);
-            order.transform.position = pos;
-            order.GetComponent<Order>().SetClientManager(this);
-            orders.Add(order);
+            GameObject orderObject = Instantiate(OrderPrefab);
+            orderObject.transform.position = pos;
+            Order order = orderObject.GetComponent<Order>();
+            order.SetClientManager(this);
+            order.NbPizza = UnityEngine.Random.Range(0, maxPizzaPerOrder);
+            orders.Add(orderObject);
         }
     }
 
