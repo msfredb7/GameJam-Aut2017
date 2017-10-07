@@ -6,14 +6,13 @@ namespace Assets.Game.Tests.William
 {
     public class Order : MonoBehaviour
     {
-        public Vector3 DropPoint { get; set; }
         private int timeToDeliver;
         private float timeSinceStart;
         private bool isOrderStarted;
+        private ClientManager clientManager;
 
         void Start()
         {
-            DropPoint = transform.position;
             timeToDeliver = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
             timeSinceStart = 0;
         }
@@ -23,14 +22,14 @@ namespace Assets.Game.Tests.William
             timeSinceStart += Time.deltaTime;
             if (timeSinceStart > timeToDeliver)
             {
-                TimesUp();
+                clientManager.RemoveFromOrderList(gameObject);
+                Destroy(gameObject);
             }
         }
 
-        private void TimesUp()
+        public void SetClientManager(ClientManager clientManager)
         {
-            Debug.Log("Order canceled. You goofed too long");
-            Destroy(gameObject);
+            this.clientManager = clientManager;
         }
     }
 }

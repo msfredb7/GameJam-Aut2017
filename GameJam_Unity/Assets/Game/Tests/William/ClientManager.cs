@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Assets.Game.Tests.William;
 using UnityEngine;
 
 public class ClientManager : MonoBehaviour
 {
+
+    private List<GameObject> orders;
     private List<Vector2> regularOrderList;
 
     [SerializeField] private GameObject SpawnCircleCenter;
@@ -17,10 +21,14 @@ public class ClientManager : MonoBehaviour
     [SerializeField] private float minSpawnTime = 1f;
     [SerializeField] private float maxSpawnTime = 2f;
 
+    private FAStar faStar;
+
     private float spawnTime;
 
     void Start ()
     {
+        faStar = GetComponent<FAStar>();
+        orders = new List<GameObject>();
         spawnTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
         regularOrderList = new List<Vector2>
         {
@@ -42,33 +50,47 @@ public class ClientManager : MonoBehaviour
 	        if (isSpawnPoint == 1)
 	        {
 	            //spawn in the spawn point range
-	            ChangeSpawnPointPosition();
-
+	            SpawnRandomClient();
 	        }
 	        else
 	        {
 	            //spawn on one of the regulars point
-	            SpawnRandomRegularClient();
+	            //SpawnRandomRegularClient();
 	        }
 	        spawnTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
             Debug.Log(spawnTime);
 	    }
 	}
 
-    public void ChangeSpawnPointPosition()
+
+
+    private bool isClientAlreadyOrdering(Vector2 newOrderPos)
     {
-        float posX = UnityEngine.Random.Range(-(William_TestScript.MAP_SIZE_X * 0.5f), William_TestScript.MAP_SIZE_X*0.5f);
-        float posY = UnityEngine.Random.Range(-(William_TestScript.MAP_SIZE_Y * 0.5f), William_TestScript.MAP_SIZE_Y * 0.5f);
-        SpawnCircleCenter.transform.position = new Vector2(posX, posY);
-
-        Vector2 spawnPoint = (Vector2)SpawnCircleCenter.transform.position + CCC.Math.Vectors.RandomVector2(0, spawnCircleRadius);
-
-        while (!William_TestScript.MAP_BOUNDS.Contains(spawnPoint))
+        for (int i = 0; i < orders.Count; i++)
         {
-           spawnPoint = (Vector2)SpawnCircleCenter.transform.position + CCC.Math.Vectors.RandomVector2(0, spawnCircleRadius);
+            if (newOrderPos == (Vector2)orders[i].transform.position)
+            {
+                return true;
+            }
         }
-        GameObject order = Instantiate(OrderPrefab);
-        order.transform.position = spawnPoint;
+        return false;
+    }
+
+    public void RemoveFromOrderList(GameObject gameObject)
+    {
+        orders.Remove(gameObject);
+    }
+
+    public void SpawnRandomClient()
+    {
+        Vector2 spawnPos = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)].Position;
+        if (!isClientAlreadyOrdering(spawnPos))
+        {
+            GameObject order = Instantiate(OrderPrefab);
+            order.transform.position = spawnPos;
+            order.GetComponent<Order>().SetClientManager(this);
+            orders.Add(order);
+        }
     }
 
     public void SpawnRandomRegularClient()
