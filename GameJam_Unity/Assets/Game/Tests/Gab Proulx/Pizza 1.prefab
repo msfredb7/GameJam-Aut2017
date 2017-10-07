@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4907253808111580}
   - component: {fileID: 23288757712114868}
   - component: {fileID: 102947287443835702}
-  - component: {fileID: 114640029781801868}
+  - component: {fileID: 114379170637178174}
   m_Layer: 0
   m_Name: QuantityText
   m_TagString: Untagged
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863149669081122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8335218, y: -1.7737947, z: -10.104284}
+  m_LocalPosition: {x: 0.95, y: -0.17, z: -10.104284}
   m_LocalScale: {x: 1, y: 0.7692308, z: 1}
   m_Children: []
   m_Father: {fileID: 4547104561793822}
@@ -112,21 +112,21 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863149669081122}
-  m_Text: Hello World
+  m_Text: Quantity
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 50
+  m_TabSize: 50
+  m_FontSize: 70
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 7ed9641478511b54b8096070394c0d57, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114640029781801868
+--- !u!114 &114379170637178174
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab48b39efda496c448b6bceb66d3d867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!114 &114790247247964238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quantity: 1
+  qt: {fileID: 0}
 --- !u!212 &212198612499339602
 SpriteRenderer:
   m_ObjectHideFlags: 1
