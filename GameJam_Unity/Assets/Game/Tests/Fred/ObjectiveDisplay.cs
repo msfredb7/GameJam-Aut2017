@@ -15,9 +15,14 @@ public class ObjectiveDisplay : MonoBehaviour
     {
         objectiveText.text =  "Make " + CashToString(amount);
     }
-    public void SetObjectiveDuration(int amount)
+    public void SetObjectiveDuration(float minutes, float seconds)
     {
-        timerText.text = amount.ToString();
+        string txt = minutes.Rounded().ToString() + ":" + seconds.Rounded();
+        for (int i = 1; i < txt.Length; i+= 2)
+        {
+            txt = txt.Insert(i, " ");
+        }
+        timerText.text = txt;
     }
     public void SetCashAmount(int amount)
     {
