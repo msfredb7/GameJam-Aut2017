@@ -1,5 +1,7 @@
-﻿using CCC.Manager;
+﻿using CCC.Input;
+using CCC.Manager;
 using CCC.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +30,7 @@ public class DisplayBehavior : MonoBehaviour {
             Debug.LogError("CharacterBehavior NULL Error");
         this.behavior = behavior;
         behavior.onAddAction += Add;
+        selectionNotif.SetActive(false);
         DisplayAll();
     }
 
@@ -84,15 +87,30 @@ public class DisplayBehavior : MonoBehaviour {
         canvasGroup.interactable = true;
     }
 
+    public void AskForChoice(Action<Node> onDestinationChoosen)
+    {
+        WaitForChoice();
+        MouseInputs inputs = selectionNotif.GetComponent<MouseInputs>();
+        inputs.Init();
+        inputs.screenClicked.AddListener(delegate(Vector2 pos) {
+            onDestinationChoosen(Game.Fastar.GetClosestNode(pos));
+            ChoiceMade();
+            inputs.screenClicked.RemoveAllListeners();
+        });
+
+    }
+
     public void WaitForChoice()
     {
         Hide();
+        selectionNotif.SetActive(true);
         selectionNotif.GetComponent<FadeFlash>().Play();
     }
 
     public void ChoiceMade()
     {
         selectionNotif.GetComponent<FadeFlash>().Stop();
+        selectionNotif.SetActive(false);
         Show();
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharacterBehavior : MonoBehaviour
 {
-
     [HideInInspector]
     public List<CharacterAction> characterActions = new List<CharacterAction>();
     private CharacterAction currentAction = null;
@@ -28,13 +27,16 @@ public class CharacterBehavior : MonoBehaviour
         }
     }
 
-    public void AddAction(CharacterAction.CharacterActionType actionType)
+    public void AddAction(CharacterAction.CharacterActionType actionType, DisplayBehavior display)
     {
-        characterActions.Add(new CharacterAction(actionType));
-        if (characterActions.Count <= 1)
-            readyForNext = true;
-        if (onAddAction != null)
-            onAddAction.Invoke(characterActions[characterActions.Count - 1]);
+        display.AskForChoice(delegate (Node node)
+        {
+            characterActions.Add(new CharacterAction(actionType, node));
+            if (characterActions.Count <= 1)
+                readyForNext = true;
+            if (onAddAction != null)
+                onAddAction.Invoke(characterActions[characterActions.Count - 1]);
+        });
     }
 
     public void AddAction(CharacterAction newAction)

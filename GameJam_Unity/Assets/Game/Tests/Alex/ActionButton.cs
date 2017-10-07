@@ -16,7 +16,7 @@ public class ActionButton : MonoBehaviour {
         {
             case CharacterType.baseCharacter:
                 if (display.behavior != null)
-                    display.behavior.AddAction(CharacterAction.CharacterActionType.GoNPickup);
+                    display.behavior.AddAction(CharacterAction.CharacterActionType.GoNPickup, display);
                 break;
             default:
                 break;
@@ -30,7 +30,7 @@ public class ActionButton : MonoBehaviour {
         {
             case CharacterType.baseCharacter:
                 if (display.behavior != null)
-                    display.behavior.AddAction(CharacterAction.CharacterActionType.GoNDrop);
+                    display.behavior.AddAction(CharacterAction.CharacterActionType.GoNDrop, display);
                 break;
             default:
                 break;
