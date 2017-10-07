@@ -1,4 +1,5 @@
-﻿using CCC.Manager;
+using CCC.Manager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class GameBootUp : MonoBehaviour
 {
-
     void Start()
     {
         if (SceneManager.sceneCount != 1)
