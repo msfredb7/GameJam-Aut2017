@@ -70,16 +70,14 @@ public class CharacterBehavior : MonoBehaviour
 
     private void ExecuteNext()
     {
-        int currentActionIndex = characterActions.FindIndex(isCurrentAction);
-        if (characterActions.Count <= currentActionIndex + 1)
+        if (characterActions.Count <= characterActions.FindIndex(isCurrentAction) + 1)
         {
             if (looping)
                 ExecuteAll();
             return;
         }
-        CharacterAction newAction = characterActions[currentActionIndex + 1];
-        currentAction = newAction;
-        newAction.Execute(hero, ExecuteNext);
+        currentAction = characterActions[characterActions.FindIndex(isCurrentAction) + 1];
+        currentAction.Execute(hero, ReadyForNextAction);
     }
 
     private bool isCurrentAction(CharacterAction action)

@@ -41,7 +41,10 @@ public class Brain : MonoBehaviour
 
         //Meme chemin
         if (currentPath != null && destination == currentPath.GetDestination())
+        {
+            print("Same DESTINATION");
             return;
+        }
 
         if (state.IsInTransition())
         {
@@ -49,6 +52,7 @@ public class Brain : MonoBehaviour
             {
                 //On va deja a la bonne place, on arrete la
                 ClearPath();
+                print("SHIT NIGGA CRACK");
                 return;
             }
             else if (destination == state.transition.from)
@@ -57,6 +61,14 @@ public class Brain : MonoBehaviour
                 state.transition.Flip();
                 hero.SetNode(state.transition.to);
                 ClearPath();
+                return;
+            }
+        } else
+        {
+            if (state.stayNode == destination)
+            {
+                print("Going to same node");
+                OnReachDest();
                 return;
             }
         }
@@ -97,6 +109,7 @@ public class Brain : MonoBehaviour
 
     private void OnReachDest()
     {
+        currentPath = null;
         hero.Stop();
 
         if (onDestinationReached != null)

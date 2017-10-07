@@ -15,6 +15,7 @@ public class CharacterAction {
     public CharacterAction(CharacterActionType actionType)
     {
         this.actionType = actionType;
+        onComplete = null;
     }
 
     public virtual void Execute(Hero hero, Action onComplete)
@@ -31,7 +32,7 @@ public class CharacterAction {
                 break;
             case CharacterActionType.GoNDrop:
                 Debug.Log("Go And Drop");
-                hero.brain.GoToNode(hero.currentNode, OnDestinationReached);
+                hero.brain.GoToNode(hero.previousNode, OnDestinationReached);
                 break;
             default:
                 break;
@@ -40,6 +41,8 @@ public class CharacterAction {
 
     public void OnDestinationReached()
     {
-        onComplete.Invoke();
+        Debug.Log("Callback");
+        if(onComplete != null)
+            onComplete.Invoke();
     }
 }

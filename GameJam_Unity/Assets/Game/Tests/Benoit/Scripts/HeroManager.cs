@@ -10,6 +10,7 @@ public class HeroManager : MonoBehaviour
     private Hero activeHero = null;
 
     public Action<Hero> onHeroAdded;
+    public Action<Hero> onActiveHeroChanged;
 
     public void AddHero(Hero newHero)
     {
@@ -31,6 +32,8 @@ public class HeroManager : MonoBehaviour
         activeHero = hero;
         if (activeHero != null)
             print("hero active");
+        if (onActiveHeroChanged != null)
+            onActiveHeroChanged.Invoke(activeHero);
     }
 
     public List<Hero> GetActiveHeroList()
