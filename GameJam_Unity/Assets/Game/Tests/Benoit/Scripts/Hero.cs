@@ -175,6 +175,7 @@ public class Hero : MonoBehaviour
     {
         Debug.Log("DROPING PIZZA");
         Pizza oldReference = carriedPizza;
+        currentNode.pizza.Add(oldReference);
         carriedPizza = null;
         DelayManager.LocalCallTo(delegate ()
         {
