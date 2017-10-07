@@ -21,10 +21,12 @@ public class Game : PublicSingleton<Game>
 
 
     // GAME STATE
-    [HideInInspector]
+    [ReadOnly]
     public bool gameStarted = false;
-    [HideInInspector]
+    [ReadOnly]
     public bool gameReady = false;
+    [ReadOnly]
+    public bool gameEnded = false;
 
     static private event SimpleEvent onGameReady;
     static private event SimpleEvent onGameStart;
@@ -115,8 +117,21 @@ public class Game : PublicSingleton<Game>
         }
     }
 
-    public void EndGame()
+    public void Win()
     {
-        // End Game Screen
+        if (gameEnded)
+            return;
+        gameEnded = true;
+
+        NotificationQueue.PushNotification("You won");
+    }
+
+    public void Lose()
+    {
+        if (gameEnded)
+            return;
+        gameEnded = true;
+
+        NotificationQueue.PushNotification("You lost");
     }
 }

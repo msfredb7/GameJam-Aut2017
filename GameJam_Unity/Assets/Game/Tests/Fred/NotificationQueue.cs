@@ -23,6 +23,10 @@ public class NotificationQueue : Singleton<NotificationQueue>
         instance.queue.Enqueue(notif);
         instance.CheckNotif();
     }
+    public static void PushNotification(string notif)
+    {
+        PushNotification(new Notification() { text = notif });
+    }
 
     protected override void Awake()
     {
