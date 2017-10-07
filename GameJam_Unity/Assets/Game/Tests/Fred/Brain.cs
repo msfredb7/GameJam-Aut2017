@@ -24,6 +24,10 @@ public class Brain : MonoBehaviour
             return transition.to;
         }
     }
+
+    public enum Mode { drop = 0 , pickup = 1 }
+
+    public Mode currentMode;
     
     public PathOfDoom currentPath;
     public State state;
@@ -35,16 +39,14 @@ public class Brain : MonoBehaviour
         hero.onReachNode = OnCompleteTransition;
     }
 
-    public void GoToNode(Node destination, Action onReached =null)
+    public void GoToNode(Node destination, Mode mode = Mode.pickup, Action onReached =null)
     {
         onDestinationReached = onReached;
+        currentMode = mode;
 
         //Meme chemin
         if (currentPath != null && destination == currentPath.GetDestination())
-        {
-            print("Same DESTINATION");
             return;
-        }
 
         if (state.IsInTransition())
         {
@@ -67,7 +69,6 @@ public class Brain : MonoBehaviour
         {
             if (state.stayNode == destination)
             {
-                print("Going to same node");
                 OnReachDest();
                 return;
             }
@@ -111,6 +112,17 @@ public class Brain : MonoBehaviour
     {
         currentPath = null;
         hero.Stop();
+
+        switch (currentMode)
+        {
+            case Mode.drop:
+                hero.Drop();
+                break;
+            case Mode.pickup:
+                break;
+            default:
+                break;
+        }
 
         if (onDestinationReached != null)
         {
