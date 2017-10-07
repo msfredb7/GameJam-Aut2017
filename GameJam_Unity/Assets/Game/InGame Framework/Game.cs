@@ -1,12 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : PublicSingleton<Game>
 {
     public static DelayedEvents DelayedEvents { get { return instance != null ? instance.delayedEvents : null; } }
+    public static GameUI GameUI { get { return instance != null ? instance.gameUI : null; } }
+
     [SerializeField]
     private DelayedEvents delayedEvents;
+    [SerializeField, ReadOnly]
+    private GameUI gameUI;
 
     // GAME STATE
     [HideInInspector]
@@ -54,8 +58,10 @@ public class Game : PublicSingleton<Game>
         onGameStart = null;
     }
 
-    public void PrepareLaunch()
+    public void PrepareLaunch(GameUI gameUI)
     {
+        this.gameUI = gameUI;
+
         //Ready up !
         ReadyGame();
 
