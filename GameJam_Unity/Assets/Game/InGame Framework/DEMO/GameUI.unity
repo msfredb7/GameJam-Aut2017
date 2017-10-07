@@ -2623,6 +2623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroShop: {fileID: 1855913344}
+  objectiveDisplay: {fileID: 1849104395}
   portrait: {fileID: 0}
 --- !u!114 &1421496999
 MonoBehaviour:
@@ -3674,6 +3675,7 @@ GameObject:
   - component: {fileID: 1849104394}
   - component: {fileID: 1849104393}
   - component: {fileID: 1849104392}
+  - component: {fileID: 1849104395}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -3757,6 +3759,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1849104390}
+--- !u!114 &1849104395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1849104390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6744f4f7e1c8eb04c88247947c5ad473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positiveCashColor: {r: 0.42352942, g: 0.59607846, b: 0.2627451, a: 1}
+  negativeCashColor: {r: 0.59607846, g: 0.25882354, b: 0.25882354, a: 1}
+  cashText: {fileID: 1990237427}
+  objectiveText: {fileID: 1670870892}
+  timerText: {fileID: 1499093583}
 --- !u!1 &1852288831
 GameObject:
   m_ObjectHideFlags: 0

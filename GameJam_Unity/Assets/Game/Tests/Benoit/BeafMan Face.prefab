@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222385843003580956}
   - component: {fileID: 114602539799506056}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BeafMan Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
