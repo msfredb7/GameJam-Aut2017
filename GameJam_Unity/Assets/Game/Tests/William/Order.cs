@@ -7,6 +7,7 @@ namespace Assets.Game.Tests.William
     public class Order : MonoBehaviour
     {
         public int NbPizza { get; set; }
+        public Node Node { get; set; }
         private float timeRemaining;
         private bool isOrderStarted;
         private ClientManager clientManager;
@@ -22,6 +23,7 @@ namespace Assets.Game.Tests.William
             if (timeRemaining < 0)
             {
                 clientManager.RemoveFromOrderList(gameObject);
+                Node.Order = null;
                 Destroy(gameObject);
             }
         }
