@@ -95,7 +95,9 @@ MonoBehaviour:
   _objectReferences: []
   _serializedStateKeys:
   - voisins
+  - heroTransitions
   _serializedStateValues:
+  - '[]'
   - '[]'
   voisins: []
   index: 0
