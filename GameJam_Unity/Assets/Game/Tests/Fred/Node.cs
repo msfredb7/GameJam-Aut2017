@@ -1,15 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Game.Tests.William;
 using UnityEngine;
 using FullInspector;
 
-public class Node : BaseBehavior
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+
+public class Node : MonoBehaviour
 {
-    public struct HeroTransition
+    public class HeroTransition
     {
-        public Node from;
+        public Node from;//
         public Node to;
         public Hero theHero;
+        public void Flip()
+        {
+            Node lastFrom = from;
+            from = to;
+            to = lastFrom;
+        }
+
+        public void NoticeDelete()
+        {
+            from.heroTransitions.Remove(this);
+            to.heroTransitions.Remove(this);
+            theHero.brain.state.transition = null;
+        }
+        public void NoticeCreate()
+        {
+            from.heroTransitions.Add(this);
+            to.heroTransitions.Add(this);
+            theHero.brain.state.transition = this;
+        }
     }
     public List<Node> voisins;
     public int index;
@@ -17,6 +42,8 @@ public class Node : BaseBehavior
     public List<HeroTransition> heroTransitions = new List<HeroTransition>();
 
     public Vector2 Position { get { return transform.position; } }
+
+    public Order Order { get; set; }
 
     public static float DistBetween(Node a, Node b)
     {
@@ -59,7 +86,7 @@ public class Node : BaseBehavior
     }
 
 
-    [InspectorMargin(12), InspectorHeader("Editor")]
+    [Header("Editor")]
     public Node other;
 
     [InspectorButton]
@@ -74,7 +101,7 @@ public class Node : BaseBehavior
         if (!other.voisins.Contains(this))
             other.voisins.Add(this);
 
-        other.SaveState();
+        //other.SaveState();
         other = null;
     }
 
@@ -88,3 +115,25 @@ public class Node : BaseBehavior
         voisins.Clear();
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(Node))]
+public class NodeEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        if (GUILayout.Button("BuildBidirectionalLink"))
+        {
+            (target as Node).BuildBidirectionalLink();
+            EditorUtility.SetDirty(target);
+        }
+        if (GUILayout.Button("ClearLinks"))
+        {
+            (target as Node).ClearLinks();
+            EditorUtility.SetDirty(target);
+        }
+    }
+}
+#endif

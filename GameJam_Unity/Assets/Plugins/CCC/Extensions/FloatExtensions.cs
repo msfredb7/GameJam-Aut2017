@@ -13,6 +13,14 @@ public static class FloatExtensions
     {
         return Mathf.Abs(value);
     }
+    public static float Floored(this float value)
+    {
+        return Mathf.Floor(value);
+    }
+    public static float Ceiled(this float value)
+    {
+        return Mathf.Ceil(value);
+    }
 
     public static float Rounded(this float value)
     {

@@ -7,6 +7,13 @@ public class FAStar : BaseBehavior
 {
     public List<Node> nodes;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Game.OnGameReady += ApplyIndexes;
+    }
+
     [InspectorButton]
     public void GatherAllNodes()
     {
@@ -118,17 +125,43 @@ public class FAStar : BaseBehavior
         }
         return total_path;
     }
+
+    public Node GetClosestNode(Vector2 position)
+    {
+        float minSqrDistance = float.PositiveInfinity;
+        Node closestNode = null;
+        Node[] nodes = FindObjectsOfType(typeof(Node)) as Node[];
+        foreach (Node node in nodes)
+        {
+            float sqrDistance = (node.Position - position).sqrMagnitude;
+            if (sqrDistance < minSqrDistance)
+            {
+                minSqrDistance = sqrDistance;
+                closestNode = node;
+            }
+        }
+        return closestNode;
+    }
 }
 
 public class PathOfDoom
 {
     public List<Node> nodes = new List<Node>();
-    public Node GetNext()
+    public Node GetDestination()
+    {
+        return nodes[0];
+    }
+    public Node GetClosest()
     {
         return nodes[nodes.Count - 1];
+    }
+    public Node Get2ndClosest()
+    {
+        return nodes[nodes.Count - 2];
     }
     public void RemoveClosest()
     {
         nodes.RemoveAt(nodes.Count - 1);
     }
 }
+

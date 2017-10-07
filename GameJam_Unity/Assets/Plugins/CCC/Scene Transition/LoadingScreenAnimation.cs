@@ -10,23 +10,35 @@ public class LoadingScreenAnimation : MonoBehaviour {
     public Image bg;
     public Camera cam;
 
+    public LoadingScreenAnimationRemote remote;
+
     public void Intro(UnityAction onComplete)
     {
-        bg.DOFade(1, 1).OnComplete(delegate ()
+        remote.AnimateIn(()=>
         {
             Camera.main.gameObject.SetActive(false);
             cam.gameObject.SetActive(true);
             onComplete();
-        }).SetUpdate(true);
+        });
+        //bg.DOFade(1, 1).OnComplete(delegate ()
+        //{
+        //    Camera.main.gameObject.SetActive(false);
+        //    cam.gameObject.SetActive(true);
+        //    onComplete();
+        //}).SetUpdate(true);
     }
 
     public void Outro(UnityAction onComplete)
     {
         cam.gameObject.SetActive(false);
-        bg.DOFade(0, 1).OnComplete(delegate ()
+        remote.AnimateOut(()=>
         {
             onComplete();
-        }).SetUpdate(true);
+        });
+        //bg.DOFade(0, 1).OnComplete(delegate ()
+        //{
+        //    onComplete();
+        //}).SetUpdate(true);
     }
 
     public void OnNewSceneLoaded()

@@ -1,4 +1,5 @@
-﻿using CCC.Manager;
+using CCC.Manager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameBootUp : MonoBehaviour
 {
+    public string mapName = "Map1";
 
     void Start()
     {
@@ -19,7 +21,7 @@ public class GameBootUp : MonoBehaviour
     {
         if (gameObject.scene.name == GameBuilder.SCENENAME)
         {
-            BootUp();
+            BootUp(mapName);
             return;
         }
 
@@ -29,11 +31,12 @@ public class GameBootUp : MonoBehaviour
     private void OnGameLoaded(Scene scene)
     {
         Debug.Log("Game boot up");
-        scene.FindRootObject<GameBuilder>().Build();
+        scene.FindRootObject<GameBuilder>().Build(mapName);
     }
 
-    public void BootUp()
+    public void BootUp(string mapName)
     {
+        this.mapName = mapName;
         OnGameLoaded(gameObject.scene);
     }
 }

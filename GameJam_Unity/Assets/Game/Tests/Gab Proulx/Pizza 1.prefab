@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4547104561793822}
   - component: {fileID: 212198612499339602}
   - component: {fileID: 114790247247964238}
+  - component: {fileID: 58077806083821054}
   m_Layer: 0
   m_Name: Pizza 1
   m_TagString: Untagged
@@ -53,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533985717244514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8335218, y: 3.305933, z: 0.104283966}
+  m_LocalPosition: {x: 4.224004, y: -4.816737, z: 0.104283966}
   m_LocalScale: {x: 1, y: 1.3, z: 1}
   m_Children:
   - {fileID: 4907253808111580}
@@ -105,6 +106,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!58 &58077806083821054
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1533985717244514}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
 --- !u!102 &102947287443835702
 TextMesh:
   serializedVersion: 3

@@ -6,39 +6,25 @@ public class Fred_TestScript : MonoBehaviour
 {
     public const string SCENENAME = "Fred_TestScene";
 
-    public Node start;
-    public Node destination;
-
-    public FAStar algomagie;
-
-    public PathOfDoom path;
+    public Hero hero;
+    public Node tNode;
+    public Node yNode;
+    public Node uNode;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Go();
+            NotificationQueue.PushNotification(new Notification() { text = "Hola, this is an emergency!" });
+            NotificationQueue.PushNotification(new Notification() { text = "BOBOBOBOBO" });
         }
-    }
-
-    public void Go()
-    {
-        algomagie.ApplyIndexes();
-        path = algomagie.CalculatePath(start, destination);
-    }
-
-    void OnDrawGizmos()
-    {
-        if (path == null)
+        if (Input.GetKeyDown(KeyCode.Y))
         {
+            hero.brain.GoToNode(yNode);
         }
-        else
+        if (Input.GetKeyDown(KeyCode.U))
         {
-            Gizmos.color = Color.blue;
-            for (int i = 0; i < path.nodes.Count - 1; i++)
-            {
-                Gizmos.DrawLine(path.nodes[i].Position, path.nodes[i + 1].Position);
-            }
+            hero.brain.GoToNode(uNode);
         }
     }
 }

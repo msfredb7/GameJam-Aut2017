@@ -35,3 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Tests/Alex/CharacterOptions.unity
     guid: 9b27762271c846b46be536d778c9b25c
+  - enabled: 1
+    path: Assets/Game/InGame Framework/Maps/Map1.unity
+    guid: 59172850cac1e9e4cb4b52596b508175
+  - enabled: 1
+    path: Assets/Game/InGame Framework/LevelSelect/LevelSelect.unity
+    guid: 00000000000000000000000000000000

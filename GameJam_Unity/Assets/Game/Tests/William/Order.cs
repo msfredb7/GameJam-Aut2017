@@ -1,39 +1,52 @@
 ﻿using System;
 using CCC.Manager;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Tests.William
 {
     public class Order : MonoBehaviour
     {
-        public int NbPizza { get; set; }
-        private float timeRemaining;
+        [SerializeField] private GameObject objectiveWarningObject;
+        [SerializeField] private GameObject countdownObject;
+        [SerializeField] private GameObject pizzaCountObject;
+        private RectTransform rectTransform;
+
+        public Node Node { get; set; }
+        public GameObject UICountdown { get; set; }
+        public float TimeRemaining { get; set; }
         private bool isOrderStarted;
         private ClientManager clientManager;
 
         void Start()
         {
-            timeRemaining = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
+            rectTransform = GetComponent<RectTransform>();
+            transform.localScale = Vector3.one;
         }
 
         void Update()
         {
-            timeRemaining -= Time.deltaTime;
-            if (timeRemaining < 0)
+            rectTransform.position = Camera.main.WorldToScreenPoint(Node.Position);
+            TimeRemaining -= Time.deltaTime;
+            if (TimeRemaining < 0)
             {
                 clientManager.RemoveFromOrderList(gameObject);
+                Node.Order = null;
                 Destroy(gameObject);
             }
+            else if (TimeRemaining <= clientManager.TimeRemainingWarning)
+            {
+                objectiveWarningObject.GetComponent<Image>().enabled = true;
+                countdownObject.GetComponent<Text>().color = Color.white;
+            }
+
+            countdownObject.GetComponent<Text>().text = Convert.ToString((int)TimeRemaining);
+            pizzaCountObject.GetComponent<Text>().text = "0";
         }
 
         public void SetClientManager(ClientManager clientManager)
         {
             this.clientManager = clientManager;
-        }
-
-        public float GetTimeRemaining()
-        {
-            return timeRemaining;
         }
     }
 }
