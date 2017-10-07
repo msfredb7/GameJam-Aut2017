@@ -15,7 +15,10 @@ public class Hero : MonoBehaviour {
     public float carryingCapacity;
         //  Maximum turning angle in radian
     [ReadOnlyInPlayMode]
-    public float maxTuringAngle = Mathf.PI / 9;
+    public float maxTuringAngle = Mathf.PI / 4;
+        //  Max turning Speed
+    [ReadOnlyInPlayMode]
+    public float turningSpeed = Mathf.PI / 4;
 
     public Brain brain;
 
@@ -23,9 +26,11 @@ public class Hero : MonoBehaviour {
     private float currentSpeed;
 
     private List<Node> currentPath = new List<Node>();
-    private int pathIterator;
 
-    private Node startingPoint;
+
+    private Node previousNode = null;
+    private Node nextNode = null;
+
     private bool moving = false;
 
 
@@ -36,16 +41,16 @@ public class Hero : MonoBehaviour {
 
     private void DebugNextNode()
     {
-        List<Node> wooo = new List<Node>();
+        Node wooo;
         if (currentPath.Count == 0)
         {
-            wooo.Add(GetVoisinsAleatoir(startingPoint));
+            wooo = GetVoisinsAleatoir(previousNode);
         }
         else
-            wooo.Add(GetVoisinsAleatoir(currentPath[currentPath.Count - 1]));
+            wooo = GetVoisinsAleatoir(currentPath[currentPath.Count - 1]);
 
 
-        AppendPath(wooo);
+        AppendNode(wooo);
     }
 
 
@@ -59,7 +64,7 @@ public class Hero : MonoBehaviour {
 
     private void Update()
     {
-        if (startingPoint == null)
+        if (previousNode == null)
             return;
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -79,49 +84,53 @@ public class Hero : MonoBehaviour {
     }
 
 
-    public void AppendPath(List<Node> newPath)
+    public void AppendNode(Node node)
     {
         if (currentPath == null)
             currentPath = new List<Node>();
 
-        int size = newPath.Count;
-        for (int i = 0; i < size; i++)
-        { 
-            currentPath.Add(newPath[i]);
-        }
-
+        currentPath.Add(node);
         moving = true;
     }
+
 
     public void SetToNode(Node node)
     {
         transform.position = node.Position;
-        startingPoint = node;
+        previousNode = node;
     }
 
-    public void ToNextNode()
+
+    public void ToNextNode(Node destination)
     {
-        
+        previousNode = currentPath[0];
+        currentPath.RemoveAt(0);
+
         if (currentPath.Count == 1)
         {
             DestinationReached();
             return;
         }
 
-        currentPath.RemoveAt(0);
+        nextNode = currentPath[0];
 
-        if (0 < pathIterator && pathIterator + 1 < currentPath.Count)
+        if (currentPath.Count > 1)
         {
-            Vector2 previousLink = currentPath[pathIterator].Position - currentPath[pathIterator - 1].Position;
-            Vector2 nextLink = currentPath[pathIterator].Position - currentPath[pathIterator + 1].Position;
+
+            Vector2 previousLink = currentPath[0].Position - previousNode.Position;
+            Vector2 nextLink = currentPath[0].Position - currentPath[1].Position;
+
             float dot = Vector2.Dot(previousLink, nextLink);
             float sumMag = previousLink.magnitude * nextLink.magnitude;
             float angle = Mathf.Acos(dot / sumMag);
 
-            //print(angle);
+            print(angle);
 
-            if (angle < maxTuringAngle)
+            if (angle > maxTuringAngle)
                 currentSpeed = 0;
+            else if (currentSpeed > turningSpeed)
+                currentSpeed = turningSpeed;
+
         }
     }
 
@@ -136,11 +145,13 @@ public class Hero : MonoBehaviour {
     public void DestinationReached()
     {
         moving = false;
-        startingPoint = currentPath[0];
-        currentPath.RemoveAt(0);
-        pathIterator = 0;
         currentSpeed = 0;
     }
+
+
+
+
+
 
     public void Move()
     {
@@ -152,13 +163,16 @@ public class Hero : MonoBehaviour {
 
         if (delta.magnitude < currentSpeed)   {
             transform.position = (Vector3)destination;
-            ToNextNode();
+
+            ToNextNode(nextNode);
             return;
         }
         else { 
             transform.position += ((Vector3)delta).normalized * currentSpeed;
             if(currentSpeed < limitSpeed)
+            { 
                 currentSpeed += accelerationRate * Time.deltaTime;
+            }
             return;
         }
     }
