@@ -22,6 +22,10 @@ public class Hero : MonoBehaviour
     [ReadOnlyInPlayMode]
     public float turningSpeed = Mathf.PI / 4;
 
+    public Pizza carriedPizza;
+    
+
+    public CharacterBehavior behavior;
     public Brain brain;
 
 
@@ -33,8 +37,11 @@ public class Hero : MonoBehaviour
     private Node nextNode = null;
 
     private bool moving = false;
-    public Action onReachNode;
 
+    public delegate void HeroEvent(Hero hero);
+
+    public Action onReachNode;
+    public event HeroEvent onClick;
 
     private void Update()
     {
@@ -90,7 +97,8 @@ public class Hero : MonoBehaviour
 
     void OnMouseDown()
     {
-        print("tortue de terre");
+        if (onClick != null)
+            onClick(this);
     }
 
     public void DestinationReached()
@@ -128,32 +136,14 @@ public class Hero : MonoBehaviour
     // Use this for initialization
     public void SnapToNode()
     {
-        float minSqrDistance = float.PositiveInfinity;
-        Node closestNode = null;
-
-        Node[] nodes = FindObjectsOfType(typeof(Node)) as Node[];
-        foreach (Node node in nodes)
-        {
-            float sqrDistance = (node.Position - (Vector2)transform.position).sqrMagnitude;
-            if (sqrDistance < minSqrDistance)
-            {
-                minSqrDistance = sqrDistance;
-                closestNode = node;
-            }
-        }
+        Node closestNode = Game.Fastar.GetClosestNode((Vector2)transform.position);
 
         if (closestNode != null)
         {
-            //print("exist");
             SetToNode(closestNode);
             brain.state.stayNode = closestNode;
         }
         else
             Destroy(gameObject);
-
-
-
-
-
     }
 }

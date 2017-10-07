@@ -6,14 +6,19 @@ public class Game : PublicSingleton<Game>
 {
     public static DelayedEvents DelayedEvents { get { return instance != null ? instance.delayedEvents : null; } }
     public static GameUI GameUI { get { return instance != null ? instance.gameUI : null; } }
-    public static FAStar Fastar { get { return instance != null ? instance.fastar : null; } }
+    public static FAStar Fastar { get { return instance != null ? instance.map.fastar : null; } }
+    public static HeroManager HeroManager { get { return instance != null ? instance.heroManager : null; } }
+    public static Map Map { get { return instance != null ? instance.map : null; } }
 
     [SerializeField]
     private DelayedEvents delayedEvents;
     [SerializeField]
-    private FAStar fastar;
+    private HeroManager heroManager;
     [SerializeField, ReadOnly]
     private GameUI gameUI;
+    [SerializeField, ReadOnly]
+    private Map map;
+
 
     // GAME STATE
     [HideInInspector]
@@ -61,9 +66,10 @@ public class Game : PublicSingleton<Game>
         onGameStart = null;
     }
 
-    public void PrepareLaunch(GameUI gameUI)
+    public void PrepareLaunch(GameUI gameUI, Map map)
     {
         this.gameUI = gameUI;
+        this.map = map;
 
         //Ready up !
         ReadyGame();
