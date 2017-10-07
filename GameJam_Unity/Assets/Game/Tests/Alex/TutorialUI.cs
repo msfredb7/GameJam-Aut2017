@@ -1,4 +1,4 @@
-using CCC.Manager;
+﻿using CCC.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using Tutorial;
@@ -18,8 +18,8 @@ public class TutorialUI : MonoBehaviour {
 
     void ShowHeroSelected()
     {
-        spotlight.On()
-        DelayManager.LocalCallTo()
+        //spotlight.On()
+        //DelayManager.LocalCallTo()
 
     }
 
