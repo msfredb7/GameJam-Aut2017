@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeroShop : MonoBehaviour {
 
-    List<ShopHeroIcon> listHero;
+    public List<ShopHeroIcon> listHero = new List<ShopHeroIcon>();
 
 	// Use this for initialization
 	void Start () {

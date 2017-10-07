@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class nodesTest : MonoBehaviour {
+public class Balon : MonoBehaviour {
 
-    public nodesTest nextNode;
-    public nodesTest previousNode;
+    public Node nextNode;
+    public Node previousNode;
 
     // Use this for initialization
     void Start () {
