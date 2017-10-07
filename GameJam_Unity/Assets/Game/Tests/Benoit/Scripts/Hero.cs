@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : MonoBehaviour {
+public class Hero : MonoBehaviour
+{
 
-        //  Maximum attainable speed
+    //  Maximum attainable speed
     [ReadOnlyInPlayMode]
     public float limitSpeed;
-        //  Speed unit Gained by second
+    //  Speed unit Gained by second
     [ReadOnlyInPlayMode]
     public float accelerationRate;
-        //  Amount of pizza you carry at once
+    //  Amount of pizza you carry at once
     [ReadOnlyInPlayMode]
     public float carryingCapacity;
-        //  Maximum turning angle in radian
+    //  Maximum turning angle in radian
     [ReadOnlyInPlayMode]
     public float maxTuringAngle = Mathf.PI / 4;
-        //  Max turning Speed
+    //  Max turning Speed
     [ReadOnlyInPlayMode]
     public float turningSpeed = Mathf.PI / 4;
 
@@ -70,7 +71,7 @@ public class Hero : MonoBehaviour {
         previousNode = currentNode;
         currentNode = nextNode;
 
- 
+
         Vector2 previousLink = currentNode.Position - previousNode.Position;
         Vector2 nextLink = currentNode.Position - nextNode.Position;
 
@@ -78,7 +79,7 @@ public class Hero : MonoBehaviour {
         float sumMag = previousLink.magnitude * nextLink.magnitude;
         float angle = Mathf.Acos(dot / sumMag);
 
-        print(angle);
+        //print(angle);
 
         if (angle > maxTuringAngle)
             currentSpeed = 0;
@@ -107,15 +108,17 @@ public class Hero : MonoBehaviour {
         Vector2 destination = currentNode.Position;
         Vector2 delta = destination - (Vector2)transform.position;
 
-        if (delta.magnitude < currentSpeed)   {
+        if (delta.magnitude < currentSpeed)
+        {
             transform.position = (Vector3)destination;
             DestinationReached();
             return;
         }
-        else { 
+        else
+        {
             transform.position += ((Vector3)delta).normalized * currentSpeed;
-            if(currentSpeed < limitSpeed)
-            { 
+            if (currentSpeed < limitSpeed)
+            {
                 currentSpeed += accelerationRate * Time.deltaTime;
             }
             return;
@@ -141,11 +144,10 @@ public class Hero : MonoBehaviour {
 
         if (closestNode != null)
         {
-            print("exist");
+            //print("exist");
             SetToNode(closestNode);
             brain.state.stayNode = closestNode;
         }
-
         else
             Destroy(gameObject);
 

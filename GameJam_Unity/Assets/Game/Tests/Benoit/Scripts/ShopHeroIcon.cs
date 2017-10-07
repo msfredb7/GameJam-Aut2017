@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,9 +13,6 @@ public class ShopHeroIcon : MonoBehaviour {
 
     public void clickDragHero()
     {
-        print("pasf");
-
-
         heroSelected = true;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;

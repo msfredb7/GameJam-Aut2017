@@ -93,7 +93,7 @@ public class Brain : MonoBehaviour
     private void StopHero()
     {
         hero.Stop();
-        print("On est arrivé, on clear le path et on stop le héro");
+        //print("On est arrivé, on clear le path et on stop le héro");
     }
 
     public void PerformNextSegment()
@@ -120,7 +120,7 @@ public class Brain : MonoBehaviour
             newTransition.NoticeCreate();
 
             hero.SetNode(newTransition.to);
-            print("Next Node !");
+            //print("Next Node !");
         }
     }
 }
