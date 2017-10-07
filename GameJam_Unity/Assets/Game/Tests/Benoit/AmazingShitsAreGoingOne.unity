@@ -4153,49 +4153,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1505347623031858, guid: 06a02badab830c846a7100b31a072f9a, type: 2}
-      propertyPath: m_Name
-      value: Hero1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114245823040363162, guid: 06a02badab830c846a7100b31a072f9a,
-        type: 2}
-      propertyPath: onUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1896924858}
-    - target: {fileID: 114245823040363162, guid: 06a02badab830c846a7100b31a072f9a,
-        type: 2}
-      propertyPath: onUp.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReleaseDragHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 114245823040363162, guid: 06a02badab830c846a7100b31a072f9a,
-        type: 2}
-      propertyPath: onDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1896924858}
-    - target: {fileID: 114245823040363162, guid: 06a02badab830c846a7100b31a072f9a,
-        type: 2}
-      propertyPath: onDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: clickDragHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 114245823040363162, guid: 06a02badab830c846a7100b31a072f9a,
-        type: 2}
-      propertyPath: isDragging
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114245823040363162, guid: 06a02badab830c846a7100b31a072f9a,
-        type: 2}
-      propertyPath: isIn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114457150049640386, guid: 06a02badab830c846a7100b31a072f9a,
-        type: 2}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114610840411488422, guid: 06a02badab830c846a7100b31a072f9a, type: 2}
-    - {fileID: 114723812751327196, guid: 06a02badab830c846a7100b31a072f9a, type: 2}
-    - {fileID: 114245823040363162, guid: 06a02badab830c846a7100b31a072f9a, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06a02badab830c846a7100b31a072f9a, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1134436454 stripped
@@ -4494,24 +4452,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2b1cb853e145e949ab91c39432f8e89, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1215881945 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1023524014411202, guid: 06a02badab830c846a7100b31a072f9a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1134370992}
---- !u!114 &1215881947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1215881945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4cd149f141ba94f9fe5f9b4b9e4f40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listHero:
-  - {fileID: 1896924858}
 --- !u!1001 &1223284138
 Prefab:
   m_ObjectHideFlags: 0
@@ -7254,85 +7194,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2b1cb853e145e949ab91c39432f8e89, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1896924857 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1505347623031858, guid: 06a02badab830c846a7100b31a072f9a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1134370992}
---- !u!114 &1896924858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1896924857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1997f016b4742b945919ca2df3ccc61e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heroPrefab: {fileID: 114582607985421310, guid: ace954c08f8741f4f9f2e837fe73cb00,
-    type: 2}
-  cost: 10000
---- !u!114 &1896924862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1896924857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f9af734ccf50ae47b37897b9865e791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onEnter:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1896924858}
-        m_MethodName: ReleaseDragHero
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onDown:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1896924858}
-        m_MethodName: clickDragHero
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  isDragging: 0
-  isIn: 0
 --- !u!4 &1913681880 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4635805656694862, guid: f2b1cb853e145e949ab91c39432f8e89,
