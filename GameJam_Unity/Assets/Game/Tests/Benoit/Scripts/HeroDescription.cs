@@ -7,5 +7,6 @@ using UnityEngine.UI;
 public class HeroDescription : ScriptableObject
 {
     public Image heroFace;
+    public Sprite heroBody;
     public string heroDescription;
 }
