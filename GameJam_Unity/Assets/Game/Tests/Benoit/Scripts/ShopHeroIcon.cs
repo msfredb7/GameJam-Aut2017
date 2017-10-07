@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ShopHeroIcon : MonoBehaviour {
 
@@ -20,6 +21,19 @@ public class ShopHeroIcon : MonoBehaviour {
     }
 
     public void ReleaseDragHero()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Destroy(heroInstance);
+            heroInstance = null;
+            return;
+        }
+        AddHeroToWorld();
+    }
+
+
+
+    public void AddHeroToWorld()
     {
         heroSelected = false;
         heroInstance.SnapToNode();
