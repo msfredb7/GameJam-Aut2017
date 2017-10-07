@@ -1,4 +1,5 @@
 ﻿using CCC.Manager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameBootUp : MonoBehaviour
 {
+    public Action onGameBooted;
 
     void Start()
     {
@@ -30,6 +32,7 @@ public class GameBootUp : MonoBehaviour
     {
         Debug.Log("Game boot up");
         scene.FindRootObject<GameBuilder>().Build();
+        onGameBooted.Invoke();
     }
 
     public void BootUp()
