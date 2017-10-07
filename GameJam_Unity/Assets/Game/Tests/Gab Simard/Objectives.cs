@@ -12,11 +12,11 @@ public class Objectives : MonoBehaviour {
 
     void Start()
     {
-        AfficheCash();
 
         enabled = false;
         Game.OnGameReady += () =>
         {
+            AfficheCash();
             enabled = true;
             Game.GameUI.objectiveDisplay.SetObjectiveAmount(m_CashTarget);
         };
@@ -31,8 +31,19 @@ public class Objectives : MonoBehaviour {
         if(seconds <= 0)
         {
             minutes--;
-            seconds += 60;
+            if(minutes <= -1)
+            {
+                Game.instance.Lose();
+            }
+            else
+            {
+                seconds += 60;
+            }
         }
+
+        minutes = minutes.Raised(0);
+        seconds = seconds.Raised(0);
+
         AfficheTimer();
     }
 
@@ -54,7 +65,7 @@ public class Objectives : MonoBehaviour {
 
         if (m_Cash >= m_CashTarget)
         {
-            print("Ta gagner winner !!!!!!!");
+            Game.instance.Win();
 
             //Call fin de mission, objectif atteint
         }

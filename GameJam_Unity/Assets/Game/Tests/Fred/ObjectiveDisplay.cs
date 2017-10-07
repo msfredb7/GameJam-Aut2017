@@ -13,17 +13,26 @@ public class ObjectiveDisplay : MonoBehaviour
 
     public void SetObjectiveAmount(int amount)
     {
-        objectiveText.text =  "Make " + CashToString(amount);
+        objectiveText.text = "Make " + CashToString(amount);
     }
     public void SetObjectiveDuration(float minutes, float seconds)
     {
-        string txt = minutes.Rounded().ToString() + ":" + seconds.Rounded();
-        for (int i = 1; i < txt.Length; i+= 2)
+        string minutesTxt = minutes.Rounded().ToString();
+        if (minutesTxt.Length <= 1)
+            minutesTxt = "0" + minutesTxt;
+
+        string secondsTxt = seconds.Rounded().ToString();
+        if (secondsTxt.Length <= 1)
+            secondsTxt = "0" + secondsTxt;
+
+        string txt = minutesTxt + ":" + secondsTxt;
+        for (int i = 1; i < txt.Length; i += 2)
         {
             txt = txt.Insert(i, " ");
         }
         timerText.text = txt;
     }
+
     public void SetCashAmount(int amount)
     {
         cashText.color = amount >= 0 ? positiveCashColor : negativeCashColor;
@@ -38,7 +47,7 @@ public class ObjectiveDisplay : MonoBehaviour
         for (int i = intText.Length - 1; i > 0; i--)
         {
             digitCount++;
-            if(digitCount == 3)
+            if (digitCount == 3)
             {
                 intText = intText.Insert(i, " ");
                 digitCount = -1;
