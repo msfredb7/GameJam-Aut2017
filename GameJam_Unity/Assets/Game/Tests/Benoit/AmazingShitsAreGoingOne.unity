@@ -2468,6 +2468,48 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 633003103}
   m_Script: {fileID: 11500000, guid: 21974028f4018284f9d8313d24e73f63, type: 3}
+--- !u!1001 &634864062
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.8335218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.305933
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547104561793822, guid: e4308c50d3ef6874babb027145090865, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e4308c50d3ef6874babb027145090865, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &644171780
 Prefab:
   m_ObjectHideFlags: 0
@@ -2974,6 +3016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76a9423a4e38884aa699ed3793e2864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapName: Map1
 --- !u!114 &818783958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2986,9 +3029,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayedEvents: {fileID: 818783955}
-  fastar: {fileID: 818783959}
-  gameUI: {fileID: 0}
   heroManager: {fileID: 818783960}
+  gameUI: {fileID: 0}
+  map: {fileID: 0}
   gameStarted: 0
   gameReady: 0
 --- !u!114 &818783959
@@ -4164,6 +4207,10 @@ Prefab:
     - target: {fileID: 224901927491515476, guid: 06a02badab830c846a7100b31a072f9a,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1079108209169434, guid: 06a02badab830c846a7100b31a072f9a, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

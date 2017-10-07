@@ -70,8 +70,10 @@ MonoBehaviour:
   limitSpeed: 0.5
   accelerationRate: 0.2
   carryingCapacity: 1
-  maxTuringAngle: 0.34906587
-  turningSpeed: 0.7853982
+  maxTuringAngle: 45
+  turningSpeed: 0.5
+  heroDescription: {fileID: 11400000, guid: a121a957ac9cfbe4c8d3c3dfb48555ea, type: 2}
+  carriedPizza: {fileID: 0}
   behavior: {fileID: 114389771339922902}
   brain: {fileID: 114741183114294176}
 --- !u!114 &114741183114294176
