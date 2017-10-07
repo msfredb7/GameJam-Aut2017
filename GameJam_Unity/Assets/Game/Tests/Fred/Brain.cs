@@ -69,7 +69,6 @@ public class Brain : MonoBehaviour
         {
             if (state.stayNode == destination)
             {
-                print("Going to same node");
                 OnReachDest();
                 return;
             }

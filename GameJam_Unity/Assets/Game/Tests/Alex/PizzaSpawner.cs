@@ -7,21 +7,19 @@ public class PizzaSpawner : MonoBehaviour {
 
     public Pizza pizzaPrefab;
 
-    public bool spawnPointOccupied;
+    public bool spawnPointOccupied = false;
 
     public float spawnCooldown = 2;
 
     private int pizzaToSpawn;
     private bool readyToSpawn;
 
-    public void Request()
+	void Start ()
     {
-        pizzaToSpawn++;
-        if (readyToSpawn)
-            Spawn();
+        Game.OnGameStart += Init;
     }
 
-	void Start ()
+    void Init()
     {
         readyToSpawn = true;
     }
@@ -30,14 +28,17 @@ public class PizzaSpawner : MonoBehaviour {
     {
         if (readyToSpawn)
         {
-            Spawn();
+            if(!spawnPointOccupied)
+                Spawn();
         }
 	}
 
     void Spawn()
     {
         readyToSpawn = false;
-        Instantiate(pizzaPrefab, Game);
+        spawnPointOccupied = true;
+        Pizza newPizza = Instantiate(pizzaPrefab,transform.position,transform.rotation,Game.instance.unitCountainer.transform);
+        newPizza.pizzaPickedUp += delegate () { spawnPointOccupied = false; };
         DelayManager.LocalCallTo(ReadyToSpawn, spawnCooldown, this);
     }
 
