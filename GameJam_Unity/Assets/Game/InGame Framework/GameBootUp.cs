@@ -21,7 +21,7 @@ public class GameBootUp : MonoBehaviour
     {
         if (gameObject.scene.name == GameBuilder.SCENENAME)
         {
-            BootUp();
+            BootUp(mapName);
             return;
         }
 
@@ -34,8 +34,9 @@ public class GameBootUp : MonoBehaviour
         scene.FindRootObject<GameBuilder>().Build(mapName);
     }
 
-    public void BootUp()
+    public void BootUp(string mapName)
     {
+        this.mapName = mapName;
         OnGameLoaded(gameObject.scene);
     }
 }

@@ -141,6 +141,7 @@ public class Hero : MonoBehaviour
     // Use this for initialization
     public void SnapToNode()
     {
+       
         Node closestNode = Game.Fastar.GetClosestNode((Vector2)transform.position);
 
         if (closestNode != null)
@@ -149,7 +150,10 @@ public class Hero : MonoBehaviour
             brain.state.stayNode = closestNode;
         }
         else
+        {
             Destroy(gameObject);
+        }
+            
     }
 
     void OnTriggerEnter2D(Collider2D col)

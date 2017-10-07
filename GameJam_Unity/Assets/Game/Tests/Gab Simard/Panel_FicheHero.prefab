@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 222492213025925172}
   - component: {fileID: 114800767868179154}
   - component: {fileID: 114788907507804166}
+  - component: {fileID: 114317879400337470}
+  - component: {fileID: 114862621650560610}
   m_Layer: 5
   m_Name: btn_HeroInfo
   m_TagString: Untagged
@@ -296,6 +298,20 @@ MonoBehaviour:
   m_PreferredHeight: 205
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+--- !u!114 &114317879400337470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1305554978986424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1997f016b4742b945919ca2df3ccc61e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroPrefab: {fileID: 114582607985421310, guid: ace954c08f8741f4f9f2e837fe73cb00,
+    type: 2}
+  cost: 2000
 --- !u!114 &114396359356712760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,6 +533,55 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 1000$
+--- !u!114 &114862621650560610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1305554978986424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9af734ccf50ae47b37897b9865e791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114317879400337470}
+        m_MethodName: ClickHero
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDown:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  isDragging: 0
+  isIn: 0
 --- !u!114 &114948724243080368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -620,8 +685,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 136.70003, y: 34}
-  m_SizeDelta: {x: 258, y: 50}
+  m_AnchoredPosition: {x: 150.4, y: 34}
+  m_SizeDelta: {x: 240, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224105134463559712
 RectTransform:
@@ -658,10 +723,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -960, y: -886}
-  m_SizeDelta: {x: 429, y: 205}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 429, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224318200340708816
 RectTransform:
@@ -678,8 +743,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 7, y: -81.075}
-  m_SizeDelta: {x: 230, y: 22.749985}
+  m_AnchoredPosition: {x: 1, y: -81.075}
+  m_SizeDelta: {x: 219, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224409600786959032
 RectTransform:
@@ -699,8 +764,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 136.7, y: -74.524994}
-  m_SizeDelta: {x: 258, y: 130.95}
+  m_AnchoredPosition: {x: 151.6, y: -74.524994}
+  m_SizeDelta: {x: 240, y: 130.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224551741902802622
 RectTransform:
@@ -718,7 +783,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -79.50006, y: -62.000008}
-  m_SizeDelta: {x: 159, y: 49}
+  m_SizeDelta: {x: 148.7, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224602712979896070
 RectTransform:
@@ -737,7 +802,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -80, y: -74}
-  m_SizeDelta: {x: 147, y: 134}
+  m_SizeDelta: {x: 141.6, y: 134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224609653701579840
 RectTransform:
