@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab48b39efda496c448b6bceb66d3d867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  text: {fileID: 102947287443835702}
 --- !u!114 &114790247247964238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quantity: 1
-  qt: {fileID: 0}
+  qt: {fileID: 114379170637178174}
 --- !u!212 &212198612499339602
 SpriteRenderer:
   m_ObjectHideFlags: 1
