@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharacterBehavior : MonoBehaviour
 {
-
     [HideInInspector]
     public List<CharacterAction> characterActions = new List<CharacterAction>();
     private CharacterAction currentAction = null;
@@ -28,13 +27,16 @@ public class CharacterBehavior : MonoBehaviour
         }
     }
 
-    public void AddAction(CharacterAction.CharacterActionType actionType)
+    public void AddAction(CharacterAction.CharacterActionType actionType, DisplayBehavior display)
     {
-        characterActions.Add(new CharacterAction(actionType));
-        if (characterActions.Count <= 1)
-            readyForNext = true;
-        if (onAddAction != null)
-            onAddAction.Invoke(characterActions[characterActions.Count - 1]);
+        display.AskForChoice(delegate (Node node)
+        {
+            characterActions.Add(new CharacterAction(actionType, node));
+            if (characterActions.Count <= 1)
+                readyForNext = true;
+            if (onAddAction != null)
+                onAddAction.Invoke(characterActions[characterActions.Count - 1]);
+        });
     }
 
     public void AddAction(CharacterAction newAction)
@@ -70,16 +72,14 @@ public class CharacterBehavior : MonoBehaviour
 
     private void ExecuteNext()
     {
-        int currentActionIndex = characterActions.FindIndex(isCurrentAction);
-        if (characterActions.Count <= currentActionIndex + 1)
+        if (characterActions.Count <= characterActions.FindIndex(isCurrentAction) + 1)
         {
             if (looping)
                 ExecuteAll();
             return;
         }
-        CharacterAction newAction = characterActions[currentActionIndex + 1];
-        currentAction = newAction;
-        newAction.Execute(hero, ExecuteNext);
+        currentAction = characterActions[characterActions.FindIndex(isCurrentAction) + 1];
+        currentAction.Execute(hero, ReadyForNextAction);
     }
 
     private bool isCurrentAction(CharacterAction action)

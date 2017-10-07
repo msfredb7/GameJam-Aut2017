@@ -68,16 +68,27 @@ public class HeroPortrait : MonoBehaviour {
 
     public void AddHeroIcon(Hero hero)
     {
-        Instantiate(heroIconPrefab, teamContent.transform).GetComponent<HeroIconScript>().Display(hero);
+        GameObject newHeroIcon;
+        newHeroIcon = Instantiate(heroIconPrefab, teamContent.transform);
+        newHeroIcon.GetComponent<HeroIconScript>().Display(hero);
+        UpdateAllHeroIcon();
     }
 
     public void OnNextClicked()
     {
-        // TODO
+        Game.HeroManager.SetActiveHero(Game.HeroManager.FindNextHero(Game.HeroManager.getActiveHero()));
     }
 
     public void OnCameraToggle()
     {
         // TODO
+    }
+
+    public void UpdateAllHeroIcon()
+    {
+        foreach (Transform child in teamContent.transform)
+        {
+            child.gameObject.GetComponent<HeroIconScript>().CheckEmphase(Game.HeroManager.getActiveHero());
+        }
     }
 }

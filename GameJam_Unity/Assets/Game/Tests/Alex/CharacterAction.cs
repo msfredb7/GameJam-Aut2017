@@ -12,9 +12,13 @@ public class CharacterAction {
 
     public Action onComplete;
 
-    public CharacterAction(CharacterActionType actionType)
+    public Node destination;
+
+    public CharacterAction(CharacterActionType actionType, Node destination)
     {
         this.actionType = actionType;
+        this.destination = destination;
+        onComplete = null;
     }
 
     public virtual void Execute(Hero hero, Action onComplete)
@@ -25,13 +29,10 @@ public class CharacterAction {
         switch (actionType)
         {
             case CharacterActionType.GoNPickup:
-                Debug.Log("Go And Pickup");
-                List<Node> nodes = hero.brain.state.GetNextOrStayNode().voisins;
-                hero.brain.GoToNode(nodes[UnityEngine.Random.Range(0, nodes.Count)], OnDestinationReached);
+                hero.brain.GoToNode(destination, OnDestinationReached);
                 break;
             case CharacterActionType.GoNDrop:
-                Debug.Log("Go And Drop");
-                hero.brain.GoToNode(hero.currentNode, OnDestinationReached);
+                hero.brain.GoToNode(destination, OnDestinationReached);
                 break;
             default:
                 break;
@@ -40,6 +41,8 @@ public class CharacterAction {
 
     public void OnDestinationReached()
     {
-        onComplete.Invoke();
+        Debug.Log("Callback");
+        if(onComplete != null)
+            onComplete.Invoke();
     }
 }
