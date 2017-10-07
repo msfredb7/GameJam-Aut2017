@@ -18,7 +18,7 @@ public class Brain : MonoBehaviour
 
         public Node GetNextOrStayNode()
         {
-            if (IsInTransition())
+            if (!IsInTransition())
                 return stayNode;
             return transition.to;
         }
@@ -26,6 +26,11 @@ public class Brain : MonoBehaviour
 
     public PathOfDoom currentPath;
     public State state;
+
+    void Awake()
+    {
+        hero.onReachNode = OnCompleteTransition;
+    }
 
     public void GoToNode(Node destination)
     {
@@ -38,14 +43,15 @@ public class Brain : MonoBehaviour
             if (destination == state.transition.to)
             {
                 //On va deja a la bonne place, on arrete la
-                Stop();
+                ClearPath();
                 return;
             }
             else if (destination == state.transition.from)
             {
                 //On reviens sur nos pas et on arrete la
                 state.transition.Flip();
-                Stop();
+                hero.SetNode(state.transition.to);
+                ClearPath();
                 return;
             }
         }
@@ -57,7 +63,7 @@ public class Brain : MonoBehaviour
             //Shit ! Go back !
             if (currentPath.Get2ndClosest() == state.transition.from)
             {
-                PerformNextSegment();
+                OnCompleteTransition();
             }
         }
         else
@@ -66,21 +72,36 @@ public class Brain : MonoBehaviour
         }
     }
 
-    public void Stop()
+    public void ClearPath()
     {
         currentPath = null;
     }
 
+    public void OnCompleteTransition()
+    {
+        state.stayNode = state.transition.to;
+
+        //Delete l'ancienne transition si elle existe
+        state.transition.NoticeDelete();
+
+        if (currentPath != null)
+            PerformNextSegment();
+        else
+            StopHero();
+    }
+
+    private void StopHero()
+    {
+        hero.Stop();
+        print("On est arrivé, on clear le path et on stop le héro");
+    }
+
     public void PerformNextSegment()
     {
-        //Delete l'ancienne transition si elle existe
-        if (state.IsInTransition())
-            state.transition.NoticeDelete();
-
-        if (currentPath.nodes.Count == 1)
+        if (currentPath.nodes.Count <= 1)
         {
             //On est arrivé !!
-            Stop();
+            StopHero();
         }
         else
         {
@@ -97,6 +118,9 @@ public class Brain : MonoBehaviour
             newTransition.to = currentPath.GetClosest();
 
             newTransition.NoticeCreate();
+
+            hero.SetNode(newTransition.to);
+            print("Next Node !");
         }
     }
 }

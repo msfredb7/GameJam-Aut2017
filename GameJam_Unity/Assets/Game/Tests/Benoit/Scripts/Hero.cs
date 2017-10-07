@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,146 +26,90 @@ public class Hero : MonoBehaviour {
 
     private float currentSpeed;
 
-    private List<Node> currentPath = new List<Node>();
-
+    private Node currentNode = null;
 
     private Node previousNode = null;
     private Node nextNode = null;
 
     private bool moving = false;
+    public Action onReachNode;
 
-
-
-
-    /*TEST*/
-
-
-    private void DebugNextNode()
-    {
-        Node wooo;
-        if (currentPath.Count == 0)
-        {
-            wooo = GetVoisinsAleatoir(previousNode);
-        }
-        else
-            wooo = GetVoisinsAleatoir(currentPath[currentPath.Count - 1]);
-
-
-        AppendNode(wooo);
-    }
-
-
-
-    private Node GetVoisinsAleatoir(Node n)
-    {
-        List<Node> voisins = n.voisins;
-        int r = Random.Range(0, voisins.Count);
-        return voisins[r];
-    }
 
     private void Update()
     {
-        if (previousNode == null)
-            return;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            DebugNextNode();
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            DebugNextNode();
-        }
-
-
-        /*TEST*/
-
         if (moving)
             Move();
     }
 
 
-    public void AppendNode(Node node)
+    public void SetNode(Node node)
     {
-        if (currentPath == null)
-            currentPath = new List<Node>();
-
-        currentPath.Add(node);
+        nextNode = node;
+        SetTurningSpeed();
         moving = true;
     }
 
-
-    public void SetToNode(Node node)
-    {
-        transform.position = node.Position;
-        previousNode = node;
-    }
-
-
-    public void ToNextNode(Node destination)
-    {
-        previousNode = currentPath[0];
-        currentPath.RemoveAt(0);
-
-        if (currentPath.Count == 1)
-        {
-            DestinationReached();
-            return;
-        }
-
-        nextNode = currentPath[0];
-
-        if (currentPath.Count > 1)
-        {
-
-            Vector2 previousLink = currentPath[0].Position - previousNode.Position;
-            Vector2 nextLink = currentPath[0].Position - currentPath[1].Position;
-
-            float dot = Vector2.Dot(previousLink, nextLink);
-            float sumMag = previousLink.magnitude * nextLink.magnitude;
-            float angle = Mathf.Acos(dot / sumMag);
-
-            print(angle);
-
-            if (angle > maxTuringAngle)
-                currentSpeed = 0;
-            else if (currentSpeed > turningSpeed)
-                currentSpeed = turningSpeed;
-
-        }
-    }
-
-    void OnMouseDown()
-    {
-        print("tortue de terre");
-    }
-
-
-
-
-    public void DestinationReached()
+    public void Stop()
     {
         moving = false;
         currentSpeed = 0;
     }
 
 
+    public void SetToNode(Node node)
+    {
+        transform.position = node.Position;
+        currentNode = node;
+    }
+
+    public void SetTurningSpeed()
+    {
+        if (currentNode == null)
+            return;
+
+        previousNode = currentNode;
+        currentNode = nextNode;
+
+ 
+        Vector2 previousLink = currentNode.Position - previousNode.Position;
+        Vector2 nextLink = currentNode.Position - nextNode.Position;
+
+        float dot = Vector2.Dot(previousLink, nextLink);
+        float sumMag = previousLink.magnitude * nextLink.magnitude;
+        float angle = Mathf.Acos(dot / sumMag);
+
+        print(angle);
+
+        if (angle > maxTuringAngle)
+            currentSpeed = 0;
+        else if (currentSpeed > turningSpeed)
+            currentSpeed = turningSpeed;
+    }
 
 
+    void OnMouseDown()
+    {
+        print("tortue de terre");
+    }
+
+    public void DestinationReached()
+    {
+        if (onReachNode != null)
+            onReachNode();
+    }
 
 
     public void Move()
     {
-        if (currentPath == null)
+        if (currentNode == null)
             return;
 
-        Vector2 destination = (Vector2)currentPath[0].transform.position;
+        Vector2 destination = currentNode.Position;
         Vector2 delta = destination - (Vector2)transform.position;
 
         if (delta.magnitude < currentSpeed)   {
             transform.position = (Vector3)destination;
-
-            ToNextNode(nextNode);
+            DestinationReached();
             return;
         }
         else { 
@@ -176,9 +121,6 @@ public class Hero : MonoBehaviour {
             return;
         }
     }
-
-
-
 
     // Use this for initialization
     public void SnapToNode()
@@ -197,11 +139,11 @@ public class Hero : MonoBehaviour {
             }
         }
 
-
         if (closestNode != null)
         {
             print("exist");
             SetToNode(closestNode);
+            brain.state.stayNode = closestNode;
         }
 
         else

@@ -7,6 +7,13 @@ public class FAStar : BaseBehavior
 {
     public List<Node> nodes;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Game.OnGameReady += ApplyIndexes;
+    }
+
     [InspectorButton]
     public void GatherAllNodes()
     {
