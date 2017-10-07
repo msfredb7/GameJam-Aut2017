@@ -17,13 +17,13 @@ public class Alex_TestScript : MonoBehaviour
     public void AddGoNPickup()
     {
         if (behavior != null)
-            behavior.AddAction(CharacterAction.CharacterActionType.GoNPickup);
+            behavior.AddAction(CharacterAction.CharacterActionType.GoNPickup, display);
     }
 
     public void AddGoNDrop()
     {
         if (behavior != null)
-            behavior.AddAction(CharacterAction.CharacterActionType.GoNDrop);
+            behavior.AddAction(CharacterAction.CharacterActionType.GoNDrop, display);
     }
 
     void Update()

@@ -6,51 +6,42 @@ using DG.Tweening;
 
 public class GabSimard_TestScript : MonoBehaviour {
 
-    public float m_Cash, m_CashTarget;
+    public HeroShop_Script ScriptHire;
+    public Button m_btnHire;
+    public GameObject PannelInfo;
+    public bool m_HireHide;
 
-    public Text m_CashDisplay;
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
 
-    // Use this for initialization
     void Start()
     {
-        m_Cash = 15000.0f;
-        m_CashTarget = 30000.0f;
-        m_CashDisplay.text = "Cash : " + m_Cash.ToString() + "\r\n Objectif : " + m_CashTarget.ToString();
-
+        m_HireHide = false;
     }
 
 
-    //  Depense d'argent du joueur
-    //  dep : montant depenser
-    public void OutcomeCash(float dep)
+    /*void Update()
     {
-        m_Cash -= dep;
-        AfficheCash();
-    }
+        if (Input.GetKeyDown(KeyCode.T))
+            ScriptHire.showList();
+        else if (Input.GetKeyDown(KeyCode.Y))
+            ScriptHire.hideList();
+    }*/
 
-    //  Revenus d'argent du joueur
-    //  Rev : montant de revenus
-    public void IncomeCash(float rev)
+    //  Afficher ou cacher la liste des héros disponible a l'embauche
+    public void toggleHire()
     {
-        m_Cash += rev;
-        AfficheCash();
-
-        if (m_Cash >= m_CashTarget)
+        if(m_HireHide == false)
         {
-            print("Ta gagner winner !!!!!!!");
-            m_CashTarget += 30000;
-            //Call fin de mission, objectif atteint
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            m_HireHide = true;
+            ScriptHire.showList();
         }
-    }
-
-    //  Methode qui va set l'affiche de l'UI du montant d'argent
-    public void AfficheCash()
-    {
-        if (m_Cash >= 0)
-            m_CashDisplay.color = Color.black;
         else
-            m_CashDisplay.color = Color.red;
-
-        m_CashDisplay.text = "Cash : " + m_Cash.ToString() + "\r\n Objectif : " + m_CashTarget.ToString();
+        {
+            m_HireHide = false;
+            ScriptHire.hideList();
+        }
     }
 }
