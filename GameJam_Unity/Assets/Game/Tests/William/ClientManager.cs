@@ -16,8 +16,7 @@ public class ClientManager : MonoBehaviour
     private int spawnCircleRadius = 5;
 
     [SerializeField] private GameObject OrderPrefab;
-    [SerializeField] private GameObject OrderUiPrefab; 
-
+    
     [SerializeField] private int minPositionChange = 5;
     [SerializeField] private int maxPositionChange = 15;
 
@@ -102,23 +101,18 @@ public class ClientManager : MonoBehaviour
         if (!isClientAlreadyOrdering(nodePos))
         {
             GameObject orderObject = Instantiate(OrderPrefab);
-            orderObject.transform.position = nodePos;
+            orderObject.transform.SetParent(UICanvas.transform);
+            orderObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(nodePos);
 
             Order order = orderObject.GetComponent<Order>();
             currentNode.Order = order;
             order.Node = currentNode;
 
             order.SetClientManager(this);
-            
-            GameObject uiCountdown = Instantiate(OrderUiPrefab);
-            uiCountdown.name = order.name + uiCountdown.name;
-            uiCountdown.transform.SetParent(UICanvas.transform);
-
-            order.OrderUI = uiCountdown.GetComponent<OrderUI>();
-
-            uiCountdown.transform.position = Camera.main.WorldToScreenPoint(order.transform.position);
 
             orders.Add(orderObject);
+
+            Debug.Log("Spawned at : " + order.Node.Position);
         }
     }
 
@@ -126,7 +120,7 @@ public class ClientManager : MonoBehaviour
     {
         for (int i = 0; i < orders.Count; i++)
         {
-            if (newOrderPos == (Vector2)orders[i].transform.position)
+            if (newOrderPos == (Vector2)orders[i].GetComponent<Order>().Node.Position)
             {
                 return true;
             }
