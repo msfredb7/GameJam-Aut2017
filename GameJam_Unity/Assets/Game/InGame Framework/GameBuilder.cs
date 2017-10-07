@@ -1,4 +1,4 @@
-﻿using CCC.Manager;
+using CCC.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +10,8 @@ public class GameBuilder : MonoBehaviour
 
     int waitingToLoadCount = 0;
 
+    private GameUI gameUI;
+
     public void Build()
     {
         Debug.Log("Building game ...");
@@ -19,14 +21,14 @@ public class GameBuilder : MonoBehaviour
 
         // Load All Scenes
         if (!Scenes.Exists(sceneName))
-            Scenes.LoadAsync(sceneName, LoadSceneMode.Additive, OnTestMapLoaded);
+            Scenes.LoadAsync(sceneName, LoadSceneMode.Additive, OnUILoaded);
         else
-            OnTestMapLoaded(Scenes.GetActive(sceneName));
+            OnUILoaded(Scenes.GetActive(sceneName));
     }
 
-    void OnTestMapLoaded(Scene scene)
+    void OnUILoaded(Scene scene)
     {
-        GameUI gameUI = scene.FindRootObject<GameUI>();
+        gameUI = scene.FindRootObject<GameUI>();
         //...
 
         waitingToLoadCount--;
@@ -38,7 +40,7 @@ public class GameBuilder : MonoBehaviour
         if (waitingToLoadCount <= 0)
         {
             Debug.Log("Game built");
-            Game.instance.PrepareLaunch();
+            Game.instance.PrepareLaunch(gameUI);
         }
     }
 }
