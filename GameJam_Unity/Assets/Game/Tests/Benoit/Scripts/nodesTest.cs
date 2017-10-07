@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class nodesTest : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public nodesTest nextNode;
+    public nodesTest previousNode;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
