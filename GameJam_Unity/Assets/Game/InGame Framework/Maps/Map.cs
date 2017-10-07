@@ -5,4 +5,5 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public FAStar fastar;
+    public Cash_Script cash;
 }
