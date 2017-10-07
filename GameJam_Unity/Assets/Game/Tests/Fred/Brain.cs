@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,17 +24,21 @@ public class Brain : MonoBehaviour
             return transition.to;
         }
     }
-
+    
     public PathOfDoom currentPath;
     public State state;
+
+    public Action onDestinationReached;
 
     void Awake()
     {
         hero.onReachNode = OnCompleteTransition;
     }
 
-    public void GoToNode(Node destination)
+    public void GoToNode(Node destination, Action onReached =null)
     {
+        onDestinationReached = onReached;
+
         //Meme chemin
         if (currentPath != null && destination == currentPath.GetDestination())
             return;
@@ -87,12 +92,19 @@ public class Brain : MonoBehaviour
         if (currentPath != null)
             PerformNextSegment();
         else
-            StopHero();
+            OnReachDest();
     }
 
-    private void StopHero()
+    private void OnReachDest()
     {
         hero.Stop();
+
+        if (onDestinationReached != null)
+        {
+            Action theAction = onDestinationReached;
+            onDestinationReached = null;
+            theAction();
+        }
         //print("On est arrivé, on clear le path et on stop le héro");
     }
 
@@ -101,7 +113,7 @@ public class Brain : MonoBehaviour
         if (currentPath.nodes.Count <= 1)
         {
             //On est arrivé !!
-            StopHero();
+            OnReachDest();
         }
         else
         {
