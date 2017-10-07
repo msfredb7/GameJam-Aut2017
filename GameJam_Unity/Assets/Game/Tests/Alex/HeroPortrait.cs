@@ -73,7 +73,7 @@ public class HeroPortrait : MonoBehaviour {
 
     public void OnNextClicked()
     {
-        // TODO
+        Game.HeroManager.SetActiveHero(Game.HeroManager.FindNextHero(Game.HeroManager.getActiveHero()));
     }
 
     public void OnCameraToggle()

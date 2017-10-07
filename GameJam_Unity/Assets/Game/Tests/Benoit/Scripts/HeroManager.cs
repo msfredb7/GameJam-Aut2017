@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class HeroManager : MonoBehaviour
 {
-
     private List<Hero> listOwnedHero = new List<Hero>();
     private Hero activeHero = null;
 
@@ -34,6 +33,35 @@ public class HeroManager : MonoBehaviour
             print("hero active");
     }
 
+    public List<Hero> GetActiveHeroList()
+    {
+        return listOwnedHero;
+    }
+
+    public int FindHeroIndex(Hero hero)
+    {
+        for (int i = 0; i < listOwnedHero.Count; i++)
+        {
+            if (listOwnedHero[i] == hero)
+                return i;
+        }
+        return -1;
+    }
+
+    public Hero FindNextHero(Hero hero)
+    {
+        for (int i = 0; i < listOwnedHero.Count; i++)
+        {
+            if (listOwnedHero[i] == hero)
+            {
+                if ((i + 1) >= listOwnedHero.Count)
+                    return listOwnedHero[0];
+                else
+                    return listOwnedHero[i + 1];
+            }
+        }
+        return null;
+    }
 
     private void Update()
     {
