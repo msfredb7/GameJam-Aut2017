@@ -92,15 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21974028f4018284f9d8313d24e73f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectReferences: []
-  _serializedStateKeys:
-  - Order
-  - voisins
-  - heroTransitions
-  _serializedStateValues:
-  - 
-  - '[]'
-  - '[]'
   voisins: []
   index: 0
   other: {fileID: 0}
