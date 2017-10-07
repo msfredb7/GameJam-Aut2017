@@ -22,10 +22,10 @@ public class Hero : MonoBehaviour {
 
     private float currentSpeed;
 
-    private List<nodesTest> currentPath = new List<nodesTest>();
+    private List<Node> currentPath = new List<Node>();
     private int pathIterator;
 
-    private nodesTest startingPoint;
+    private Node startingPoint;
     private bool moving = false;
 
 
@@ -36,33 +36,26 @@ public class Hero : MonoBehaviour {
 
     private void DebugNextNode()
     {
-        List<nodesTest> wooo = new List<nodesTest>();
-        print(currentPath.Count);
+        List<Node> wooo = new List<Node>();
         if (currentPath.Count == 0)
         {
-            wooo.Add(startingPoint.nextNode);
+            wooo.Add(GetVoisinsAleatoir(startingPoint));
         }
         else
-            wooo.Add(currentPath[currentPath.Count - 1].nextNode);
+            wooo.Add(GetVoisinsAleatoir(currentPath[currentPath.Count - 1]));
 
 
         AppendPath(wooo);
     }
 
-    private void DebugPreviousNode()
+
+
+    private Node GetVoisinsAleatoir(Node n)
     {
-        List<nodesTest> wooo = new List<nodesTest>();
-
-        if (currentPath.Count == 0)
-        { 
-            wooo.Add(startingPoint.previousNode);
-        }
-        else
-            wooo.Add(currentPath[currentPath.Count - 1].previousNode);
-
-        AppendPath(wooo);
+        List<Node> voisins = n.voisins;
+        int r = Random.Range(0, voisins.Count);
+        return voisins[r];
     }
-
 
     private void Update()
     {
@@ -70,7 +63,7 @@ public class Hero : MonoBehaviour {
             return;
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            DebugPreviousNode();
+            DebugNextNode();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -86,10 +79,10 @@ public class Hero : MonoBehaviour {
     }
 
 
-    public void AppendPath(List<nodesTest> newPath)
+    public void AppendPath(List<Node> newPath)
     {
         if (currentPath == null)
-            currentPath = new List<nodesTest>();
+            currentPath = new List<Node>();
 
         int size = newPath.Count;
         for (int i = 0; i < size; i++)
@@ -100,9 +93,9 @@ public class Hero : MonoBehaviour {
         moving = true;
     }
 
-    public void SetToNode(nodesTest node)
+    public void SetToNode(Node node)
     {
-        transform.position = node.transform.position;
+        transform.position = node.Position;
         startingPoint = node;
     }
 
@@ -119,11 +112,13 @@ public class Hero : MonoBehaviour {
 
         if (0 < pathIterator && pathIterator + 1 < currentPath.Count)
         {
-            Vector2 previousLink = currentPath[pathIterator].transform.position - currentPath[pathIterator - 1].transform.position;
-            Vector2 nextLink = currentPath[pathIterator].transform.position - currentPath[pathIterator + 1].transform.position;
+            Vector2 previousLink = currentPath[pathIterator].Position - currentPath[pathIterator - 1].Position;
+            Vector2 nextLink = currentPath[pathIterator].Position - currentPath[pathIterator + 1].Position;
             float dot = Vector2.Dot(previousLink, nextLink);
             float sumMag = previousLink.magnitude * nextLink.magnitude;
             float angle = Mathf.Acos(dot / sumMag);
+
+            //print(angle);
 
             if (angle < maxTuringAngle)
                 currentSpeed = 0;
@@ -162,7 +157,8 @@ public class Hero : MonoBehaviour {
         }
         else { 
             transform.position += ((Vector3)delta).normalized * currentSpeed;
-            currentSpeed += accelerationRate * Time.deltaTime;
+            if(currentSpeed < limitSpeed)
+                currentSpeed += accelerationRate * Time.deltaTime;
             return;
         }
     }
@@ -174,12 +170,12 @@ public class Hero : MonoBehaviour {
     public void SnapToNode()
     {
         float minSqrDistance = float.PositiveInfinity;
-        nodesTest closestNode = null;
+        Node closestNode = null;
 
-        nodesTest[] nodes = FindObjectsOfType(typeof(nodesTest)) as nodesTest[];
-        foreach (nodesTest node in nodes)
+        Node[] nodes = FindObjectsOfType(typeof(Node)) as Node[];
+        foreach (Node node in nodes)
         {
-            float sqrDistance = (node.transform.position - transform.position).sqrMagnitude;
+            float sqrDistance = (node.Position - (Vector2)transform.position).sqrMagnitude;
             if (sqrDistance < minSqrDistance)
             {
                 minSqrDistance = sqrDistance;
