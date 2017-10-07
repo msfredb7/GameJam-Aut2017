@@ -81,11 +81,13 @@ public class ClientManager : MonoBehaviour
         Vector2 spawnPos = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]).Position;
         Node SpawnNode = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]);
         SpawnOrder(SpawnNode);
-    }
+    }   
 
-    public void SpawnOrder(ScriptedOrder order)
+    public void SpawnOrder(ScriptedOrder scriptedOrder)
     {
-        SpawnOrder(order.Node).TimeRemaining = order.OrderDuration;
+        Order orderItem = SpawnOrder(scriptedOrder.Node);
+        orderItem.TimeRemaining = scriptedOrder.OrderDuration;
+        orderItem.NbPizza = scriptedOrder.
     }
 
     private Node GetNodeAt(Vector2 pos)

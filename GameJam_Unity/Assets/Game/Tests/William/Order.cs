@@ -15,6 +15,7 @@ namespace Assets.Game.Tests.William
         public Node Node { get; set; }
         public GameObject UICountdown { get; set; }
         public float TimeRemaining { get; set; }
+        public float PizzaAmount { get; set; }
         private bool isOrderStarted;
         private ClientManager clientManager;
 
