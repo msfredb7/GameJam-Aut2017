@@ -29,6 +29,7 @@ public class ShopHeroIcon : MonoBehaviour {
             return;
         }
         AddHeroToWorld();
+        Game.HeroManager.AddHero(heroInstance);
     }
 
 
