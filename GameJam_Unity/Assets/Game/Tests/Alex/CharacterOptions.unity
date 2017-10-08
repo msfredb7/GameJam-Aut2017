@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 80723562}
   - component: {fileID: 80723563}
   - component: {fileID: 80723564}
+  - component: {fileID: 80723565}
   m_Layer: 5
   m_Name: Temporary Section
   m_TagString: Untagged
@@ -345,11 +346,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 1688507113}
+  pointerListener: {fileID: 80723565}
   actionItemPrefab: {fileID: 114853693604104500, guid: b0f7b86092dc13049b11454f8f5f950f,
     type: 2}
   emptySpotPrefab: {fileID: 114783341677997870, guid: 934474c011385c0499acce2330ef50e4,
     type: 2}
   actionItems: []
+--- !u!114 &80723565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 80723561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9af734ccf50ae47b37897b9865e791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDown:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  isDragging: 0
+  isIn: 0
 --- !u!1 &125642617
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2526,7 +2566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -26, y: 9.9}
+  m_AnchoredPosition: {x: -26, y: 9.900024}
   m_SizeDelta: {x: 333.14, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882197817
@@ -4139,6 +4179,7 @@ GameObject:
   - component: {fileID: 1861739303}
   - component: {fileID: 1861739304}
   - component: {fileID: 1861739305}
+  - component: {fileID: 1861739306}
   m_Layer: 5
   m_Name: Loop Section
   m_TagString: Untagged
@@ -4197,11 +4238,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 567201726}
+  pointerListener: {fileID: 1861739306}
   actionItemPrefab: {fileID: 114853693604104500, guid: b0f7b86092dc13049b11454f8f5f950f,
     type: 2}
   emptySpotPrefab: {fileID: 114783341677997870, guid: 934474c011385c0499acce2330ef50e4,
     type: 2}
   actionItems: []
+--- !u!114 &1861739306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1861739302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9af734ccf50ae47b37897b9865e791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDown:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  isDragging: 0
+  isIn: 0
 --- !u!1 &1869232029
 GameObject:
   m_ObjectHideFlags: 0
@@ -4251,7 +4331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09da5c993a335940a5fd5d438a41251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  looseActionPrefab: {fileID: 0}
+  looseActionPrefab: {fileID: 114140058085650074, guid: e1746a523ca2bda4bb2113035187ccba,
+    type: 2}
   templates: {fileID: 1762384495}
   tempList: {fileID: 80723564}
   loopList: {fileID: 1861739305}
@@ -4979,7 +5060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

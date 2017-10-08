@@ -7,6 +7,7 @@ public class HBD_ActionList : MonoBehaviour
 {
     [Header("Links")]
     public RectTransform container;
+    public PointerListener pointerListener;
 
     [Header("Prefab")]
     public HBD_Action actionItemPrefab;

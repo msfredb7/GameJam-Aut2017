@@ -68,12 +68,14 @@ public class HeroBehaviorDisplay : MonoBehaviour
         //Instantiate une looseAction, et la remplir de l'information
         print("Nouvelle action de type: " + template.actionClone.GetHeroActionInfo().GetDisplayName());
 
-        //HBD_LooseAction looseAction = Instantiate(looseActionPrefab.gameObject, transform.parent).GetComponent < HBD_LooseAction>();
+        HBD_LooseAction looseAction = Instantiate(looseActionPrefab.gameObject, transform.parent).GetComponent < HBD_LooseAction>();
+        looseAction.Fill(hb, tempList, loopList, template);
+
         //looseAction.fi
-        if (putInTemp.isOn)
-            hb.AddTemporaryAction(template.actionClone.Clone());
-        else
-            hb.AddAction(template.actionClone.Clone());
+        //if (putInTemp.isOn)
+        //    hb.AddTemporaryAction(template.actionClone.Clone());
+        //else
+        //    hb.AddAction(template.actionClone.Clone());
     }
 
     void OnDeleteFromTempList(HBD_Action actionUI)
