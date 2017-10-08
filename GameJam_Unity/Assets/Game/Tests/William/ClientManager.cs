@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Game.Tests.William;
+using CCC.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -120,6 +121,18 @@ public class ClientManager : MonoBehaviour
             order.SetClientManager(this);
 
             orders.Add(orderObject);
+
+            GameObject deliveryNotification = Game.GameUI.DeliverNotificationObject;
+
+            deliveryNotification.SetActive(true);
+            deliveryNotification.GetComponent<FadeFlash>().Play();
+            DelayManager.LocalCallTo(delegate
+            {
+                deliveryNotification.GetComponent<FadeFlash>().Stop();
+                deliveryNotification.SetActive(false);
+
+            }, 3, this);
+            
 
             Debug.Log("Spawned at Node : " + order.Node + ". | World to screen Position : " + Camera.main.ScreenToWorldPoint(order.transform.position));
             return order;
