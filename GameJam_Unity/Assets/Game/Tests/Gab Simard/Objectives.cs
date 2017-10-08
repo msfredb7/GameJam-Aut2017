@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CCC.Manager;
 
 public class Objectives : MonoBehaviour {
 
     public int m_Cash, m_CashTarget;
+    public AudioClip sfx_cashIn, sfx_cashOut;
 
     public float minutes = 12;
     public float seconds = 30;
@@ -60,15 +62,22 @@ public class Objectives : MonoBehaviour {
     //  dep : montant depenser
     public void OutcomeCash(int dep)
     {
+        print("tu perd du cash tarla");
+
         m_Cash -= dep;
+        SoundManager.PlayStaticSFX(sfx_cashOut);
         AfficheCash();
+        Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(-dep);
     }
 
     //  Revenus d'argent du joueur
     //  Rev : montant de revenus
     public void IncomeCash(int rev)
     {
+        print("Cash in bitches");
+
         m_Cash += rev;
+        SoundManager.PlayStaticSFX(sfx_cashIn);
         AfficheCash();
 
         if (m_Cash >= m_CashTarget)
@@ -77,6 +86,7 @@ public class Objectives : MonoBehaviour {
 
             //Call fin de mission, objectif atteint
         }
+        Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(rev);
     }
 
     //  Methode qui va set l'affiche de l'UI du montant d'argent

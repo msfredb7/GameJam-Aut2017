@@ -5,14 +5,13 @@ using UnityEngine.EventSystems;
 
 public class ShopHeroIcon : MonoBehaviour
 {
-
-
     public Hero heroPrefab;
-    public float cost;
     public HeroShop_Script parentPanel;
+    [SerializeField] private HeroCard herocard;
 
     private Hero heroInstance = null;
     private bool heroSelected = false;
+    private int cost;
 
     public void ReleaseDragHero()
     {
@@ -35,7 +34,7 @@ public class ShopHeroIcon : MonoBehaviour
         {
             heroSelected = true;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
+            pos.z = 0;  
             heroInstance = Instantiate(heroPrefab, pos, Quaternion.identity);
             parentPanel.hideList();
         }
@@ -48,8 +47,7 @@ public class ShopHeroIcon : MonoBehaviour
         heroSelected = false;
         heroInstance.SnapToNode();
         Game.HeroManager.AddHero(heroInstance);
-
-        //TODO: Decrease Cash
+        Game.Map.cash.OutcomeCash(herocard.HeroDescription.price);
     }
     public void DestroyHero()
     {

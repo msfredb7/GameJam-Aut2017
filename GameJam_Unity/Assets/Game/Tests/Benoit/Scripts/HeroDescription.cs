@@ -6,7 +6,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "HeroCity/HeroDescription")]
 public class HeroDescription : ScriptableObject
 {
-    public Image heroFace;
+    public Sprite heroFace;
     public Sprite heroBody;
     public string heroDescription;
+    public int price;
 }
