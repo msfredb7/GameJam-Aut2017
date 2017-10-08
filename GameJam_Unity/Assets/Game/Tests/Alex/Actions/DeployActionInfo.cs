@@ -27,6 +27,6 @@ public class DeployActionInfo : HeroActions
 
     public override bool RequiresNode()
     {
-        return true;
+        return false;
     }
 }

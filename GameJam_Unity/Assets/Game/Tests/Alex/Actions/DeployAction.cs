@@ -6,7 +6,7 @@ using UnityEngine;
 public class DeployAction : HeroActionEvent
 {
     DeployActionInfo deployActionInfo;
-    private Action onComplete;
+    private Action myOnComplete;
 
     public DeployAction()
     {
@@ -17,32 +17,34 @@ public class DeployAction : HeroActionEvent
     {
         get
         {
-            return onComplete;
+            return myOnComplete;
         }
         set
         {
-            onComplete = value;
+            myOnComplete = value;
         }
     }
 
     public override void Execute(Hero hero, Action onComplete)
     {
-
         // deploy
         ZavierZone zavierzone = hero.GetComponent<ZavierZone>();
 
         if (zavierzone != null)
         {
+            zavierzone.zonePreview.enabled = true;
+            myOnComplete = delegate ()
+            {
+                zavierzone.zonePreview.enabled = false;
+                onComplete.Invoke();
+            };
+
             zavierzone.onZoneClear += () =>
             {
                 ForceCompletion();
                 zavierzone.onZoneClear = null;
             };
             zavierzone.activateDeploy = true;
-        }
-        else
-        {
-            Debug.LogError("lol, wtf");
         }
     }
 
