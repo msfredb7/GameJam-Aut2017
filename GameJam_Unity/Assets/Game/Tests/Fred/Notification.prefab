@@ -233,6 +233,7 @@ MonoBehaviour:
   goOutDuration: 0.25
   stayDuration: 3
   text: {fileID: 114556132608051408}
+  sfx_notif: {fileID: 8300000, guid: 58dab1517982b50478c276439729d905, type: 3}
   isAnimating: 0
 --- !u!222 &222594820306201736
 CanvasRenderer:
