@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CCC.Manager;
 
 public class HBD_LooseAction : HBD_Button
 {
@@ -24,6 +25,8 @@ public class HBD_LooseAction : HBD_Button
     public HeroBehaviorDisplay display;
 
     public bool createNew = false;
+
+    public AudioClip sfx_drop;
 
     public void Fill(HeroBehaviorDisplay display, HeroBehavior hb, HBD_ActionList tempList, HBD_ActionList loopList, HBD_TemplateAction templateAction)
     {
@@ -87,12 +90,9 @@ public class HBD_LooseAction : HBD_Button
                     display.BindNodeWithAction(action);
 
                 Close();
-
-                print("temp");
             }
             else if (loopList.pointerListener.isIn)
             {
-                print("loop");
                 int c = GetIndexInLoopList();
 
                 HeroActionEvent action = DeliveredEvent();
@@ -147,6 +147,7 @@ public class HBD_LooseAction : HBD_Button
 
     HeroActionEvent DeliveredEvent()
     {
+        SoundManager.PlayStaticSFX(sfx_drop);
         if (createNew)
         {
             return existingAction.Clone();
