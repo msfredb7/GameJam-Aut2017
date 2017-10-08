@@ -67,6 +67,7 @@ public class Objectives : MonoBehaviour {
         m_Cash -= dep;
         SoundManager.PlayStaticSFX(sfx_cashOut);
         AfficheCash();
+        Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(-dep);
     }
 
     //  Revenus d'argent du joueur

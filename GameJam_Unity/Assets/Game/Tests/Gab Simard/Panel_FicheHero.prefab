@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 114788907507804166}
   - component: {fileID: 114317879400337470}
   - component: {fileID: 114862621650560610}
+  - component: {fileID: 114902050158936322}
   m_Layer: 5
   m_Name: btn_HeroInfo
   m_TagString: Untagged
@@ -618,6 +619,19 @@ MonoBehaviour:
       PublicKeyToken=null
   isDragging: 0
   isIn: 0
+--- !u!114 &114902050158936322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1305554978986424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5856598d8489224c8b07e25b6f5e169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSoundType: 1
+  sound: {fileID: 8300000, guid: ab7a9063d19e65a4f8ec91f68b9c61fd, type: 3}
 --- !u!114 &114948724243080368
 MonoBehaviour:
   m_ObjectHideFlags: 1

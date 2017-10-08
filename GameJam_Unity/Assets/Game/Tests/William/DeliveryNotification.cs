@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DeliveryNotification : MonoBehaviour
 {
+    public AudioClip sfx_appel;
 
     private bool isOnGoing;
 
@@ -24,6 +25,8 @@ public class DeliveryNotification : MonoBehaviour
     {
         if (!isOnGoing)
         {
+            SoundManager.PlayStaticSFX(sfx_appel);
+
             isOnGoing = true;
             gameObject.SetActive(true);
             GetComponent<FadeFlash>().Play();
