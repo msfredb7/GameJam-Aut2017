@@ -25,7 +25,7 @@ public class DeliveryNotification : MonoBehaviour
     {
         if (!isOnGoing)
         {
-            SoundManager.PlayStaticSFX(sfx_appel);
+            SoundManager.PlayStaticSFX(sfx_appel, 0.01f);
 
             isOnGoing = true;
             gameObject.SetActive(true);
