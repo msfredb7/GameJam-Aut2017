@@ -15,6 +15,7 @@ namespace Assets.Game.Tests.William
         public Node Node { get; set; }
         public GameObject UICountdown { get; set; }
         public float TimeRemaining { get; set; }
+        public int PizzaAmount { get; set; }
         private bool isOrderStarted;
         private ClientManager clientManager;
 
@@ -32,6 +33,7 @@ namespace Assets.Game.Tests.William
             {
                 clientManager.RemoveFromOrderList(gameObject);
                 Node.Order = null;
+                NotificationQueue.PushNotification("Vous avez manquer une livraison !");
                 Destroy(gameObject);
             }
             else if (TimeRemaining <= clientManager.TimeRemainingWarning)
@@ -41,7 +43,7 @@ namespace Assets.Game.Tests.William
             }
 
             countdownObject.GetComponent<Text>().text = Convert.ToString((int)TimeRemaining);
-            pizzaCountObject.GetComponent<Text>().text = "0";
+            pizzaCountObject.GetComponent<Text>().text = Convert.ToString(PizzaAmount);
         }
 
         public void SetClientManager(ClientManager clientManager)

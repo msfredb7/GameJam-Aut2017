@@ -8,7 +8,8 @@ public class QuantityText : MonoBehaviour {
 
 	public void DisplayQuantity(int val)
 	{
-		text.text = "x" + val.ToString ();
-	}
+        text.text = "";
+        //text.text = "x" + val.ToString ();
+    }
 
 }

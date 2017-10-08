@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4695457407333528}
-  - component: {fileID: 114522984827500668}
   - component: {fileID: 114889858694657116}
   - component: {fileID: 114516230562792118}
   m_Layer: 0
@@ -53,34 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa7bd7a6b6b0124aa75c10b8965b122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScriptedOrders:
-  - Node: {fileID: 0}
-    TimeToStart: 0
-    OrderDuration: 20
-    IsActive: 0
-  - Node: {fileID: 0}
-    TimeToStart: 5
-    OrderDuration: 30
-    IsActive: 0
-  - Node: {fileID: 0}
-    TimeToStart: 12
-    OrderDuration: 20
-    IsActive: 0
-  - Node: {fileID: 0}
-    TimeToStart: 17
-    OrderDuration: 30
-    IsActive: 0
---- !u!114 &114522984827500668
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948506800056758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  ScriptedOrders: []
 --- !u!114 &114889858694657116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,7 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9279d8a7ba3911544a5242084b6534ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnCircleCenter: {fileID: 0}
   OrderPrefab: {fileID: 1652863439819722, guid: 27608864d8a7afc42bac78d3349e2ae8,
     type: 2}
   minPositionChange: 5

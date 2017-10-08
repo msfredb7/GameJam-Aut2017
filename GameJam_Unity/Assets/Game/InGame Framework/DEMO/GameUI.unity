@@ -5159,6 +5159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScriptHire: {fileID: 1858495320}
+  sfx_click: {fileID: 8300000, guid: ab7a9063d19e65a4f8ec91f68b9c61fd, type: 3}
 --- !u!1 &1965405294
 GameObject:
   m_ObjectHideFlags: 1
