@@ -169,18 +169,14 @@ public class Hero : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void AttemptPizzaCatch(Pizza pizz)
     {
-        Pizza pizz = col.gameObject.GetComponent<Pizza>();
-        if (pizz != null)
-        {
-            if (pizz.myHero != null)
-                return;
+        if (pizz.myHero != null)
+            return;
 
-            if (brain.currentMode == Brain.Mode.pickup && carriedPizza == null)
-            {
-                pizz.PickedUpBy(this);
-            }
+        if (brain.currentMode == Brain.Mode.pickup && carriedPizza == null)
+        {
+            pizz.PickedUpBy(this);
         }
     }
 
