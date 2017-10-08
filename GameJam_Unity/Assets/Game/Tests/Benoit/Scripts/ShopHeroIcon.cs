@@ -8,6 +8,7 @@ public class ShopHeroIcon : MonoBehaviour {
     
     public Hero heroPrefab;
     public float cost;
+    
 
     private Hero heroInstance = null;
     private bool heroSelected = false;

@@ -5139,6 +5139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScriptHire: {fileID: 1858495320}
   m_HireHide: 0
+  sfx_click: {fileID: 0}
 --- !u!1 &1965405294
 GameObject:
   m_ObjectHideFlags: 1
@@ -5662,7 +5663,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84498916}
   m_HandleRect: {fileID: 84498915}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999998
   m_Size: 0.43008125
   m_NumberOfSteps: 0
   m_OnValueChanged:
