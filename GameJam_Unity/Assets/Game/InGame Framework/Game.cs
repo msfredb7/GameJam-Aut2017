@@ -19,6 +19,7 @@ public class Game : PublicSingleton<Game>
     [SerializeField, ReadOnly]
     private Map map;
 
+    public GameObject unitCountainer;
 
     // GAME STATE
     [ReadOnly]
@@ -123,7 +124,7 @@ public class Game : PublicSingleton<Game>
             return;
         gameEnded = true;
 
-        NotificationQueue.PushNotification("You won");
+        NotificationQueue.PushNotification(new Notification() { text = "You Won", onHide = ReturnToLevelSelect });
     }
 
     public void Lose()
@@ -132,6 +133,11 @@ public class Game : PublicSingleton<Game>
             return;
         gameEnded = true;
 
-        NotificationQueue.PushNotification("You lost");
+        NotificationQueue.PushNotification(new Notification() { text = "You lost", onHide = ReturnToLevelSelect } );
+    }
+
+    public void ReturnToLevelSelect()
+    {
+        LoadingScreen.TransitionTo(LevelSelect.SCENENAME, null);
     }
 }

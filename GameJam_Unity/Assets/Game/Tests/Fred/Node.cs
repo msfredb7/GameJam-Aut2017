@@ -38,6 +38,7 @@ public class Node : MonoBehaviour
     }
     public List<Node> voisins;
     public int index;
+    public List<Pizza> pizza;
 
     public List<HeroTransition> heroTransitions = new List<HeroTransition>();
 

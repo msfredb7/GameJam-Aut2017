@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,16 +25,25 @@ public class Brain : MonoBehaviour
         }
     }
 
+    public enum Mode { drop = 0 , pickup = 1 }
+
+    public Mode currentMode;
+    
     public PathOfDoom currentPath;
     public State state;
+
+    public Action onDestinationReached;
 
     void Awake()
     {
         hero.onReachNode = OnCompleteTransition;
     }
 
-    public void GoToNode(Node destination)
+    public void GoToNode(Node destination, Mode mode = Mode.pickup, Action onReached =null)
     {
+        onDestinationReached = onReached;
+        currentMode = mode;
+
         //Meme chemin
         if (currentPath != null && destination == currentPath.GetDestination())
             return;
@@ -44,6 +54,7 @@ public class Brain : MonoBehaviour
             {
                 //On va deja a la bonne place, on arrete la
                 ClearPath();
+                print("SHIT NIGGA CRACK");
                 return;
             }
             else if (destination == state.transition.from)
@@ -52,6 +63,13 @@ public class Brain : MonoBehaviour
                 state.transition.Flip();
                 hero.SetNode(state.transition.to);
                 ClearPath();
+                return;
+            }
+        } else
+        {
+            if (state.stayNode == destination)
+            {
+                OnReachDest();
                 return;
             }
         }
@@ -87,12 +105,31 @@ public class Brain : MonoBehaviour
         if (currentPath != null)
             PerformNextSegment();
         else
-            StopHero();
+            OnReachDest();
     }
 
-    private void StopHero()
+    private void OnReachDest()
     {
+        currentPath = null;
         hero.Stop();
+
+        switch (currentMode)
+        {
+            case Mode.drop:
+                hero.Drop();
+                break;
+            case Mode.pickup:
+                break;
+            default:
+                break;
+        }
+
+        if (onDestinationReached != null)
+        {
+            Action theAction = onDestinationReached;
+            onDestinationReached = null;
+            theAction();
+        }
         //print("On est arrivé, on clear le path et on stop le héro");
     }
 
@@ -101,7 +138,7 @@ public class Brain : MonoBehaviour
         if (currentPath.nodes.Count <= 1)
         {
             //On est arrivé !!
-            StopHero();
+            OnReachDest();
         }
         else
         {

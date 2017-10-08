@@ -11,13 +11,10 @@ public class ClientManager : MonoBehaviour
     private List<GameObject> orders;
     private List<Vector2> regularOrderList;
 
-    [SerializeField] private GameObject SpawnCircleCenter;
-    [SerializeField] private GameObject UICanvas;
     private int spawnCircleRadius = 5;
 
     [SerializeField] private GameObject OrderPrefab;
-    [SerializeField] private GameObject OrderUiPrefab; 
-
+    
     [SerializeField] private int minPositionChange = 5;
     [SerializeField] private int maxPositionChange = 15;
 
@@ -28,13 +25,15 @@ public class ClientManager : MonoBehaviour
 
     public int TimeRemainingWarning = 4;
 
-    private FAStar faStar;
-
     private float spawnTime;
 
     void Start ()
     {
-        faStar = GetComponent<FAStar>();
+        enabled = false;
+        Game.OnGameReady += delegate
+        {
+            enabled = true;
+        };
         orders = new List<GameObject>();
         spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
         regularOrderList = new List<Vector2>
@@ -46,23 +45,19 @@ public class ClientManager : MonoBehaviour
 
 	void Update ()
 	{
-	    spawnTime -= Time.deltaTime;
-
-	    if (spawnTime < 0)
-	    {
-	        int isSpawnPoint = UnityEngine.Random.Range(0, 2);
-	        if (isSpawnPoint == 1)
-	        {
-                //spawn in the spawn point range
-                SpawnAtRandomClient();
-	        }
-	        else
-	        {
-                //spawn on one of the regulars point
-                SpawnAtRandomRegularClient();
+        for (int i = 0; i < orders.Count; i++)
+        {
+            Order currentOrder = orders[i].GetComponent<Order>();
+            if (currentOrder != null)
+            {
+                if(currentOrder.Node.pizza.Count >= currentOrder.PizzaAmount)
+                {
+                    // Commande reussit !
+                    RemoveFromOrderList(currentOrder.gameObject);
+                    CommandCompleted(currentOrder.Node);
+                }
             }
-	        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
-	    }
+        }
 	}
 
     public void RemoveFromOrderList(GameObject gameObject)
@@ -72,8 +67,7 @@ public class ClientManager : MonoBehaviour
 
     public void SpawnAtRandomClient()
     {
-        Vector2 spawnPos = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)].Position;
-        Node spawnNode = faStar.nodes[UnityEngine.Random.Range(0, faStar.nodes.Count)];
+        Node spawnNode = Game.Fastar.nodes[UnityEngine.Random.Range(0, Game.Fastar.nodes.Count)];
         SpawnOrder(spawnNode);
     }
 
@@ -82,55 +76,69 @@ public class ClientManager : MonoBehaviour
         Vector2 spawnPos = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]).Position;
         Node SpawnNode = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]);
         SpawnOrder(SpawnNode);
+    }   
+
+    public void SpawnOrder(ScriptedOrder scriptedOrder)
+    {
+        Order orderItem = SpawnOrder(scriptedOrder.Node);
+        orderItem.TimeRemaining = scriptedOrder.OrderDuration;
+        orderItem.PizzaAmount = scriptedOrder.PizzaAmount;
     }
 
     private Node GetNodeAt(Vector2 pos)
     {
-        for (int i = 0; i < faStar.nodes.Count; i++)
+        for (int i = 0; i < Game.Fastar.nodes.Count; i++)
         {
-            if (faStar.nodes[i].Position == pos)
+            if (Game.Fastar.nodes[i].Position == pos)
             {
-                return faStar.nodes[i];
+                return Game.Fastar.nodes[i];
             }
         }
         return null;
     }
 
-    private void SpawnOrder(Node currentNode)
+    private Order SpawnOrder(Node currentNode)
     {
         Vector2 nodePos = currentNode.Position;
         if (!isClientAlreadyOrdering(nodePos))
         {
             GameObject orderObject = Instantiate(OrderPrefab);
-            orderObject.transform.position = nodePos;
+            orderObject.transform.SetParent(Game.GameUI.transform);
+            orderObject.transform.SetAsFirstSibling();
+            orderObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(nodePos);
 
             Order order = orderObject.GetComponent<Order>();
             currentNode.Order = order;
             order.Node = currentNode;
 
             order.SetClientManager(this);
-            
-            GameObject uiCountdown = Instantiate(OrderUiPrefab);
-            uiCountdown.name = order.name + uiCountdown.name;
-            uiCountdown.transform.SetParent(UICanvas.transform);
-
-            order.OrderUI = uiCountdown.GetComponent<OrderUI>();
-
-            uiCountdown.transform.position = Camera.main.WorldToScreenPoint(order.transform.position);
 
             orders.Add(orderObject);
+
+            Debug.Log("Spawned at Node : " + order.Node + ". | World to screen Position : " + Camera.main.ScreenToWorldPoint(order.transform.position));
+            return order;
         }
+        return null;
     }
 
     private bool isClientAlreadyOrdering(Vector2 newOrderPos)
     {
         for (int i = 0; i < orders.Count; i++)
         {
-            if (newOrderPos == (Vector2)orders[i].transform.position)
+            if (newOrderPos == (Vector2)orders[i].GetComponent<Order>().Node.Position)
             {
                 return true;
             }
         }
         return false;
+    }
+
+    void CommandCompleted(Node node)
+    {
+        NotificationQueue.PushNotification("Vous avez complété une commande !");
+        for (int i = 0; i < node.pizza.Count; i++)
+        {
+            Destroy(node.pizza[i].gameObject);
+        }
     }
 }

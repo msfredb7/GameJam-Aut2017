@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HeroPortrait : MonoBehaviour {
 
@@ -35,7 +36,13 @@ public class HeroPortrait : MonoBehaviour {
 
 	public void OnPortraitClicked()
     {
-        Scenes.LoadAsync(DisplayBehavior.SCENE_NAME,UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        if (Game.HeroManager.getActiveHero() != null)
+            Scenes.LoadAsync(DisplayBehavior.SCENE_NAME,UnityEngine.SceneManagement.LoadSceneMode.Additive, OnDisplayBehaviorLoaded);
+    }
+
+    public void OnDisplayBehaviorLoaded(Scene scene)
+    {
+        scene.FindRootObject<DisplayBehavior>().Init(Game.HeroManager.getActiveHero().behavior);
     }
 
     public void OnHeroTeamClicked()
@@ -61,16 +68,27 @@ public class HeroPortrait : MonoBehaviour {
 
     public void AddHeroIcon(Hero hero)
     {
-        Instantiate(heroIconPrefab, teamContent.transform).GetComponent<HeroIconScript>().Display(hero);
+        GameObject newHeroIcon;
+        newHeroIcon = Instantiate(heroIconPrefab, teamContent.transform);
+        newHeroIcon.GetComponent<HeroIconScript>().Display(hero);
+        UpdateAllHeroIcon();
     }
 
     public void OnNextClicked()
     {
-        // TODO
+        Game.HeroManager.SetActiveHero(Game.HeroManager.FindNextHero(Game.HeroManager.getActiveHero()));
     }
 
     public void OnCameraToggle()
     {
         // TODO
+    }
+
+    public void UpdateAllHeroIcon()
+    {
+        foreach (Transform child in teamContent.transform)
+        {
+            child.gameObject.GetComponent<HeroIconScript>().CheckEmphase(Game.HeroManager.getActiveHero());
+        }
     }
 }

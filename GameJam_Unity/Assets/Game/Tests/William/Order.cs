@@ -7,47 +7,48 @@ namespace Assets.Game.Tests.William
 {
     public class Order : MonoBehaviour
     {
-        [SerializeField] private GameObject objectiveWarning;
+        [SerializeField] private GameObject objectiveWarningObject;
+        [SerializeField] private GameObject countdownObject;
+        [SerializeField] private GameObject pizzaCountObject;
+        private RectTransform rectTransform;
 
         public Node Node { get; set; }
         public GameObject UICountdown { get; set; }
-        public OrderUI OrderUI { get; set; }
-        private float timeRemaining;
+        public float TimeRemaining { get; set; }
+        public int PizzaAmount { get; set; }
         private bool isOrderStarted;
         private ClientManager clientManager;
 
         void Start()
         {
-            timeRemaining = UnityEngine.Random.Range(William_TestScript.MIN_ORDER_TIMER, William_TestScript.MAX_ORDER_TIMER);
+            rectTransform = GetComponent<RectTransform>();
+            transform.localScale = Vector3.one;
         }
 
         void Update()
         {
-            timeRemaining -= Time.deltaTime;
-            if (timeRemaining < 0)
+            rectTransform.position = Camera.main.WorldToScreenPoint(Node.Position);
+            TimeRemaining -= Time.deltaTime;
+            if (TimeRemaining < 0)
             {
                 clientManager.RemoveFromOrderList(gameObject);
                 Node.Order = null;
-                Destroy(OrderUI.gameObject);
+                NotificationQueue.PushNotification("Vous avez manquer une livraison !");
                 Destroy(gameObject);
             }
-            else if (timeRemaining <= clientManager.TimeRemainingWarning)
+            else if (TimeRemaining <= clientManager.TimeRemainingWarning)
             {
-                objectiveWarning.GetComponent<SpriteRenderer>().enabled = true;
+                objectiveWarningObject.GetComponent<Image>().enabled = true;
+                countdownObject.GetComponent<Text>().color = Color.white;
             }
 
-            OrderUI.CountDownObject.GetComponent<Text>().text = Convert.ToString((int)timeRemaining);
-            OrderUI.PizzaCountObject.GetComponent<Text>().text = "0";
+            countdownObject.GetComponent<Text>().text = Convert.ToString((int)TimeRemaining);
+            pizzaCountObject.GetComponent<Text>().text = Convert.ToString(PizzaAmount);
         }
 
         public void SetClientManager(ClientManager clientManager)
         {
             this.clientManager = clientManager;
-        }
-
-        public int GetTimeRemaining()
-        {
-            return (int)timeRemaining;
         }
     }
 }

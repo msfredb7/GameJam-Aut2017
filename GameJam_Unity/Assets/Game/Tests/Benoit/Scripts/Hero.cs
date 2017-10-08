@@ -1,3 +1,4 @@
+using CCC.Manager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -141,6 +142,7 @@ public class Hero : MonoBehaviour
     // Use this for initialization
     public void SnapToNode()
     {
+       
         Node closestNode = Game.Fastar.GetClosestNode((Vector2)transform.position);
 
         if (closestNode != null)
@@ -149,18 +151,36 @@ public class Hero : MonoBehaviour
             brain.state.stayNode = closestNode;
         }
         else
+        {
             Destroy(gameObject);
+        }
+            
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        print("Bang!");
         Pizza pizz = col.gameObject.GetComponent<Pizza>();
         if (pizz != null)
         {
-            //col.gameObject.SetActive(false);
-            carriedPizza = pizz;
+            if(brain.currentMode == Brain.Mode.pickup && carriedPizza == null)
+            {
+                carriedPizza = pizz;
+                col.enabled = false;
+                pizz.pizzaPickedUp.Invoke();
+            }
         }
     }
 
+    public void Drop()
+    {
+        Debug.Log("DROPING PIZZA");
+        Pizza oldReference = carriedPizza;
+        currentNode.pizza.Add(oldReference);
+        carriedPizza = null;
+        DelayManager.LocalCallTo(delegate ()
+        {
+            if(oldReference != null)
+                oldReference.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        }, 1, this);
+    }
 }

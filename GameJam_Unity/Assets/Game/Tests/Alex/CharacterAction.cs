@@ -10,25 +10,39 @@ public class CharacterAction {
 
     public CharacterActionType actionType;
 
-    public CharacterAction(CharacterActionType actionType)
+    public Action onComplete;
+
+    public Node destination;
+
+    public CharacterAction(CharacterActionType actionType, Node destination)
     {
         this.actionType = actionType;
+        this.destination = destination;
+        onComplete = null;
     }
 
-    public virtual void Execute(Action onComplete)
+    public virtual void Execute(Hero hero, Action onComplete)
     {
+        if (hero == null)
+            return;
+        this.onComplete = onComplete;
         switch (actionType)
         {
             case CharacterActionType.GoNPickup:
-                "Go and Pickup".LogWarning();
-                onComplete.Invoke();
+                hero.brain.GoToNode(destination, Brain.Mode.pickup, OnDestinationReached);
                 break;
             case CharacterActionType.GoNDrop:
-                "Go and Drop".LogWarning();
-                onComplete.Invoke();
+                hero.brain.GoToNode(destination, Brain.Mode.drop, OnDestinationReached);
                 break;
             default:
                 break;
         }
+    }
+
+    public void OnDestinationReached()
+    {
+        Debug.Log("Callback");
+        if(onComplete != null)
+            onComplete.Invoke();
     }
 }

@@ -13,14 +13,4 @@ public class GameUI : MonoBehaviour
     public ObjectiveDisplay objectiveDisplay;
 
     public HeroPortrait portrait;
-
-    void Start()
-    {
-
-    }
-
-    public void SelectHero()
-    {
-
-    }
 }
