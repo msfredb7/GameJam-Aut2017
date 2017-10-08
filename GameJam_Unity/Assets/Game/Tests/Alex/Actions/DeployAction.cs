@@ -15,6 +15,13 @@ public class DeployAction : HeroActionEvent
     public override void Execute(Hero hero, Action onComplete)
     {
         // deploy
+        ZavierZone zavierzone = hero.GetComponent<ZavierZone>();
+
+        if (zavierzone != null)
+        {
+            zavierzone.onZoneClear += onComplete;
+            zavierzone.activateDeploy = true;
+        }
     }
 
     public override HeroActions GetHeroActionInfo()
