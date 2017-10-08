@@ -9,4 +9,5 @@ public class HeroDescription : ScriptableObject
     public Sprite heroFace;
     public Sprite heroBody;
     public string heroDescription;
+    public int price;
 }

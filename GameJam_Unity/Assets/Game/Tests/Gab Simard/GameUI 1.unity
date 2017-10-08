@@ -3246,8 +3246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroPrefab: {fileID: 114582607985421310, guid: ace954c08f8741f4f9f2e837fe73cb00,
     type: 2}
-  cost: 5000
   parentPanel: {fileID: 0}
+  herocard: {fileID: 0}
 --- !u!114 &1498087715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5324,8 +5324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroPrefab: {fileID: 114582607985421310, guid: ace954c08f8741f4f9f2e837fe73cb00,
     type: 2}
-  cost: 10000
   parentPanel: {fileID: 0}
+  herocard: {fileID: 0}
 --- !u!114 &2006955027
 MonoBehaviour:
   m_ObjectHideFlags: 0

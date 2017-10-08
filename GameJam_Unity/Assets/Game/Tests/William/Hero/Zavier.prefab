@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 58870911967098704}
   - component: {fileID: 114715329666151776}
   m_Layer: 0
-  m_Name: Hero
+  m_Name: Zavier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

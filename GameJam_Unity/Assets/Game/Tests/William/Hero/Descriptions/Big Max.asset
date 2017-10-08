@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ff21f1591e8044fb0666fcaf2605f9, type: 3}
-  m_Name: Bix Max
+  m_Name: Big Max
   m_EditorClassIdentifier: 
   heroFace: {fileID: 21300000, guid: 7a52b140cac930e46978710e1522d3cb, type: 3}
   heroBody: {fileID: 21300000, guid: d5000e0dafc91884e86fc71f497cf335, type: 3}
   heroDescription: "Big Max est quand m\xEAme tr\xE8s gros."
+  price: 1000

@@ -122,16 +122,8 @@ public class ClientManager : MonoBehaviour
 
             orders.Add(orderObject);
 
-            GameObject deliveryNotification = Game.GameUI.DeliverNotificationObject;
+            Game.GameUI.DeliverNotificationObject.Notify();
 
-            deliveryNotification.SetActive(true);
-            deliveryNotification.GetComponent<FadeFlash>().Play();
-            DelayManager.LocalCallTo(delegate
-            {
-                deliveryNotification.GetComponent<FadeFlash>().Stop();
-                deliveryNotification.SetActive(false);
-
-            }, 3, this);
             Debug.Log("Spawned at Node : " + order.Node + ". | World to screen Position : " + Camera.main.ScreenToWorldPoint(order.transform.position));
             return order;
         }
@@ -157,7 +149,7 @@ public class ClientManager : MonoBehaviour
         Objectives currentObjectives = Game.Map.cash;
         int income = currentObjectives.OrderBasePrice + (currentObjectives.PricePerPizza * node.pizza.Count);
         currentObjectives.IncomeCash(income);
-        Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(income);
+        
 
         for (int i = 0; i < node.pizza.Count; i++)
         {
