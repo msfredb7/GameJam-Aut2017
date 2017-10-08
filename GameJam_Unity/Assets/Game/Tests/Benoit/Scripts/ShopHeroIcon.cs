@@ -47,7 +47,7 @@ public class ShopHeroIcon : MonoBehaviour
         heroSelected = false;
         heroInstance.SnapToNode();
         Game.HeroManager.AddHero(heroInstance);
-        Game.Map.cash.IncomeCash(-herocard.HeroDescription.price);
+        Game.Map.cash.OutcomeCash(herocard.HeroDescription.price);
     }
     public void DestroyHero()
     {
