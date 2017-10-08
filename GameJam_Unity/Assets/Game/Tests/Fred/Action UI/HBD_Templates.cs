@@ -53,9 +53,7 @@ public class HBD_Templates : MonoBehaviour
     {
         HBD_TemplateAction newItem = Instantiate(templatePrefab.gameObject, stdContainer).GetComponent<HBD_TemplateAction>();
         templates.Add(newItem);
-        print("add listener on: " + newItem.name);
         newItem.onClick = onNewActionClick;
-        //newItem.onDragOut = onDragOut;
         return newItem;
     }
 }
