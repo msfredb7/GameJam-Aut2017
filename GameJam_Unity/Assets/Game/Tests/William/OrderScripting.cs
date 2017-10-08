@@ -68,7 +68,7 @@ namespace Assets.Game.Tests.William
         {
             ScriptedOrder scriptedOrder = new ScriptedOrder();
             scriptedOrder.OrderDuration = UnityEngine.Random.Range(minOrderDuration, maxOrderDuration);
-            scriptedOrder.PizzaAmount = UnityEngine.Random.Range(0, maxPizzaPerOrder);
+            scriptedOrder.PizzaAmount = UnityEngine.Random.Range(1, maxPizzaPerOrder);
             clientManager.SpawnAtRandomClient(scriptedOrder);
         }
     }
