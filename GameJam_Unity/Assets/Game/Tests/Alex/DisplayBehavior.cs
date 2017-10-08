@@ -19,6 +19,8 @@ public class DisplayBehavior : MonoBehaviour {
     public float transitionDuration;
     public MouseInputs selectNodeNotif;
 
+    private bool quitting = false;
+
     public void Init (HeroBehavior behavior)
     {
         ShowPanel();
@@ -36,28 +38,49 @@ public class DisplayBehavior : MonoBehaviour {
                 selectNodeNotif.gameObject.SetActive(false);
             });
         };
+
+        Game.HeroManager.onActiveHeroChanged += display.Fill;
+
+    }
+
+    public void Exit()
+    {
+        Game.HeroManager.onActiveHeroChanged -= display.Fill;
+        display.ClearHB();
+        quitting = true;
+
+        HidePanel(() =>
+        {
+            Scenes.UnloadAsync(SCENE_NAME);
+        });
     }
 
 
 
-    public void ShowPanel()
+    public void ShowPanel(TweenCallback onComplete = null)
     {
         RectTransform rt = display.GetComponent<RectTransform>();
         rt.DOKill();
-        rt.DOAnchorPos(shownPos, transitionDuration).SetEase(Ease.OutSine);
+        Tween t = rt.DOAnchorPos(shownPos, transitionDuration).SetEase(Ease.OutSine);
+        if (onComplete != null)
+            t.OnComplete(onComplete);
     }
 
-    public void SemiHide()
+    public void SemiHide(TweenCallback onComplete = null)
     {
         RectTransform rt = display.GetComponent<RectTransform>();
         rt.DOKill();
-        rt.DOAnchorPos(semiHiddenPos, transitionDuration*0.5f).SetEase(Ease.InOutSine);
+        Tween t = rt.DOAnchorPos(semiHiddenPos, transitionDuration*0.5f).SetEase(Ease.InOutSine);
+        if (onComplete != null)
+            t.OnComplete(onComplete);
     }
 
-    public void HidePanel()
+    public void HidePanel(TweenCallback onComplete = null)
     {
         RectTransform rt = display.GetComponent<RectTransform>();
         rt.DOKill();
-        rt.DOAnchorPos(hiddenPos, transitionDuration).SetEase(Ease.InSine);
+        Tween t = rt.DOAnchorPos(hiddenPos, transitionDuration).SetEase(Ease.InSine);
+        if (onComplete != null)
+            t.OnComplete(onComplete);
     }
 }
