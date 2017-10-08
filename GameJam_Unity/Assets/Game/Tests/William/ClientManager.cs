@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Game.Tests.William;
@@ -39,7 +39,7 @@ public class ClientManager : MonoBehaviour
             Order currentOrder = orders[i].GetComponent<Order>();
             if (currentOrder != null)
             {
-                if(currentOrder.Node.pizza.Count >= currentOrder.PizzaAmount)
+                if(currentOrder.PizzaAmount <= 0)
                 {
                     // Commande reussit !
                     orderObjectToDelete = currentOrder.gameObject;

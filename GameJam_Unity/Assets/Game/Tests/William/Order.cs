@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CCC.Manager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,8 +42,14 @@ namespace Assets.Game.Tests.William
                 countdownObject.GetComponent<Text>().color = Color.white;
             }
 
+            if(Node.pizza.Count > 0)
+            {
+                Node.pizza[0].Destroy();
+                PizzaAmount--;
+            }
+
             countdownObject.GetComponent<Text>().text = Convert.ToString((int)TimeRemaining);
-            pizzaCountObject.GetComponent<Text>().text = Convert.ToString(PizzaAmount - Node.pizza.Count);
+            pizzaCountObject.GetComponent<Text>().text = Convert.ToString(PizzaAmount);
         }
 
         public void SetClientManager(ClientManager clientManager)

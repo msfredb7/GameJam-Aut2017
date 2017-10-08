@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +44,15 @@ public class Pizza : MonoBehaviour
         myNode = null;
     }
 
+    public void Destroy()
+    {
+        if (myHero != null)
+            myHero.carriedPizza = null;
+        if (myNode != null)
+            myNode.pizza.Remove(this);
+
+        Destroy(gameObject);
+    }
     //public void MergePizza(Pizza other_Pizza)
     //{
     //	Quantity += other_Pizza.Quantity;
