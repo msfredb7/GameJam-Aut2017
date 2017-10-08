@@ -18,7 +18,7 @@ public class HBD_ActionList : MonoBehaviour
     public Action<HBD_Action> onDeleteActionClick;
     public Action<HBD_Action> onDragOut;
 
-    public void Fill(List<HeroActions> actions)
+    public void Fill(List<HeroActionEvent> actions)
     {
         int c = 0;
 

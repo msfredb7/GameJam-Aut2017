@@ -16,6 +16,7 @@ public class HBD_Action : HBD_Button
     public bool isDragging = false;
     [ReadOnly]
     public Vector2 dragStart;
+    public HeroActionEvent action;
 
     public void DeleteClick()
     {
@@ -57,10 +58,14 @@ public class HBD_Action : HBD_Button
         gameObject.SetActive(false);
     }
 
-    public void ShowAndFill(HeroActions action)
+    public void ShowAndFill(HeroActionEvent action)
     {
+        this.action = action;
         gameObject.SetActive(true);
 
         //Remplir information
+        displayName.text = action.GetHeroActionInfo().GetDisplayName();
+
+        SetColor(action.GetHeroActionInfo().GetNodeColor());
     }
 }

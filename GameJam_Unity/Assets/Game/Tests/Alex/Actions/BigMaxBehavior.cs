@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +6,15 @@ public class BigMaxBehavior : HeroBehavior {
 
     private List<HeroActionEvent> possibleActions = new List<HeroActionEvent>();
 
-    public override List<HeroActionEvent> GetPossibleActionList()
+    void Awake()
     {
         possibleActions.Add(new GoAction());
         possibleActions.Add(new DropAction());
+        possibleActions.Add(new DeployAction());
+    }
+
+    public override List<HeroActionEvent> GetPossibleActionList()
+    {
         return possibleActions;
     }
 }

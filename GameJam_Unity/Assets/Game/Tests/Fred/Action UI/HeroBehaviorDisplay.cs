@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroBehaviorDisplay : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class HeroBehaviorDisplay : MonoBehaviour
     public HBD_Templates templates;
     public HBD_ActionList tempList;
     public HBD_ActionList loopList;
+
+    [Header("Temporaire")]
+    public Toggle putInTemp;
+
+    private HeroBehavior hb;
 
     void Start()
     {
@@ -26,22 +32,54 @@ public class HeroBehaviorDisplay : MonoBehaviour
         loopList.onDragOut = OnDragOutFromLoopList;
     }
 
-    public void Fill()
+    void ClearHB()
     {
-        templates.Fill(/*...*/);
+        if (hb != null)
+        {
+            hb.onListChange = null;
+            hb.onTemporaryListChange = null;
+        }
+
+        hb = null;
+    }
+
+    public void Fill(Hero hero)
+    {
+        ClearHB();
+
+        hb = hero.behavior;
+        hb.onListChange = ReFill;
+        hb.onTemporaryListChange = ReFill;
+
+        templates.Fill(hb.GetPossibleActionList());
+
         tempList.Fill(GetTemporaryActions());
+
         loopList.Fill(GetLoopActions());
+    }
+    public void ReFill()
+    {
+        Fill(hb.hero);
     }
 
 
     void OnNewActionClick(HBD_TemplateAction template)
     {
         //Instantiate une looseAction, et la remplir de l'information
+        print("Nouvelle action de type: " + template.actionClone.GetHeroActionInfo().GetDisplayName());
+
+        //HBD_LooseAction looseAction = Instantiate(looseActionPrefab.gameObject, transform.parent).GetComponent < HBD_LooseAction>();
+        //looseAction.fi
+        if (putInTemp.isOn)
+            hb.AddTemporaryAction(template.actionClone.Clone());
+        else
+            hb.AddAction(template.actionClone.Clone());
     }
 
     void OnDeleteFromTempList(HBD_Action actionUI)
     {
         print("Delete from temp list");
+        hb.RemoveActionFromTemporaryList(actionUI.action);
         //...
     }
     void OnDragOutFromTempList(HBD_Action actionUI)
@@ -53,6 +91,8 @@ public class HeroBehaviorDisplay : MonoBehaviour
     void OnDeleteFromLoopList(HBD_Action actionUI)
     {
         print("Delete from loop list");
+
+        hb.RemoveActionFromLoopList(actionUI.action);
         //...
     }
     void OnDragOutFromLoopList(HBD_Action actionUI)
@@ -61,22 +101,12 @@ public class HeroBehaviorDisplay : MonoBehaviour
         //...
     }
 
-    List<HeroActions> GetTemporaryActions()
+    List<HeroActionEvent> GetTemporaryActions()
     {
-        List<HeroActions> testList = new List<HeroActions>();
-        for (int i = 0; i < 3; i++)
-        {
-            testList.Add(null);
-        }
-        return testList;
+        return hb.temporaryCharacterActions;
     }
-    List<HeroActions> GetLoopActions()
+    List<HeroActionEvent> GetLoopActions()
     {
-        List<HeroActions> testList = new List<HeroActions>();
-        for (int i = 0; i < 2; i++)
-        {
-            testList.Add(null);
-        }
-        return testList;
+        return hb.characterActions;
     }
 }
