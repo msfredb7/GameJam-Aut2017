@@ -2435,7 +2435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53585923}
   - component: {fileID: 53585924}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MapBotRigth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7751,7 +7751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344555037}
   - component: {fileID: 344555038}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MapTopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15608,7 +15608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 680845237}
   - component: {fileID: 680845238}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MapBotLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19724,7 +19724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869668051}
   - component: {fileID: 869668052}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MapTopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35018,7 +35018,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1556976462}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
