@@ -36,7 +36,7 @@ public class SingleActionButton : MonoBehaviour {
 
     public void DeleteAction()
     {
-        display.Delete(index);
+        display.OnActionDeleted(index);
         Destroy(gameObject);
     }
 }
