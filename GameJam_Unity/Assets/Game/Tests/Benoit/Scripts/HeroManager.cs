@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +6,12 @@ using UnityEngine.EventSystems;
 
 public class HeroManager : MonoBehaviour
 {
+    public delegate void HeroEvent(Hero h);
     private List<Hero> listOwnedHero = new List<Hero>();
     private Hero activeHero = null;
 
-    public Action<Hero> onHeroAdded;
-    public Action<Hero> onActiveHeroChanged;
+    public event HeroEvent onHeroAdded;
+    public event HeroEvent onActiveHeroChanged;
 
     public void AddHero(Hero newHero)
     {
