@@ -44,3 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/InGame Framework/Maps/Map2.unity
     guid: 4c56c04666b8609488abcf87a39119cd
+  - enabled: 1
+    path: Assets/Game/InGame Framework/Maps/Map3.unity
+    guid: d13c3f216e1f7b7418b2fc81ff3de244
+  - enabled: 1
+    path: Assets/Game/InGame Framework/Maps/Map4.unity
+    guid: 642bf658fd3c59641af4ac70faecf2d6
