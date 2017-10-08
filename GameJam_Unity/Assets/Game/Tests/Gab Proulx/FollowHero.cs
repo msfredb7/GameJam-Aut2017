@@ -7,6 +7,9 @@ using DG.Tweening;
 
 public class FollowHero : MonoBehaviour {
 
+    public AudioClip sfx_zoom;
+    public AudioSource sf_Source;
+
 	private Toggle toggleHero;
 	private bool isNotifQueued;
     private bool gameReady = false;
@@ -43,7 +46,7 @@ public class FollowHero : MonoBehaviour {
 
 	void Follow()
 	{
-		Hero hero = Game.HeroManager.getActiveHero ();
+        Hero hero = Game.HeroManager.getActiveHero ();
 		if (hero != null) {
 			Camera.main.transform.position = new Vector3 (hero.transform.position.x, hero.transform.position.y, Camera.main.transform.position.z);
 		}
@@ -59,4 +62,25 @@ public class FollowHero : MonoBehaviour {
 			}
 		}
 	}
+
+
+    public void toggleChange()
+    {
+        //SoundManager.PlayStaticSFX(sfx_zoom);
+        if (toggleHero.isOn)
+        {
+            sf_Source.pitch = 1;
+            sf_Source.time = 0;
+            sf_Source.Play();
+        }
+        else
+        {
+            sf_Source.pitch = -1;
+            sf_Source.time = (sfx_zoom.length) - 0.01f;
+            sf_Source.Play();
+            //SoundManager.PlaySFX(sfx_zoom, 0, 1, sf_Source);
+        }
+            
+
+    }
 }

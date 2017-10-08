@@ -92,8 +92,12 @@ public class HeroManager : MonoBehaviour
 
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Node node = Game.Fastar.GetClosestNode(pos);
-            if(node != null)
-                activeHero.brain.GoToNode(node);
+            if (node != null)
+            {
+                GoAction newAction = new GoAction();
+                newAction.GetHeroActionInfo().GiveNode(node);
+                activeHero.behavior.AddTemporaryAction(newAction);
+            }
         }
     }
 

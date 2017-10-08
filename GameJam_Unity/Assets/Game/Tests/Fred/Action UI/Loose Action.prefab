@@ -85,7 +85,9 @@ MonoBehaviour:
   tempList: {fileID: 0}
   loopList: {fileID: 0}
   hb: {fileID: 0}
+  display: {fileID: 0}
   createNew: 0
+  sfx_drop: {fileID: 8300000, guid: 4d6e605e9d722c7449724642ee10cd4f, type: 3}
 --- !u!114 &114358427370880160
 MonoBehaviour:
   m_ObjectHideFlags: 1

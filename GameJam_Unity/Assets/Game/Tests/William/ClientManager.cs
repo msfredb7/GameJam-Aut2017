@@ -10,7 +10,6 @@ public class ClientManager : MonoBehaviour
 {
 
     private List<GameObject> orders;
-    private List<Vector2> regularOrderList;
 
     private int spawnCircleRadius = 5;
 
@@ -19,14 +18,8 @@ public class ClientManager : MonoBehaviour
     [SerializeField] private int minPositionChange = 5;
     [SerializeField] private int maxPositionChange = 15;
 
-    [SerializeField] private float minSpawnRate = 1f;
-    [SerializeField] private float maxSpawnRate = 5f;
-
-    [SerializeField] private int maxPizzaPerOrder = 6;
 
     public int TimeRemainingWarning = 4;
-
-    private float spawnTime;
 
     void Start ()
     {
@@ -36,12 +29,6 @@ public class ClientManager : MonoBehaviour
             enabled = true;
         };
         orders = new List<GameObject>();
-        spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
-        regularOrderList = new List<Vector2>
-        {
-            new Vector2(0.99f, 3.98f),
-            new Vector2(-4.95f, -0.06f),
-        };
     }
 
 	void Update ()
@@ -72,18 +59,29 @@ public class ClientManager : MonoBehaviour
         orders.Remove(gameObject);
     }
 
-    public void SpawnAtRandomClient()
+    public void SpawnAtRandomClient(ScriptedOrder scriptedOrder)
     {
         Node spawnNode = Game.Fastar.nodes[UnityEngine.Random.Range(0, Game.Fastar.nodes.Count)];
-        SpawnOrder(spawnNode);
-    }
+       
+        if (!isClientAlreadyOrdering(spawnNode.Position))
+        {
+            GameObject orderObject = Instantiate(OrderPrefab);
+            orderObject.transform.SetParent(Game.GameUI.transform);
+            orderObject.transform.SetAsFirstSibling();
+            orderObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(spawnNode.Position);
+            Order order = orderObject.GetComponent<Order>();
+            spawnNode.Order = order;
+            order.Node = spawnNode;
 
-    public void SpawnAtRandomRegularClient()
-    {
-        Vector2 spawnPos = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]).Position;
-        Node SpawnNode = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]);
-        SpawnOrder(SpawnNode);
-    }   
+            order.SetClientManager(this);
+            order.PizzaAmount = scriptedOrder.PizzaAmount;
+            order.TimeRemaining = scriptedOrder.OrderDuration;
+
+            orders.Add(orderObject);
+
+            Game.GameUI.DeliverNotificationObject.Notify();
+        }
+    }
 
     public void SpawnOrder(ScriptedOrder scriptedOrder)
     {
