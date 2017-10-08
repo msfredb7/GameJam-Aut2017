@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class Pizza : MonoBehaviour {
 
 	public int Quantity = 1;
 	public QuantityText qt;
+
+    public Action pizzaPickedUp;
 
 	void Start(){
 		UpdateQuantityDisplay ();
@@ -29,5 +32,4 @@ public class Pizza : MonoBehaviour {
 	void UpdateQuantityDisplay(){
 		qt.DisplayQuantity (Quantity);
 	}
-
 }

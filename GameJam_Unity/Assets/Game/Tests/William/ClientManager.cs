@@ -11,8 +11,6 @@ public class ClientManager : MonoBehaviour
     private List<GameObject> orders;
     private List<Vector2> regularOrderList;
 
-    [SerializeField] private GameObject SpawnCircleCenter;
-
     private int spawnCircleRadius = 5;
 
     [SerializeField] private GameObject OrderPrefab;
@@ -47,23 +45,19 @@ public class ClientManager : MonoBehaviour
 
 	void Update ()
 	{
-	    //spawnTime -= Time.deltaTime;
-
-	    //if (spawnTime < 0)
-	    //{
-	    //    int isSpawnPoint = UnityEngine.Random.Range(0, 2);
-	    //    if (isSpawnPoint == 1)
-	    //    {
-     //           //spawn in the spawn point range
-     //           SpawnAtRandomClient();
-	    //    }
-	    //    else
-	    //    {
-     //           //spawn on one of the regulars point
-     //           SpawnAtRandomRegularClient();
-     //       }
-	    //    spawnTime = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
-	    //}
+        for (int i = 0; i < orders.Count; i++)
+        {
+            Order currentOrder = orders[i].GetComponent<Order>();
+            if (currentOrder != null)
+            {
+                if(currentOrder.Node.pizza.Count >= currentOrder.PizzaAmount)
+                {
+                    // Commande reussit !
+                    RemoveFromOrderList(currentOrder.gameObject);
+                    CommandCompleted(currentOrder.Node);
+                }
+            }
+        }
 	}
 
     public void RemoveFromOrderList(GameObject gameObject)
@@ -82,11 +76,13 @@ public class ClientManager : MonoBehaviour
         Vector2 spawnPos = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]).Position;
         Node SpawnNode = GetNodeAt(regularOrderList[UnityEngine.Random.Range(0, regularOrderList.Count)]);
         SpawnOrder(SpawnNode);
-    }
+    }   
 
-    public void SpawnOrder(ScriptedOrder order)
+    public void SpawnOrder(ScriptedOrder scriptedOrder)
     {
-        SpawnOrder(order.Node).TimeRemaining = order.OrderDuration;
+        Order orderItem = SpawnOrder(scriptedOrder.Node);
+        orderItem.TimeRemaining = scriptedOrder.OrderDuration;
+        orderItem.PizzaAmount = scriptedOrder.PizzaAmount;
     }
 
     private Node GetNodeAt(Vector2 pos)
@@ -135,5 +131,14 @@ public class ClientManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    void CommandCompleted(Node node)
+    {
+        NotificationQueue.PushNotification("Vous avez complété une commande !");
+        for (int i = 0; i < node.pizza.Count; i++)
+        {
+            Destroy(node.pizza[i].gameObject);
+        }
     }
 }

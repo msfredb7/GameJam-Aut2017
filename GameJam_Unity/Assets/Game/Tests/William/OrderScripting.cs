@@ -11,7 +11,9 @@ namespace Assets.Game.Tests.William
         public Node Node;
         public float TimeToStart;
         public float OrderDuration;
+        [HideInInspector]
         public bool IsActive;
+        public int PizzaAmount;
     }
 
     [RequireComponent(typeof(ClientManager))]

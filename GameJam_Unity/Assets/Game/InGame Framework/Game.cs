@@ -19,6 +19,7 @@ public class Game : PublicSingleton<Game>
     [SerializeField, ReadOnly]
     private Map map;
 
+    public GameObject unitCountainer;
 
     // GAME STATE
     [ReadOnly]
