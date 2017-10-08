@@ -77,6 +77,7 @@ public class Objectives : MonoBehaviour {
 
             //Call fin de mission, objectif atteint
         }
+        Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(rev);
     }
 
     //  Methode qui va set l'affiche de l'UI du montant d'argent

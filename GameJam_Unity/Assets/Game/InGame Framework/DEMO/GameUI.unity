@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2333,6 +2333,11 @@ Prefab:
       propertyPath: parentPanel
       value: 
       objectReference: {fileID: 1858495320}
+    - target: {fileID: 114851527061342868, guid: 4063f93046eaa4d4e80468b43d2e86b3,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4063f93046eaa4d4e80468b43d2e86b3, type: 2}
   m_IsPrefabParent: 0
@@ -2982,6 +2987,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4063f93046eaa4d4e80468b43d2e86b3, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1009293110 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1824193932755230, guid: 4063f93046eaa4d4e80468b43d2e86b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1714231521}
+--- !u!114 &1009293111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009293110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc10a367099c104aad16b0bf0aad1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1073731147
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,7 +3355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroPrefab: {fileID: 114582607985421310, guid: ace954c08f8741f4f9f2e837fe73cb00,
     type: 2}
-  cost: 10000
   parentPanel: {fileID: 0}
 --- !u!114 &1388454663
 MonoBehaviour:
@@ -4559,6 +4579,17 @@ Prefab:
       propertyPath: parentPanel
       value: 
       objectReference: {fileID: 1858495320}
+    - target: {fileID: 114317879400337470, guid: 4063f93046eaa4d4e80468b43d2e86b3,
+        type: 2}
+      propertyPath: heroPrefab
+      value: 
+      objectReference: {fileID: 114732835543235288, guid: 9060d0b1fef77164bad4ff25aafc7831,
+        type: 2}
+    - target: {fileID: 114851527061342868, guid: 4063f93046eaa4d4e80468b43d2e86b3,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4063f93046eaa4d4e80468b43d2e86b3, type: 2}
   m_IsPrefabParent: 0
@@ -6021,7 +6052,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 84498915}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0.40789473
+  m_Size: 0.4078948
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
