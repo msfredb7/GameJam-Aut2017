@@ -33,7 +33,7 @@ public class HeroBehaviorDisplay : MonoBehaviour
         loopList.onDragOut = OnDragOutFromLoopList;
     }
 
-    void ClearHB()
+    public void ClearHB()
     {
         if (hb != null)
         {
