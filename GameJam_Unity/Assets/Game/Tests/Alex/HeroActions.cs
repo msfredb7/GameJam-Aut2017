@@ -8,4 +8,6 @@ public abstract class HeroActions
 
     public abstract string GetDisplayName();
     public abstract NodeColor GetNodeColor();
+    public abstract bool RequiresNode();
+    public abstract void GiveNode(Node node);
 }
