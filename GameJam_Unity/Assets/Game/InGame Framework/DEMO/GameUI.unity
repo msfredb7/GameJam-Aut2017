@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1148,6 +1148,18 @@ Prefab:
       propertyPath: parentPanel
       value: 
       objectReference: {fileID: 1858495320}
+    - target: {fileID: 114408176486756134, guid: 4063f93046eaa4d4e80468b43d2e86b3,
+        type: 2}
+      propertyPath: HeroDescription
+      value: 
+      objectReference: {fileID: 11400000, guid: 88d1daf278ef09846bd3c0d177a8688a,
+        type: 2}
+    - target: {fileID: 114317879400337470, guid: 4063f93046eaa4d4e80468b43d2e86b3,
+        type: 2}
+      propertyPath: heroPrefab
+      value: 
+      objectReference: {fileID: 114006057142892746, guid: d97a3389a1b81b0469a60003a272980d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4063f93046eaa4d4e80468b43d2e86b3, type: 2}
   m_IsPrefabParent: 0
@@ -3082,7 +3094,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1219973100
 MonoBehaviour:
@@ -4589,7 +4601,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830514473}
   m_HandleRect: {fileID: 830514472}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5896,8 +5908,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84498916}
   m_HandleRect: {fileID: 84498915}
   m_Direction: 2
-  m_Value: 0.9999991
-  m_Size: 0.81794196
+  m_Value: 0.9999987
+  m_Size: 0.817942
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
