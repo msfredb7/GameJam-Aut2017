@@ -57,6 +57,8 @@ public class Hero : MonoBehaviour
 
     public void SetNode(Node node)
     {
+        previousNode = currentNode;
+        currentNode = nextNode;
         nextNode = node;
         SetTurningSpeed();
         moving = true;
@@ -77,27 +79,23 @@ public class Hero : MonoBehaviour
 
     public void SetTurningSpeed()
     {
-        if (currentNode == null)
-            return;
+        if (currentNode != null && previousNode != null)
+        {
 
-        previousNode = currentNode;
-        currentNode = nextNode;
+            Vector2 previousLink = currentNode.Position - previousNode.Position;
+            Vector2 nextLink = nextNode.Position - currentNode.Position;
 
+            float dot = Vector2.Dot(previousLink, nextLink);
+            float sumMag = previousLink.magnitude * nextLink.magnitude;
+            float angle; //= Mathf.Acos(dot / sumMag);
 
-        Vector2 previousLink = currentNode.Position - previousNode.Position;
-        Vector2 nextLink = currentNode.Position - nextNode.Position;
+            angle = Vector2.Angle(nextLink, previousLink);
 
-        float dot = Vector2.Dot(previousLink, nextLink);
-        float sumMag = previousLink.magnitude * nextLink.magnitude;
-        float angle = Mathf.Acos(dot / sumMag);
-        
-
-        //print(angle);
-
-        if (angle * Mathf.Rad2Deg > maxTuringAngle)
-            currentSpeed = 0;
-        else if (currentSpeed > turningSpeed)
-            currentSpeed = turningSpeed;
+            if (angle > maxTuringAngle)
+                currentSpeed = 0;
+            else if (currentSpeed > turningSpeed)
+                currentSpeed = turningSpeed;
+        }
     }
 
 
@@ -116,10 +114,10 @@ public class Hero : MonoBehaviour
 
     public void Move()
     {
-        if (currentNode == null)
+        if (nextNode == null)
             return;
 
-        Vector2 destination = currentNode.Position;
+        Vector2 destination = nextNode.Position;
         Vector2 delta = destination - (Vector2)transform.position;
 
         if (delta.magnitude < currentSpeed)
@@ -130,11 +128,11 @@ public class Hero : MonoBehaviour
         }
         else
         {
+            currentSpeed += accelerationRate * Time.deltaTime;
+            currentSpeed = currentSpeed.Capped(limitSpeed);
+
             transform.position += ((Vector3)delta).normalized * currentSpeed;
-            if (currentSpeed < limitSpeed)
-            {
-                currentSpeed += accelerationRate * Time.deltaTime;
-            }
+
             return;
         }
     }
