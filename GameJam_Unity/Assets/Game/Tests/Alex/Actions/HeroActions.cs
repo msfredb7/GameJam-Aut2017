@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,4 +11,5 @@ public abstract class HeroActions
     public abstract NodeColor GetNodeColor();
     public abstract bool RequiresNode();
     public abstract void GiveNode(Node node);
+
 }
