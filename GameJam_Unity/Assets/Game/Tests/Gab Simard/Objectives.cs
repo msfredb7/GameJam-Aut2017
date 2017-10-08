@@ -82,8 +82,8 @@ public class Objectives : MonoBehaviour {
 
         if (m_Cash >= m_CashTarget)
         {
-            SoundManager.StopMusic();
             SoundManager.PlayStaticSFX(sfx_win, 3);
+            SoundManager.StopMusic();
             Game.instance.Win();
 
             //Call fin de mission, objectif atteint
