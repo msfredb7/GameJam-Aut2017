@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Game.Tests.William;
+using CCC.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,6 +46,7 @@ public class ClientManager : MonoBehaviour
 
 	void Update ()
 	{
+	    GameObject orderObjectToDelete = null;
         for (int i = 0; i < orders.Count; i++)
         {
             Order currentOrder = orders[i].GetComponent<Order>();
@@ -53,10 +55,15 @@ public class ClientManager : MonoBehaviour
                 if(currentOrder.Node.pizza.Count >= currentOrder.PizzaAmount)
                 {
                     // Commande reussit !
+                    orderObjectToDelete = currentOrder.gameObject;
                     RemoveFromOrderList(currentOrder.gameObject);
                     CommandCompleted(currentOrder.Node);
                 }
             }
+        }
+	    if (orderObjectToDelete != null)
+	    {
+	        Destroy(orderObjectToDelete);
         }
 	}
 
@@ -115,6 +122,8 @@ public class ClientManager : MonoBehaviour
 
             orders.Add(orderObject);
 
+            Game.GameUI.DeliverNotificationObject.Notify();
+
             Debug.Log("Spawned at Node : " + order.Node + ". | World to screen Position : " + Camera.main.ScreenToWorldPoint(order.transform.position));
             return order;
         }
@@ -136,6 +145,12 @@ public class ClientManager : MonoBehaviour
     void CommandCompleted(Node node)
     {
         NotificationQueue.PushNotification("Vous avez complété une commande !");
+
+        Objectives currentObjectives = Game.Map.cash;
+        int income = currentObjectives.OrderBasePrice + (currentObjectives.PricePerPizza * node.pizza.Count*1000);
+        currentObjectives.IncomeCash(income);
+        
+
         for (int i = 0; i < node.pizza.Count; i++)
         {
             Destroy(node.pizza[i].gameObject);

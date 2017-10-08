@@ -173,14 +173,17 @@ public class Hero : MonoBehaviour
 
     public void Drop()
     {
-        Debug.Log("DROPING PIZZA");
-        Pizza oldReference = carriedPizza;
-        currentNode.pizza.Add(oldReference);
-        carriedPizza = null;
-        DelayManager.LocalCallTo(delegate ()
+        if (carriedPizza != null)
         {
-            if(oldReference != null)
-                oldReference.gameObject.GetComponent<CircleCollider2D>().enabled = true;
-        }, 1, this);
+            Debug.Log("DROPING PIZZA");
+            Pizza oldReference = carriedPizza;
+            currentNode.pizza.Add(oldReference);
+            carriedPizza = null;
+            DelayManager.LocalCallTo(delegate ()
+            {
+                if (oldReference != null)
+                    oldReference.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            }, 1, this);
+        }
     }
 }

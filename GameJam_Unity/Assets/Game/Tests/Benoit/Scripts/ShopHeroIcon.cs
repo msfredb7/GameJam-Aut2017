@@ -3,23 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ShopHeroIcon : MonoBehaviour {
-
-    
+public class ShopHeroIcon : MonoBehaviour
+{
     public Hero heroPrefab;
-    public float cost;
-    
+    public HeroShop_Script parentPanel;
+    [SerializeField] private HeroCard herocard;
 
     private Hero heroInstance = null;
     private bool heroSelected = false;
-
-    public void clickDragHero()
-    {
-        heroSelected = true;
-        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        pos.z = 0;
-        heroInstance = Instantiate(heroPrefab, pos, Quaternion.identity);
-    }
+    private int cost;
 
     public void ReleaseDragHero()
     {
@@ -33,23 +25,19 @@ public class ShopHeroIcon : MonoBehaviour {
         Game.HeroManager.AddHero(heroInstance);
     }
 
-    //  methode qui gère le click de héro
-    //  1er click, prend un héro et change le curseur
-    //  2em click, lache le héro sur la map et remet le curseur
+    //  methode qui gï¿½re le click de hï¿½ro
+    //  1er click, prend un hï¿½ro et change le curseur
+    //  2em click, lache le hï¿½ro sur la map et remet le curseur
     public void ClickHero()
     {
-        print("dans le click");
-
         if (heroSelected == false)
         {
-            print("dans le false");
             heroSelected = true;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
+            pos.z = 0;  
             heroInstance = Instantiate(heroPrefab, pos, Quaternion.identity);
+            parentPanel.hideList();
         }
-
-        print("sortie de click");
     }
 
 
@@ -58,9 +46,17 @@ public class ShopHeroIcon : MonoBehaviour {
     {
         heroSelected = false;
         heroInstance.SnapToNode();
+        Game.HeroManager.AddHero(heroInstance);
+        Game.Map.cash.OutcomeCash(herocard.HeroDescription.price);
+    }
+    public void DestroyHero()
+    {
+        heroSelected = false;
+        if (heroInstance != null)
+            Destroy(heroInstance.gameObject);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (heroSelected && heroInstance != null)
@@ -70,17 +66,20 @@ public class ShopHeroIcon : MonoBehaviour {
 
             heroInstance.transform.position = pos;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
             {
-                print("dans le true");
-                if (EventSystem.current.IsPointerOverGameObject())
-                {
-                    Destroy(heroInstance);
-                    heroInstance = null;
-                    return;
-                }
+                //Cancel !
+                DestroyHero();
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                //Paste
+                //if (EventSystem.current.IsPointerOverGameObject())
+                //{
+                //    DestroyHero();
+                //    return;
+                //}
                 AddHeroToWorld();
-                Game.HeroManager.AddHero(heroInstance);
             }
         }
     }

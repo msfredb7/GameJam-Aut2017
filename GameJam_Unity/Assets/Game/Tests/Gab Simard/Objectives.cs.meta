@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: ddf173531f911704fa11f99c0521a2da
-timeCreated: 1507331550
+timeCreated: 1507463751
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sfx_cashIn: {fileID: 8300000, guid: 58dab1517982b50478c276439729d905, type: 3}
+  - sfx_cashOut: {fileID: 8300000, guid: bdac60c72a99c6b42bba5d62219d2e20, type: 3}
+  - sfx_win: {fileID: 8300000, guid: d0b3be135c64ef147b43fcbb7cf660ef, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

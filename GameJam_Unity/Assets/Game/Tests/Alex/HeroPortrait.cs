@@ -17,6 +17,7 @@ public class HeroPortrait : MonoBehaviour {
     private float startPositionY;
     public float endPositionY;
     public float teamOverlayAnimDuration;
+	public Toggle toggleRef;
 
     private bool teamOverlayOpened;
     private bool clicked;
@@ -31,6 +32,7 @@ public class HeroPortrait : MonoBehaviour {
         teamOverlayOpened = false;
         clicked = false;
         startPositionY = teamOverlay.GetComponent<RectTransform>().anchoredPosition.y;
+        Game.HeroManager.onActiveHeroChanged += SetCurrentHero;
         Game.HeroManager.onHeroAdded += AddHeroIcon;
     }
 
@@ -76,7 +78,8 @@ public class HeroPortrait : MonoBehaviour {
 
     public void OnNextClicked()
     {
-        Game.HeroManager.SetActiveHero(Game.HeroManager.FindNextHero(Game.HeroManager.getActiveHero()));
+        if(Game.HeroManager.FindNextHero(Game.HeroManager.getActiveHero()) != Game.HeroManager.getActiveHero())
+            Game.HeroManager.SetActiveHero(Game.HeroManager.FindNextHero(Game.HeroManager.getActiveHero()));
     }
 
     public void OnCameraToggle()
@@ -90,5 +93,10 @@ public class HeroPortrait : MonoBehaviour {
         {
             child.gameObject.GetComponent<HeroIconScript>().CheckEmphase(Game.HeroManager.getActiveHero());
         }
+    }
+
+    public void SetCurrentHero(Hero hero)
+    {
+        heroPortrait.sprite = hero.heroDescription.heroBody;
     }
 }

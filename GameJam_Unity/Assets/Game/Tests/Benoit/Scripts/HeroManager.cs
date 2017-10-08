@@ -17,6 +17,9 @@ public class HeroManager : MonoBehaviour
         listOwnedHero.Add(newHero);
         activeHero = newHero;
         newHero.onClick += SetActiveHero;
+        onActiveHeroChanged.Invoke(newHero);
+
+        newHero.GetComponent<SpriteRenderer>().sprite = newHero.heroDescription.heroFace;
 
         if (onHeroAdded != null)
             onHeroAdded(newHero);
