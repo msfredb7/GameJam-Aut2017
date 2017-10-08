@@ -201,8 +201,8 @@ MonoBehaviour:
     type: 2}
   teamOverlay: {fileID: 635237194}
   teamContent: {fileID: 905871237}
-  endPositionY: -908
-  teamOverlayAnimDuration: 1
+  endPositionY: -696.52
+  teamOverlayAnimDuration: 0.5
   toggleRef: {fileID: 228466372}
 --- !u!1 &22290760
 GameObject:
@@ -2253,9 +2253,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94.20001, y: 204}
-  m_SizeDelta: {x: 143, y: 1028.2}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 64.6}
+  m_SizeDelta: {x: 143, y: 746.96}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &635237196
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -65,14 +65,14 @@ public class HeroPortrait : MonoBehaviour {
         clicked = true;
         if (teamOverlayOpened)
         {
-            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(startPositionY, teamOverlayAnimDuration).OnComplete(delegate() {
+            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(startPositionY, teamOverlayAnimDuration).SetEase(Ease.InSine).OnComplete(delegate() {
                 clicked = false;
             });
             teamOverlayOpened = false;
         }
         else
         {
-            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(endPositionY, teamOverlayAnimDuration).OnComplete(delegate () {
+            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(endPositionY, teamOverlayAnimDuration).SetEase(Ease.OutSine).OnComplete(delegate () {
                 clicked = false;
             });
             teamOverlayOpened = true;
