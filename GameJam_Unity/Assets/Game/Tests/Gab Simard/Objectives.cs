@@ -9,6 +9,8 @@ public class Objectives : MonoBehaviour {
 
     public float minutes = 12;
     public float seconds = 30;
+    public int OrderBasePrice = 10;
+    public int PricePerPizza = 12; 
 
     private float remainingSeconds;
 
@@ -23,6 +25,7 @@ public class Objectives : MonoBehaviour {
             AfficheCash();
             enabled = true;
             Game.GameUI.objectiveDisplay.SetObjectiveAmount(m_CashTarget);
+            Game.Map.cash = this;
             DelayedNotifications();
         };
     }
