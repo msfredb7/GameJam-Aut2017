@@ -27,6 +27,7 @@ public class Pizza : MonoBehaviour
         if (pizzaDropped != null)
             pizzaDropped();
         myNode = node;
+        myHero = null;
     }
     public void PickedUpBy(Hero hero)
     {
@@ -39,6 +40,8 @@ public class Pizza : MonoBehaviour
 
         if (pizzaPickedUp != null)
             pizzaPickedUp();
+
+        myNode = null;
     }
 
     //public void MergePizza(Pizza other_Pizza)
