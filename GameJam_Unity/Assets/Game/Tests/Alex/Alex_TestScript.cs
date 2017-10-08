@@ -1,49 +1,49 @@
-﻿using CCC.Manager;
+using CCC.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Alex_TestScript : MonoBehaviour
 {
-    public DisplayBehavior display;
-    public CharacterBehavior behavior;
+    //public DisplayBehavior display;
+    //public CharacterBehavior behavior;
 
-    void Start()
-    {
-        MasterManager.Sync();
-        display.Init(behavior);
-    }
+    //void Start()
+    //{
+    //    MasterManager.Sync();
+    //    //display.Init(behavior);
+    //}
 
-    public void AddGoNPickup()
-    {
-        if (behavior != null)
-            behavior.AddAction(CharacterAction.CharacterActionType.GoNPickup, display);
-    }
+    //public void AddGoNPickup()
+    //{
+    //    if (behavior != null)
+    //        behavior.AddAction(CharacterAction.CharacterActionType.GoNPickup, display);
+    //}
 
-    public void AddGoNDrop()
-    {
-        if (behavior != null)
-            behavior.AddAction(CharacterAction.CharacterActionType.GoNDrop, display);
-    }
+    //public void AddGoNDrop()
+    //{
+    //    if (behavior != null)
+    //        behavior.AddAction(CharacterAction.CharacterActionType.GoNDrop, display);
+    //}
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (behavior != null)
-                behavior.ExecuteAll();
-        }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.T))
+    //    {
+    //        if (behavior != null)
+    //            behavior.ExecuteAll();
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (display != null)
-                display.Hide();
-        }
+    //    if (Input.GetKeyDown(KeyCode.Z))
+    //    {
+    //        if (display != null)
+    //            display.Hide();
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (display != null)
-                display.Show();
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.X))
+    //    {
+    //        if (display != null)
+    //            display.Show();
+    //    }
+    //}
 }

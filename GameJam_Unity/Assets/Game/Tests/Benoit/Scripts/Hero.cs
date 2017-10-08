@@ -27,7 +27,7 @@ public class Hero : MonoBehaviour
 
     public Pizza carriedPizza;
 
-    public CharacterBehavior behavior;
+    public HeroBehavior behavior;
     public Brain brain;
 
 

@@ -1,4 +1,4 @@
-﻿using CCC.Manager;
+using CCC.Manager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,12 +14,15 @@ public class CharacterAction {
 
     public Node destination;
 
+
     public CharacterAction(CharacterActionType actionType, Node destination)
     {
         this.actionType = actionType;
         this.destination = destination;
         onComplete = null;
     }
+
+
 
     public virtual void Execute(Hero hero, Action onComplete)
     {

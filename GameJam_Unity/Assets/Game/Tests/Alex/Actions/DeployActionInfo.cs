@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,16 +12,21 @@ public class DeployActionInfo : HeroActions
 
     public override NodeColor GetNodeColor()
     {
-        return NodeColor.White;
+        return NodeColor.Yellow;
     }
 
     public override void GiveNode(Node node)
     {
-        throw new NotImplementedException();
+        
+    }
+
+    public override bool IsUnique()
+    {
+        return true;
     }
 
     public override bool RequiresNode()
     {
-        throw new NotImplementedException();
+        return true;
     }
 }

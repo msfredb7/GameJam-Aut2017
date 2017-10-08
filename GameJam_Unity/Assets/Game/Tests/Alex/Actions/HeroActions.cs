@@ -11,5 +11,5 @@ public abstract class HeroActions
     public abstract NodeColor GetNodeColor();
     public abstract bool RequiresNode();
     public abstract void GiveNode(Node node);
-
+    public abstract bool IsUnique();
 }
