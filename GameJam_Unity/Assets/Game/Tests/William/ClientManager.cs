@@ -157,6 +157,7 @@ public class ClientManager : MonoBehaviour
         Objectives currentObjectives = Game.Map.cash;
         int income = currentObjectives.OrderBasePrice + (currentObjectives.PricePerPizza * node.pizza.Count);
         currentObjectives.IncomeCash(income);
+        Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(income);
 
         for (int i = 0; i < node.pizza.Count; i++)
         {
