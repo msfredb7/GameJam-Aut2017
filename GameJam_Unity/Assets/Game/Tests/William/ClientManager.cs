@@ -122,16 +122,8 @@ public class ClientManager : MonoBehaviour
 
             orders.Add(orderObject);
 
-            GameObject deliveryNotification = Game.GameUI.DeliverNotificationObject;
+            Game.GameUI.DeliverNotificationObject.Notify();
 
-            deliveryNotification.SetActive(true);
-            deliveryNotification.GetComponent<FadeFlash>().Play();
-            DelayManager.LocalCallTo(delegate
-            {
-                deliveryNotification.GetComponent<FadeFlash>().Stop();
-                deliveryNotification.SetActive(false);
-
-            }, 3, this);
             Debug.Log("Spawned at Node : " + order.Node + ". | World to screen Position : " + Camera.main.ScreenToWorldPoint(order.transform.position));
             return order;
         }

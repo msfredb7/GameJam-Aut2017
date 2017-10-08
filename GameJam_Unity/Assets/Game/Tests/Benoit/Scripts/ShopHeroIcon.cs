@@ -34,7 +34,7 @@ public class ShopHeroIcon : MonoBehaviour
         {
             heroSelected = true;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
+            pos.z = 0;  
             heroInstance = Instantiate(heroPrefab, pos, Quaternion.identity);
             parentPanel.hideList();
         }
