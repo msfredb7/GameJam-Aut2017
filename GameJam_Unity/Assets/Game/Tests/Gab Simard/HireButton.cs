@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.Manager;
 
 public class HireButton : MonoBehaviour {
 
     public HeroShop_Script ScriptHire;
     public bool m_HireHide;
+    public AudioClip sfx_click;
 
     void Start()
     {
@@ -15,6 +17,8 @@ public class HireButton : MonoBehaviour {
     //  Afficher ou cacher la liste des héros disponible a l'embauche
     public void toggleHire()
     {
+        SoundManager.PlayStaticSFX(sfx_click);
+
         if (m_HireHide == false)
         {
             m_HireHide = true;
