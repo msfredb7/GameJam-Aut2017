@@ -43,8 +43,8 @@ public class Objectives : MonoBehaviour {
             minutes--;
             if(minutes <= -1)
             {
-                SoundManager.PlayStaticSFX(sfx_fail);
-                SoundManager.StopMusic();
+                SoundManager.PlayStaticSFX(sfx_fail, 0, 0.1f);
+                //SoundManager.StopMusic();
                 Game.instance.Lose();
             }
             else
