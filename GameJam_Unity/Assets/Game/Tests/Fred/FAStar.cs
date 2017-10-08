@@ -7,6 +7,10 @@ public class FAStar : BaseBehavior
 {
     public List<Node> nodes;
 
+    Node[] cameFrom;
+    float[] gScore;
+    float[] fScore;
+
     protected override void Awake()
     {
         base.Awake();
@@ -43,13 +47,17 @@ public class FAStar : BaseBehavior
         List<Node> openSet = new List<Node>();
         openSet.Add(start);
 
-        Node[] cameFrom = new Node[nodes.Count];
+        if(cameFrom == null)
+            cameFrom = new Node[nodes.Count];
+        cameFrom.Populate(null);
 
-        float[] gScore = new float[nodes.Count];
+        if (gScore == null)
+            gScore = new float[nodes.Count];
         gScore.Populate(float.PositiveInfinity);
         gScore[start.index] = 0;
 
-        float[] fScore = new float[nodes.Count];
+        if(fScore == null)
+            fScore = new float[nodes.Count];
         fScore.Populate(float.PositiveInfinity);
 
         fScore[start.index] = CostEstimate(start, goal);

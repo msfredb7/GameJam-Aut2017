@@ -34,7 +34,7 @@ public class GoAction : HeroActionEvent
         this.onComplete = onComplete;
         this.hero = hero;
 
-        Debug.Log("executing a go action...");
+        //Debug.Log("executing a go action...");
         if (goActionInfo.destination == null)
         {
             goActionInfo.onNodeGiven = GoToDestination;

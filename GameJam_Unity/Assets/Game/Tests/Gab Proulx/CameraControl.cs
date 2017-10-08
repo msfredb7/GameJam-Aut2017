@@ -57,11 +57,11 @@ public class CameraControl : MonoBehaviour
             minY = vertExtent - mapY / 2.0f;
             maxY = mapY / 2.0f - vertExtent;
 
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(2))
+            if (/*Input.GetMouseButtonDown(0) || */Input.GetMouseButtonDown(2))
             {
                 mouseOrigin = Input.mousePosition;
             }
-            isDragging = Input.GetMouseButton(0) || Input.GetMouseButton(2);
+            isDragging = /*Input.GetMouseButton(0) || */Input.GetMouseButton(2);
 
 
             if (isDragging)
