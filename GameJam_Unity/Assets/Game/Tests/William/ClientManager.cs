@@ -42,6 +42,11 @@ public class ClientManager : MonoBehaviour
             new Vector2(0.99f, 3.98f),
             new Vector2(-4.95f, -0.06f),
         };
+        Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(300);
+        DelayManager.LocalCallTo(delegate
+        {
+            Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(400);
+        }, 4, this);
     }
 
 	void Update ()
