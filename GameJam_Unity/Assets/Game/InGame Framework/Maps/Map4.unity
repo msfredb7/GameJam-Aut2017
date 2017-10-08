@@ -42391,12 +42391,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Cash: 5000
-  m_CashTarget: 10000
+  m_CashTarget: 30000
   sfx_cashIn: {fileID: 8300000, guid: 8fa09bdfc2365b64d9255d50cc94c80f, type: 3}
   sfx_cashOut: {fileID: 8300000, guid: 49ff717d50b9bec4883d185907894c36, type: 3}
   sfx_win: {fileID: 8300000, guid: d0b3be135c64ef147b43fcbb7cf660ef, type: 3}
   sfx_fail: {fileID: 8300000, guid: cd7eb547833fa1c40acd342fb149f451, type: 3}
-  minutes: 10
+  minutes: 15
   seconds: 0
   OrderBasePrice: 100
   PricePerPizza: 120

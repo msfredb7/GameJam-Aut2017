@@ -18,8 +18,6 @@ public class Objectives : MonoBehaviour {
 
     void Start()
     {
-        minutes = 10;
-        seconds = 5;
         enabled = false;
 
         Game.OnGameReady += () =>
