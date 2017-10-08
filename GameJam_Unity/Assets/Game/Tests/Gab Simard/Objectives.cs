@@ -7,7 +7,7 @@ using CCC.Manager;
 public class Objectives : MonoBehaviour {
 
     public int m_Cash, m_CashTarget;
-    public AudioClip sfx_cashIn, sfx_cashOut, sfx_win;
+    public AudioClip sfx_cashIn, sfx_cashOut, sfx_win, sfx_fail;
 
     public float minutes = 12;
     public float seconds = 30;
@@ -43,6 +43,8 @@ public class Objectives : MonoBehaviour {
             minutes--;
             if(minutes <= -1)
             {
+                SoundManager.PlayStaticSFX(sfx_fail);
+                SoundManager.StopMusic();
                 Game.instance.Lose();
             }
             else
