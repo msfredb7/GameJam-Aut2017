@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using CCC.Manager;
 
 public class NotificationQueue : Singleton<NotificationQueue>
 {
@@ -12,6 +13,7 @@ public class NotificationQueue : Singleton<NotificationQueue>
     public float goOutDuration = 0.25f;
     public float stayDuration = 3;
     public Text text;
+    public AudioClip sfx_notif;
     [ReadOnly]
     public bool isAnimating = false;
 
@@ -49,6 +51,7 @@ public class NotificationQueue : Singleton<NotificationQueue>
         text.text = notif.text;
         RectTransform rt = GetComponent<RectTransform>();
         isAnimating = true;
+        SoundManager.PlayStaticSFX(sfx_notif);
         rt.DOKill();
         rt.DOAnchorPos(shownPosition, comeInDuration).SetEase(Ease.OutSine);
         rt.DOAnchorPos(hiddenPosition, goOutDuration).SetDelay(stayDuration).SetEase(Ease.InSine).OnComplete(

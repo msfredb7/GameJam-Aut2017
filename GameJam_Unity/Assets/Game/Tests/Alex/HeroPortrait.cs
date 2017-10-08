@@ -1,4 +1,4 @@
-﻿using CCC.Manager;
+using CCC.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 public class HeroPortrait : MonoBehaviour {
 
     public Image heroPortrait;
+    public Image brainImage;
+    public Color openBrainColor;
 
     public GameObject heroIconPrefab;
 
@@ -38,8 +40,17 @@ public class HeroPortrait : MonoBehaviour {
 
 	public void OnPortraitClicked()
     {
-        if (Game.HeroManager.getActiveHero() != null)
-            Scenes.LoadAsync(DisplayBehavior.SCENE_NAME,UnityEngine.SceneManagement.LoadSceneMode.Additive, OnDisplayBehaviorLoaded);
+        if (Scenes.Exists(DisplayBehavior.SCENE_NAME))
+        {
+            brainImage.color = Color.white;
+            Scenes.GetActive(DisplayBehavior.SCENE_NAME).FindRootObject<DisplayBehavior>().Exit();
+        }
+        else
+        {
+            brainImage.color = openBrainColor;
+            if (Game.HeroManager.getActiveHero() != null)
+                Scenes.LoadAsync(DisplayBehavior.SCENE_NAME, LoadSceneMode.Additive, OnDisplayBehaviorLoaded);
+        }
     }
 
     public void OnDisplayBehaviorLoaded(Scene scene)
@@ -54,14 +65,14 @@ public class HeroPortrait : MonoBehaviour {
         clicked = true;
         if (teamOverlayOpened)
         {
-            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(startPositionY, teamOverlayAnimDuration).OnComplete(delegate() {
+            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(startPositionY, teamOverlayAnimDuration).SetEase(Ease.InSine).OnComplete(delegate() {
                 clicked = false;
             });
             teamOverlayOpened = false;
         }
         else
         {
-            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(endPositionY, teamOverlayAnimDuration).OnComplete(delegate () {
+            teamOverlay.GetComponent<RectTransform>().DOAnchorPosY(endPositionY, teamOverlayAnimDuration).SetEase(Ease.OutSine).OnComplete(delegate () {
                 clicked = false;
             });
             teamOverlayOpened = true;
