@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Game/InGame Framework/TitleScreen/TitleScreen.unity
+    guid: 9d1bf1bba9bb70142954fb5456f70273
+  - enabled: 1
     path: Assets/Plugins/CCC/Scene Transition/LoadingScreen.unity
     guid: 2515ee5371940174f90bd274f9d478d0
   - enabled: 1
