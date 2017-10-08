@@ -13,4 +13,9 @@ public class GameUI : MonoBehaviour
     public ObjectiveDisplay objectiveDisplay;
 
     public HeroPortrait portrait;
+
+    private void Start()
+    {
+        CCC.Manager.MasterManager.Sync();
+    }
 }
