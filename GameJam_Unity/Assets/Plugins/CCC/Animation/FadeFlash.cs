@@ -27,7 +27,46 @@ public class FadeFlash : MonoBehaviour
     public void Stop()
     {
         if (tween != null && tween.IsActive())
+        {
             tween.Kill();
+            switch (currentType)
+            {
+                case ComponentType.Text:
+                    {
+                        Text text = GetComponent<Text>();
+                        if (text == null)
+                            return;
+                        tween = text.DOFade(0, fadeDuration);
+                        break;
+                    }
+                case ComponentType.Image:
+                    {
+                        Image image = GetComponent<Image>();
+                        if (image == null)
+                            return;
+                        tween = image.DOFade(0, fadeDuration);
+                        break;
+                    }
+                case ComponentType.Sprite:
+                    {
+                        SpriteRenderer sprRenderer = GetComponent<SpriteRenderer>();
+                        if (sprRenderer == null)
+                            return;
+                        tween = sprRenderer.DOFade(0, fadeDuration);
+                        break;
+                    }
+                case ComponentType.CanvasGroup:
+                    {
+                        CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
+                        if (canvasGroup == null)
+                            return;
+                        tween = canvasGroup.DOFade(0, fadeDuration);
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
     }
 
     public void Play()
