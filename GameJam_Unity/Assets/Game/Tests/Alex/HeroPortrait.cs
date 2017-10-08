@@ -17,6 +17,7 @@ public class HeroPortrait : MonoBehaviour {
     private float startPositionY;
     public float endPositionY;
     public float teamOverlayAnimDuration;
+	public Toggle toggleRef;
 
     private bool teamOverlayOpened;
     private bool clicked;
