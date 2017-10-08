@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 114138035517680984}
   - component: {fileID: 114304153466158912}
   - component: {fileID: 114408176486756134}
+  - component: {fileID: 114597039577794430}
   m_Layer: 5
   m_Name: Panel_FicheHero
   m_TagString: Untagged
@@ -352,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1997f016b4742b945919ca2df3ccc61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroPrefab: {fileID: 114706525851821338, guid: e77c7d8231411394dbf2feee7f152af2,
+  heroPrefab: {fileID: 114732835543235288, guid: 9060d0b1fef77164bad4ff25aafc7831,
     type: 2}
   parentPanel: {fileID: 0}
   herocard: {fileID: 114408176486756134}
@@ -427,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b02c6a0ec515c64db467247aecb5600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeroDescription: {fileID: 11400000, guid: 98acbffeb6f843744bc7a764e1f4ccec, type: 2}
+  HeroDescription: {fileID: 11400000, guid: f8e13558df3142e438e95f3cf98f6dd4, type: 2}
 --- !u!114 &114512018215067746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -469,6 +470,17 @@ MonoBehaviour:
   heroCard: {fileID: 114408176486756134}
   heroNameText: {fileID: 114020959377015096}
   heroDescriptionText: {fileID: 114026427834024766}
+--- !u!114 &114597039577794430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824193932755230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114788907507804166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -788,8 +800,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 110.03, y: -35.745}
-  m_SizeDelta: {x: 202.7, y: 62.49}
+  m_AnchoredPosition: {x: 110.03, y: -16.75}
+  m_SizeDelta: {x: 203, y: 100.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224409600786959032
 RectTransform:
@@ -899,8 +911,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15.73, y: -25.4}
-  m_SizeDelta: {x: 178.9, y: 41}
+  m_AnchoredPosition: {x: 15.73, y: -19}
+  m_SizeDelta: {x: 179, y: 29}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224868933096619568
 RectTransform:
