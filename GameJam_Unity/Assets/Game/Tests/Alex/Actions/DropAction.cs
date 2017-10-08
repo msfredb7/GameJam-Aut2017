@@ -14,7 +14,7 @@ public class DropAction : HeroActionEvent
 
     public override void Execute(Hero hero, Action onComplete)
     {
-        Debug.Log("Drop tha pizza!");
+        hero.Drop();
     }
 
     public override HeroActions GetHeroActionInfo()
