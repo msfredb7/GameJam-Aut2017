@@ -39,6 +39,9 @@ public class PizzaSpawner : MonoBehaviour {
         spawnPointOccupied = true;
         Pizza newPizza = Instantiate(pizzaPrefab,transform.position,transform.rotation,Game.instance.unitCountainer.transform);
         newPizza.pizzaPickedUp += delegate () { spawnPointOccupied = false; };
+
+        GetComponent<Node>().pizza.Add(newPizza);
+
         DelayManager.LocalCallTo(ReadyToSpawn, spawnCooldown, this);
     }
 

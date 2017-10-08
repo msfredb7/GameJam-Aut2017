@@ -45,25 +45,21 @@ public class ZavierZone : MonoBehaviour
 
     public Node GetClosestNodeWithPizza()
     {
-        Node closestNode = null;
+        Node recordHolder = null;
+        float record = float.PositiveInfinity;
+
         for (int i = 0; i < nodes.Count; i++)
         {
             if (nodes[i].pizza.Count > 0)
             {
-                if (closestNode == null)
+                float dist = (nodes[i].Position - (Vector2)transform.position).sqrMagnitude;
+                if(dist < record)
                 {
-                    closestNode = nodes[i];
-                }
-                else
-                {
-                    if (Vector3.Distance(nodes[i].Position, transform.position) <
-                        Vector3.Distance(closestNode.Position, transform.position))
-                    {
-                        closestNode = nodes[i];
-                    }
+                    recordHolder = nodes[i];
+                    record = dist;
                 }
             }
         }
-        return closestNode;
+        return recordHolder;
     }
 }

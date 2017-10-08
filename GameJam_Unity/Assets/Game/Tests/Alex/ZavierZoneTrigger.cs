@@ -6,10 +6,13 @@ public class ZavierZoneTrigger : MonoBehaviour {
 
     public ZavierZone zone;
 
+    void Start()
+    {
+        GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color.ChangedAlpha(0);
+    }
+
     public void OnTriggerEnter2D(Collider2D col)
     {
-        print("enter");
-
         Node n = col.GetComponent<Node>();
 
         if (n != null)
@@ -20,8 +23,6 @@ public class ZavierZoneTrigger : MonoBehaviour {
     }
     public void OnTriggerExit2D(Collider2D col)
     {
-        print("exit");
-
         Node n = col.GetComponent<Node>();
 
         if (n != null)

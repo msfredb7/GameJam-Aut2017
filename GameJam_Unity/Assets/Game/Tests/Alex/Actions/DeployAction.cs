@@ -44,6 +44,7 @@ public class DeployAction : HeroActionEvent
             zone.zonePreview.DOFade(1, 0.5f);
             myOnComplete = delegate ()
             {
+                zone.remoteUpdater = null;
                 zone.zonePreview.DOFade(0, 0.5f);
                 onComplete.Invoke();
             };
@@ -102,14 +103,14 @@ public class DeployAction : HeroActionEvent
 
         Node newOrderNode = zone.GetClosestNodeWithOrder();
         
+        goingToOrder = false;
+
         // Nouvelle order ?
-        if(newOrderNode != null)
+        if (newOrderNode != null)
         {
             currentOrderNode = newOrderNode;
             return true;
         }
-
-        goingToOrder = false;
 
         return false;
     }
@@ -124,14 +125,14 @@ public class DeployAction : HeroActionEvent
 
         Node newPizzaNode = zone.GetClosestNodeWithPizza();
 
+        goingToPizza = false;
+
         // Nouvelle order ?
         if (newPizzaNode != null)
         {
             currentPizzaNode = newPizzaNode;
             return true;
         }
-
-        goingToPizza = false;
 
         return false;
     }
