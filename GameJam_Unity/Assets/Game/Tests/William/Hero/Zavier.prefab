@@ -22,11 +22,11 @@ GameObject:
   - component: {fileID: 212411759968451892}
   - component: {fileID: 114706525851821338}
   - component: {fileID: 114464176220064028}
-  - component: {fileID: 114653968446613414}
   - component: {fileID: 58870911967098704}
   - component: {fileID: 114715329666151776}
   - component: {fileID: 50174844343510626}
   - component: {fileID: 114567914707888870}
+  - component: {fileID: 114351482249321308}
   m_Layer: 0
   m_Name: Zavier
   m_TagString: Untagged
@@ -112,6 +112,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
+--- !u!114 &114351482249321308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132254565815256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3614e9de670598408bc9ad4d5ee4e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hero: {fileID: 114706525851821338}
+  looping: 1
 --- !u!114 &114464176220064028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,19 +153,6 @@ MonoBehaviour:
   waitingNode: {fileID: 0}
   activateDeploy: 0
   isMoving: 0
---- !u!114 &114653968446613414
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1132254565815256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb282f6a67c55314ba346572ed9cea16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hero: {fileID: 0}
-  looping: 0
 --- !u!114 &114706525851821338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
   turningSpeed: 0.5
   heroDescription: {fileID: 11400000, guid: 98acbffeb6f843744bc7a764e1f4ccec, type: 2}
   carriedPizza: {fileID: 0}
-  behavior: {fileID: 114653968446613414}
+  behavior: {fileID: 114351482249321308}
   brain: {fileID: 114464176220064028}
   currentNode: {fileID: 0}
   previousNode: {fileID: 0}
@@ -217,8 +217,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1220224665
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cc66dae091587af4fb473fb81e4676ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

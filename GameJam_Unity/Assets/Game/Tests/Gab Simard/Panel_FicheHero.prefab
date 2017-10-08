@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 114138035517680984}
   - component: {fileID: 114304153466158912}
   - component: {fileID: 114408176486756134}
-  - component: {fileID: 114597039577794430}
   m_Layer: 5
   m_Name: Panel_FicheHero
   m_TagString: Untagged
@@ -470,17 +469,6 @@ MonoBehaviour:
   heroCard: {fileID: 114408176486756134}
   heroNameText: {fileID: 114020959377015096}
   heroDescriptionText: {fileID: 114026427834024766}
---- !u!114 &114597039577794430
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1824193932755230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114788907507804166
 MonoBehaviour:
   m_ObjectHideFlags: 1
