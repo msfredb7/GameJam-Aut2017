@@ -25,7 +25,7 @@ public class Brain : MonoBehaviour
         }
     }
 
-    public enum Mode { drop = 0 , pickup = 1 }
+    public enum Mode { /*drop = 0 ,*/ pickup = 1 }
 
     public Mode currentMode;
     
@@ -54,7 +54,6 @@ public class Brain : MonoBehaviour
             {
                 //On va deja a la bonne place, on arrete la
                 ClearPath();
-                print("SHIT NIGGA CRACK");
                 return;
             }
             else if (destination == state.transition.from)
@@ -115,9 +114,9 @@ public class Brain : MonoBehaviour
 
         switch (currentMode)
         {
-            case Mode.drop:
-                hero.Drop();
-                break;
+            //case Mode.drop:
+            //    hero.Drop();
+            //    break;
             case Mode.pickup:
                 break;
             default:

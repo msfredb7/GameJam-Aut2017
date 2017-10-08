@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PizzaSpawner : MonoBehaviour {
+public class PizzaSpawner : MonoBehaviour
+{
 
     public Pizza pizzaPrefab;
 
@@ -13,40 +14,39 @@ public class PizzaSpawner : MonoBehaviour {
 
     private int pizzaToSpawn;
     private bool readyToSpawn;
+    private Node myNode;
+    public float spawningIn = 0;
 
-	void Start ()
+    void Start()
     {
-        Game.OnGameStart += Init;
+        myNode = GetComponent<Node>();
+
+        enabled = false;
+        Game.OnGameReady += () => enabled = true;
     }
 
-    void Init()
+    void Update()
     {
-        readyToSpawn = true;
-    }
-	
-	void Update ()
-    {
-        if (readyToSpawn)
+
+        if (spawningIn >= 0 && !spawnPointOccupied)
         {
-            if(!spawnPointOccupied)
+            spawningIn -= Time.deltaTime;
+            if (spawningIn < 0)
                 Spawn();
         }
-	}
+    }
 
     void Spawn()
     {
-        readyToSpawn = false;
         spawnPointOccupied = true;
-        Pizza newPizza = Instantiate(pizzaPrefab,transform.position,transform.rotation,Game.instance.unitCountainer.transform);
+
+        print("spawing pizza");
+
+        Pizza newPizza = Instantiate(pizzaPrefab, transform.position, transform.rotation, Game.instance.unitCountainer.transform);
         newPizza.pizzaPickedUp += delegate () { spawnPointOccupied = false; };
 
-        GetComponent<Node>().pizza.Add(newPizza);
+        newPizza.DroppedOn(myNode);
 
-        DelayManager.LocalCallTo(ReadyToSpawn, spawnCooldown, this);
-    }
-
-    void ReadyToSpawn()
-    {
-        readyToSpawn = true;
+        spawningIn = spawnCooldown;
     }
 }

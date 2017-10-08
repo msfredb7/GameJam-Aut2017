@@ -41,7 +41,7 @@ public class DeployAction : HeroActionEvent
 
         if (zone != null)
         {
-            zone.zonePreview.DOFade(1, 0.5f);
+            zone.zonePreview.DOFade(0.33f, 0.5f);
             myOnComplete = delegate ()
             {
                 zone.remoteUpdater = null;
@@ -71,6 +71,8 @@ public class DeployAction : HeroActionEvent
         if (CheckCarriedPizza())
         {
             //Go to order
+            currentPizzaNode = null;
+            goingToPizza = false;
 
             //Go to pizza
             if (!goingToOrder)
@@ -150,5 +152,7 @@ public class DeployAction : HeroActionEvent
         hero = null;
         currentOrderNode = null;
         currentPizzaNode = null;
+        goingToPizza = false;
+        goingToOrder = false;
     }
 }

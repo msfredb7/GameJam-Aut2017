@@ -35,7 +35,7 @@ public class CharacterAction {
                 hero.brain.GoToNode(destination, Brain.Mode.pickup, OnDestinationReached);
                 break;
             case CharacterActionType.GoNDrop:
-                hero.brain.GoToNode(destination, Brain.Mode.drop, OnDestinationReached);
+                //hero.brain.GoToNode(destination, Brain.Mode.drop, OnDestinationReached);
                 break;
             default:
                 break;

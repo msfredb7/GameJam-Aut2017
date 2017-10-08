@@ -62,12 +62,22 @@ public class Hero : MonoBehaviour
         nextNode = node;
         SetTurningSpeed();
         moving = true;
+
+        //if (carriedPizza != null && currentNode.Order != null)
+        //{
+        //    Drop();
+        //}
     }
 
     public void Stop()
     {
         moving = false;
         currentSpeed = 0;
+
+        //if (carriedPizza != null && currentNode.Order != null)
+        //{
+        //    Drop();
+        //}
     }
 
 
@@ -107,6 +117,10 @@ public class Hero : MonoBehaviour
 
     public void DestinationReached()
     {
+        if (carriedPizza != null && nextNode.Order != null)
+        {
+            Drop(nextNode);
+        }
         if (onReachNode != null)
             onReachNode();
     }
@@ -140,7 +154,7 @@ public class Hero : MonoBehaviour
     // Use this for initialization
     public void SnapToNode()
     {
-       
+
         Node closestNode = Game.Fastar.GetClosestNode((Vector2)transform.position);
 
         if (closestNode != null)
@@ -152,7 +166,7 @@ public class Hero : MonoBehaviour
         {
             Destroy(gameObject);
         }
-            
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -160,28 +174,22 @@ public class Hero : MonoBehaviour
         Pizza pizz = col.gameObject.GetComponent<Pizza>();
         if (pizz != null)
         {
-            if(brain.currentMode == Brain.Mode.pickup && carriedPizza == null)
+            if (pizz.myHero != null)
+                return;
+
+            if (brain.currentMode == Brain.Mode.pickup && carriedPizza == null)
             {
-                carriedPizza = pizz;
-                col.enabled = false;
-                pizz.pizzaPickedUp.Invoke();
+                pizz.PickedUpBy(this);
             }
         }
     }
 
-    public void Drop()
+    public void Drop(Node onNode)
     {
         if (carriedPizza != null)
         {
-            Debug.Log("DROPING PIZZA");
-            Pizza oldReference = carriedPizza;
-            currentNode.pizza.Add(oldReference);
-            carriedPizza = null;
-            DelayManager.LocalCallTo(delegate ()
-            {
-                if (oldReference != null)
-                    oldReference.gameObject.GetComponent<CircleCollider2D>().enabled = true;
-            }, 1, this);
+            Debug.Log("DROPING PIZZA");            
+            carriedPizza.DroppedOn(onNode);
         }
     }
 }
