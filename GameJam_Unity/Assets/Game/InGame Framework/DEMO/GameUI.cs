@@ -11,6 +11,7 @@ public class GameUI : MonoBehaviour
 
     public HeroShop heroShop;
     public ObjectiveDisplay objectiveDisplay;
+    public GameObject DeliverNotificationObject;
 
     public HeroPortrait portrait;
 
