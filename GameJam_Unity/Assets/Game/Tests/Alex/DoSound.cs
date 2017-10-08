@@ -38,6 +38,7 @@ public class DoSound : MonoBehaviour {
             if (gameObject.activeSelf && !soundPlayed)
             {
                 soundPlayed = true;
+                Play();
             }
         }
 	}
