@@ -14,7 +14,7 @@ public class DropAction : HeroActionEvent
 
     public override void Execute(Hero hero, Action onComplete)
     {
-        hero.Drop();
+        hero.Drop(hero.nextNode != null ? hero.nextNode : hero.currentNode);
         if (onComplete != null)
             onComplete();
         onComplete = null;

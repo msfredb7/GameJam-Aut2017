@@ -18,8 +18,6 @@ public class Objectives : MonoBehaviour {
 
     void Start()
     {
-        minutes = 10;
-        seconds = 5;
         enabled = false;
 
         Game.OnGameReady += () =>
@@ -43,8 +41,8 @@ public class Objectives : MonoBehaviour {
             minutes--;
             if(minutes <= -1)
             {
-                SoundManager.PlayStaticSFX(sfx_fail);
-                SoundManager.StopMusic();
+                SoundManager.PlayStaticSFX(sfx_fail, 0, 0.1f);
+                //SoundManager.StopMusic();
                 Game.instance.Lose();
             }
             else
@@ -67,7 +65,7 @@ public class Objectives : MonoBehaviour {
         print("tu perd du cash tarla");
 
         m_Cash -= dep;
-        SoundManager.PlayStaticSFX(sfx_cashOut);
+        SoundManager.PlayStaticSFX(sfx_cashOut, 0, 0.3f);
         AfficheCash();
         Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(-dep);
     }
@@ -79,7 +77,7 @@ public class Objectives : MonoBehaviour {
         print("Cash in bitches");
 
         m_Cash += rev;
-        SoundManager.PlayStaticSFX(sfx_cashIn);
+        SoundManager.PlayStaticSFX(sfx_cashIn, 0, 0.3f);
         AfficheCash();
 
         if (m_Cash >= m_CashTarget)

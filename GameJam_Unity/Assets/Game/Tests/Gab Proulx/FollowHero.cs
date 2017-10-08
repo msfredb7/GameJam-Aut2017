@@ -78,6 +78,8 @@ public class FollowHero : MonoBehaviour {
             sf_Source.pitch = -1;
             sf_Source.time = (sfx_zoom.length) - 0.01f;
             sf_Source.Play();
+            sf_Source.pitch = 1;
+            sf_Source.time = 0;
             //SoundManager.PlaySFX(sfx_zoom, 0, 1, sf_Source);
         }
             

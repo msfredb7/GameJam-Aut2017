@@ -5380,8 +5380,11 @@ MonoBehaviour:
   _keys:
   - {fileID: 1129405392}
   _values:
-  - _keys: []
-    _values: []
+  - _keys:
+    - DefaultBehaviorEditor.nodes.EditProperty
+    _values:
+    - _showDropdown: 1
+      _serializedIsActive: 0
     _target: {fileID: 1129405392}
 --- !u!4 &1319733305
 Transform:
@@ -8078,7 +8081,7 @@ MonoBehaviour:
   sfx_cashIn: {fileID: 8300000, guid: 8fa09bdfc2365b64d9255d50cc94c80f, type: 3}
   sfx_cashOut: {fileID: 8300000, guid: 49ff717d50b9bec4883d185907894c36, type: 3}
   sfx_win: {fileID: 8300000, guid: d0b3be135c64ef147b43fcbb7cf660ef, type: 3}
-  sfx_fail: {fileID: 8300000, guid: feaccf8a99b75d542a86e6f0fe332974, type: 3}
+  sfx_fail: {fileID: 8300000, guid: cd7fc31e88a99aa44aa2604cfe642ae3, type: 3}
   minutes: 15
   seconds: 0
   OrderBasePrice: 10

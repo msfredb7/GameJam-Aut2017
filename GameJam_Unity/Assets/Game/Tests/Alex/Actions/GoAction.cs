@@ -9,12 +9,10 @@ public class GoAction : HeroActionEvent
 
     Action onComplete;
     Hero hero;
-    float id;
 
     public GoAction()
     {
         goActionInfo = new GoActionInfo();
-        id = UnityEngine.Random.Range(0, 500);
     }
 
     public override Action OnComplete
@@ -60,6 +58,5 @@ public class GoAction : HeroActionEvent
         goActionInfo = new GoActionInfo();
         onComplete = null;
         hero = null;
-        id = UnityEngine.Random.Range(0, 500);
     }
 }

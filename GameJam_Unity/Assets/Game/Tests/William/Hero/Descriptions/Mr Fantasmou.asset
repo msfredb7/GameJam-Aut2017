@@ -9,10 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ff21f1591e8044fb0666fcaf2605f9, type: 3}
-  m_Name: Big Max
+  m_Name: Mr Fantasmou
   m_EditorClassIdentifier: 
-  heroFace: {fileID: 21300000, guid: 7a52b140cac930e46978710e1522d3cb, type: 3}
-  heroBody: {fileID: 21300000, guid: d5000e0dafc91884e86fc71f497cf335, type: 3}
-  heroDescription: "Acc\xE9l\xE8re dans les lignes droites. Perd sa vitesse quand
-    il tourne."
-  price: 1000
+  heroFace: {fileID: 21300000, guid: 3744e534660bd0c45a23f5a563778723, type: 3}
+  heroBody: {fileID: 21300000, guid: 3a171643917dbbf4cbc2fd64b2fe20d1, type: 3}
+  heroDescription: Ses bras mous lui permet de prendre des pizzas de loin.
+  price: 2000

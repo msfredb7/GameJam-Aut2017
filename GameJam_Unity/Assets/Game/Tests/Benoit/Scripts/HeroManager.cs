@@ -20,7 +20,8 @@ public class HeroManager : MonoBehaviour
         newHero.onClick += SetActiveHero;
         onActiveHeroChanged.Invoke(newHero);
 
-        newHero.GetComponent<SpriteRenderer>().sprite = newHero.heroDescription.heroFace;
+        SpriteRenderer spr = newHero.faceSpriteRenderer;
+        spr.sprite = newHero.heroDescription.heroFace;
 
         if (onHeroAdded != null)
             onHeroAdded(newHero);
