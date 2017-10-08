@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222658704656416044}
   - component: {fileID: 114531873952014148}
   - component: {fileID: 114817906051506284}
+  - component: {fileID: 114164023037292780}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -97,6 +98,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 1. Go and Pickup
+--- !u!114 &114164023037292780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355764974856680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5856598d8489224c8b07e25b6f5e169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSoundType: 1
+  sound: {fileID: 8300000, guid: ab7a9063d19e65a4f8ec91f68b9c61fd, type: 3}
 --- !u!114 &114531873952014148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,10 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7bb0303fd07ae4fb4b19f8b1221f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: {fileID: 114047683239801344}
-  exitButton: {fileID: 114817906051506284}
-  index: 0
-  currentType: 0
 --- !u!114 &114759025191083836
 MonoBehaviour:
   m_ObjectHideFlags: 1
