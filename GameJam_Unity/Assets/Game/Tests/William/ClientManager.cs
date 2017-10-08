@@ -45,6 +45,7 @@ public class ClientManager : MonoBehaviour
 
 	void Update ()
 	{
+	    GameObject orderObjectToDelete = null;
         for (int i = 0; i < orders.Count; i++)
         {
             Order currentOrder = orders[i].GetComponent<Order>();
@@ -53,10 +54,15 @@ public class ClientManager : MonoBehaviour
                 if(currentOrder.Node.pizza.Count >= currentOrder.PizzaAmount)
                 {
                     // Commande reussit !
+                    orderObjectToDelete = currentOrder.gameObject;
                     RemoveFromOrderList(currentOrder.gameObject);
                     CommandCompleted(currentOrder.Node);
                 }
             }
+        }
+	    if (orderObjectToDelete != null)
+	    {
+	        Destroy(orderObjectToDelete);
         }
 	}
 
