@@ -96,6 +96,6 @@ public class HeroPortrait : MonoBehaviour {
 
     public void SetCurrentHero(Hero hero)
     {
-        heroPortrait.sprite = hero.heroDescription.heroFace.sprite;
+        heroPortrait.sprite = hero.heroDescription.heroFace;
     }
 }

@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1997f016b4742b945919ca2df3ccc61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroPrefab: {fileID: 114582607985421310, guid: ace954c08f8741f4f9f2e837fe73cb00,
+  heroPrefab: {fileID: 114706525851821338, guid: e77c7d8231411394dbf2feee7f152af2,
     type: 2}
   cost: 2000
   parentPanel: {fileID: 0}
