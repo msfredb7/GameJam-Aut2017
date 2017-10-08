@@ -132,8 +132,6 @@ public class ClientManager : MonoBehaviour
                 deliveryNotification.SetActive(false);
 
             }, 3, this);
-            
-
             Debug.Log("Spawned at Node : " + order.Node + ". | World to screen Position : " + Camera.main.ScreenToWorldPoint(order.transform.position));
             return order;
         }
@@ -155,6 +153,11 @@ public class ClientManager : MonoBehaviour
     void CommandCompleted(Node node)
     {
         NotificationQueue.PushNotification("Vous avez complété une commande !");
+
+        Objectives currentObjectives = Game.Map.cash;
+        int income = currentObjectives.OrderBasePrice + (currentObjectives.PricePerPizza * node.pizza.Count);
+        currentObjectives.IncomeCash(income);
+
         for (int i = 0; i < node.pizza.Count; i++)
         {
             Destroy(node.pizza[i].gameObject);

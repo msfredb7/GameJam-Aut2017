@@ -52,7 +52,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa7bd7a6b6b0124aa75c10b8965b122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScriptedOrders: []
+  ScriptedOrders:
+  - Node: {fileID: 0}
+    TimeToStart: 0
+    OrderDuration: 100
+    IsActive: 0
+    PizzaAmount: 2
+  - Node: {fileID: 0}
+    TimeToStart: 0
+    OrderDuration: 100
+    IsActive: 0
+    PizzaAmount: 1
+  - Node: {fileID: 0}
+    TimeToStart: 20
+    OrderDuration: 100
+    IsActive: 0
+    PizzaAmount: 3
+  - Node: {fileID: 0}
+    TimeToStart: 20
+    OrderDuration: 100
+    IsActive: 0
+    PizzaAmount: 3
 --- !u!114 &114889858694657116
 MonoBehaviour:
   m_ObjectHideFlags: 1
