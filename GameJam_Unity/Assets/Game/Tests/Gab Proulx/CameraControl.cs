@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CameraControl : MonoBehaviour
 {
-
+    public float minZoom = 7;
+    public float maxZoom = 46;
     public float zoomSensivity = 5f;
     private float dragSensivity = 60f;
     private Vector3 mouseOrigin;
@@ -116,6 +117,6 @@ public class CameraControl : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.F)) {
 			Camera.main.orthographicSize += 4.5f;
 		}*/
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 5f, 46.05f);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, minZoom, maxZoom);
     }
 }

@@ -209,6 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346df3873bcc29a49a644d04cb1f76c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minZoom: 12
+  maxZoom: 46
   zoomSensivity: 12
   toggleH: {fileID: 0}
 --- !u!1 &818783953
