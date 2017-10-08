@@ -103,7 +103,7 @@ public class CameraControl : MonoBehaviour {
 
 	void ZoomCamera()
 	{
-		Camera.main.orthographicSize += Input.GetAxis ("Mouse ScrollWheel") * zoomSensivity;
+		/*Camera.main.orthographicSize += Input.GetAxis ("Mouse ScrollWheel") * zoomSensivity;
 		if (Input.GetMouseButtonDown (0)) {
 			Camera.main.orthographicSize -= 4.5f;
 			Camera.main.orthographicSize = Mathf.Clamp (Camera.main.orthographicSize, 5f, clampVal);
@@ -111,7 +111,7 @@ public class CameraControl : MonoBehaviour {
 		if (Input.GetMouseButtonDown (1)) {
 			Camera.main.orthographicSize += 4.5f;
 			Camera.main.orthographicSize = Mathf.Clamp (Camera.main.orthographicSize, 5f, clampVal);
-		}
+		}*/
 	}
 
 	public void SetCam(float val1, float val2, float val3){

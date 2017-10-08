@@ -1447,6 +1447,7 @@ GameObject:
   - component: {fileID: 499836738}
   - component: {fileID: 499836737}
   - component: {fileID: 499836736}
+  - component: {fileID: 499836739}
   m_Layer: 5
   m_Name: TeamButton
   m_TagString: Untagged
@@ -1559,6 +1560,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 499836734}
+--- !u!114 &499836739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 499836734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5856598d8489224c8b07e25b6f5e169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSoundType: 1
+  sound: {fileID: 8300000, guid: ab7a9063d19e65a4f8ec91f68b9c61fd, type: 3}
 --- !u!1 &502566378
 GameObject:
   m_ObjectHideFlags: 0
@@ -4181,6 +4195,7 @@ GameObject:
   - component: {fileID: 1590663531}
   - component: {fileID: 1590663530}
   - component: {fileID: 1590663532}
+  - component: {fileID: 1590663533}
   m_Layer: 5
   m_Name: Portrait
   m_TagString: Untagged
@@ -4291,6 +4306,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1590663533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590663528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5856598d8489224c8b07e25b6f5e169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSoundType: 1
+  sound: {fileID: 8300000, guid: ab7a9063d19e65a4f8ec91f68b9c61fd, type: 3}
 --- !u!1 &1634783522
 GameObject:
   m_ObjectHideFlags: 0

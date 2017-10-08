@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 373300148}
   - component: {fileID: 373300147}
   - component: {fileID: 373300149}
+  - component: {fileID: 373300150}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -319,6 +320,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &373300150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 373300145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5856598d8489224c8b07e25b6f5e169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSoundType: 1
+  sound: {fileID: 8300000, guid: ab7a9063d19e65a4f8ec91f68b9c61fd, type: 3}
 --- !u!1 &429166813
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +454,7 @@ GameObject:
   - component: {fileID: 685296563}
   - component: {fileID: 685296562}
   - component: {fileID: 685296566}
+  - component: {fileID: 685296567}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -535,6 +550,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edd62106e15edf4eb78eef879b33e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &685296567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 685296561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778d2cc26347e984fa982a17da44de25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSoundType: 0
+  sound: {fileID: 8300000, guid: b8bc64c74d110ab4b8104cd2f9269e82, type: 3}
+  loopOnPlay: 1
+  volume: 0.1
+  doOnStart: 1
+  doOnActivation: 0
+  addDelay: 0
+  delay: 1
 --- !u!1 &770073295
 GameObject:
   m_ObjectHideFlags: 0
