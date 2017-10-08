@@ -31416,7 +31416,7 @@ Prefab:
     - target: {fileID: 114516230562792118, guid: 0b68d40ec0f563e44aac214d5bb6226b,
         type: 2}
       propertyPath: ScriptedOrders.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4695457407333528, guid: 0b68d40ec0f563e44aac214d5bb6226b, type: 2}
       propertyPath: m_LocalPosition.x
