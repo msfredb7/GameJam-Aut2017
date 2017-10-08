@@ -31,6 +31,7 @@ public class HeroPortrait : MonoBehaviour {
         teamOverlayOpened = false;
         clicked = false;
         startPositionY = teamOverlay.GetComponent<RectTransform>().anchoredPosition.y;
+        Game.HeroManager.onActiveHeroChanged += SetCurrentHero;
         Game.HeroManager.onHeroAdded += AddHeroIcon;
     }
 
@@ -91,5 +92,10 @@ public class HeroPortrait : MonoBehaviour {
         {
             child.gameObject.GetComponent<HeroIconScript>().CheckEmphase(Game.HeroManager.getActiveHero());
         }
+    }
+
+    public void SetCurrentHero(Hero hero)
+    {
+        heroPortrait.sprite = hero.heroDescription.heroFace.sprite;
     }
 }
