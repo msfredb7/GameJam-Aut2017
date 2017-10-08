@@ -43,7 +43,7 @@ namespace Assets.Game.Tests.William
             }
 
             countdownObject.GetComponent<Text>().text = Convert.ToString((int)TimeRemaining);
-            pizzaCountObject.GetComponent<Text>().text = Convert.ToString(PizzaAmount);
+            pizzaCountObject.GetComponent<Text>().text = Convert.ToString(PizzaAmount - Node.pizza.Count);
         }
 
         public void SetClientManager(ClientManager clientManager)

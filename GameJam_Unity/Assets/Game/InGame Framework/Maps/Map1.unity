@@ -5871,11 +5871,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114516230562792118, guid: 0b68d40ec0f563e44aac214d5bb6226b,
-        type: 2}
-      propertyPath: ScriptedOrders.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4695457407333528, guid: 0b68d40ec0f563e44aac214d5bb6226b, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5915,19 +5910,19 @@ Prefab:
       objectReference: {fileID: 1240426923}
     - target: {fileID: 114516230562792118, guid: 0b68d40ec0f563e44aac214d5bb6226b,
         type: 2}
-      propertyPath: ScriptedOrders.Array.data[0].OrderDuration
-      value: 100
-      objectReference: {fileID: 0}
+      propertyPath: ScriptedOrders.Array.data[1].Node
+      value: 
+      objectReference: {fileID: 2031885783}
     - target: {fileID: 114516230562792118, guid: 0b68d40ec0f563e44aac214d5bb6226b,
         type: 2}
-      propertyPath: ScriptedOrders.Array.data[0].pizzaAmount
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: ScriptedOrders.Array.data[2].Node
+      value: 
+      objectReference: {fileID: 1807223549}
     - target: {fileID: 114516230562792118, guid: 0b68d40ec0f563e44aac214d5bb6226b,
         type: 2}
-      propertyPath: ScriptedOrders.Array.data[0].PizzaAmount
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: ScriptedOrders.Array.data[3].Node
+      value: 
+      objectReference: {fileID: 644171782}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b68d40ec0f563e44aac214d5bb6226b, type: 2}
   m_IsPrefabParent: 0
@@ -8082,6 +8077,8 @@ MonoBehaviour:
   m_CashTarget: 30000
   minutes: 15
   seconds: 0
+  OrderBasePrice: 10
+  PricePerPizza: 12
 --- !u!4 &1942873262
 Transform:
   m_ObjectHideFlags: 0
