@@ -31354,7 +31354,7 @@ Prefab:
     - target: {fileID: 114516230562792118, guid: 0b68d40ec0f563e44aac214d5bb6226b,
         type: 2}
       propertyPath: ScriptedOrders.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4695457407333528, guid: 0b68d40ec0f563e44aac214d5bb6226b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -42328,15 +42328,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf173531f911704fa11f99c0521a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Cash: 15000
+  m_Cash: 5000
   m_CashTarget: 30000
   sfx_cashIn: {fileID: 8300000, guid: 8fa09bdfc2365b64d9255d50cc94c80f, type: 3}
   sfx_cashOut: {fileID: 8300000, guid: 49ff717d50b9bec4883d185907894c36, type: 3}
   sfx_win: {fileID: 8300000, guid: d0b3be135c64ef147b43fcbb7cf660ef, type: 3}
+  sfx_fail: {fileID: 0}
   minutes: 15
   seconds: 0
-  OrderBasePrice: 10
-  PricePerPizza: 12
+  OrderBasePrice: 100
+  PricePerPizza: 120
 --- !u!4 &1942873262
 Transform:
   m_ObjectHideFlags: 0
