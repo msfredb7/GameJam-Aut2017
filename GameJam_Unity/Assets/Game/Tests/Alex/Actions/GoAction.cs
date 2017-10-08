@@ -23,6 +23,10 @@ public class GoAction : HeroActionEvent
         {
             return onComplete;
         }
+        set
+        {
+            onComplete = value;
+        }
     }
 
     public override void Execute(Hero hero, Action onComplete)
@@ -43,7 +47,7 @@ public class GoAction : HeroActionEvent
 
     private void GoToDestination()
     {
-        hero.brain.GoToNode(goActionInfo.destination, Brain.Mode.pickup, onComplete);
+        hero.brain.GoToNode(goActionInfo.destination, Brain.Mode.pickup, ForceCompletion);
     }
 
     public override HeroActions GetHeroActionInfo()

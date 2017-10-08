@@ -8,7 +8,7 @@ public abstract class HeroActionEvent
 {
     public abstract void Execute(Hero hero, Action onComplete);
     public abstract HeroActions GetHeroActionInfo();
-    public abstract Action OnComplete { get; }
+    public abstract Action OnComplete { get; set; }
     public abstract void PostCloneCleanup();
 
     public HeroActionEvent Clone()
@@ -22,5 +22,6 @@ public abstract class HeroActionEvent
     {
         if (OnComplete != null)
             OnComplete();
+        OnComplete = null;
     }
 }
