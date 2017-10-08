@@ -274,8 +274,20 @@ MonoBehaviour:
   _keys:
   - {fileID: 1539687449}
   _values:
-  - _keys: []
-    _values: []
+  - _keys:
+    - DefaultBehaviorEditor.detectsClickOnStart.EditProperty
+    - DefaultBehaviorEditor.screenClicked.EditProperty
+    - DefaultBehaviorEditor.rightClickInput.EditProperty
+    - DefaultBehaviorEditor.externalScriptMouse.EditProperty
+    _values:
+    - _showDropdown: 0
+      _serializedIsActive: 1
+    - _showDropdown: 1
+      _serializedIsActive: 1
+    - _showDropdown: 1
+      _serializedIsActive: 1
+    - _showDropdown: 0
+      _serializedIsActive: 1
     _target: {fileID: 1539687449}
 --- !u!1 &80723561
 GameObject:
@@ -1820,7 +1832,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 789084878}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2251,10 +2263,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1869232031}
-  hiddenPos: {x: -410, y: 10}
-  semiHiddenPos: {x: -223, y: 10}
-  shownPos: {x: 10, y: 10}
-  transitionDuration: 0.5
+  hiddenPos: {x: -410, y: -316}
+  semiHiddenPos: {x: -223, y: -316}
+  shownPos: {x: 0, y: -316}
+  transitionDuration: 0.35
   selectNodeNotif: {fileID: 1539687449}
 --- !u!114 &818574086
 MonoBehaviour:
@@ -3731,7 +3743,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1154946545}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3893,7 +3905,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1869232030}
   - component: {fileID: 1869232031}
-  - component: {fileID: 1869232032}
   m_Layer: 5
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -3916,11 +3927,11 @@ RectTransform:
   m_Father: {fileID: 818574089}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -410, y: 10}
-  m_SizeDelta: {x: 400, y: 802.2}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -410, y: -316}
+  m_SizeDelta: {x: 400, y: 764}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1869232031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3937,19 +3948,6 @@ MonoBehaviour:
   templates: {fileID: 1762384495}
   tempList: {fileID: 80723564}
   loopList: {fileID: 1861739305}
---- !u!114 &1869232032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1869232029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c717af4cc7d7c468d7fd4e0fa33597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HBD: {fileID: 1869232031}
-  heroPrefab: {fileID: 0}
 --- !u!1 &1919688531
 GameObject:
   m_ObjectHideFlags: 0
