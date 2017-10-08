@@ -39725,6 +39725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Cash: 15000
   m_CashTarget: 30000
+  sfx_cashIn: {fileID: 8300000, guid: 58dab1517982b50478c276439729d905, type: 3}
+  sfx_cashOut: {fileID: 8300000, guid: bdac60c72a99c6b42bba5d62219d2e20, type: 3}
   minutes: 15
   seconds: 0
   OrderBasePrice: 10
