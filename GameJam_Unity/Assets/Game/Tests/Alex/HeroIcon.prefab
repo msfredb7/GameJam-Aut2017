@@ -124,6 +124,8 @@ MonoBehaviour:
   selectedColor: {r: 0.26677305, g: 0.41911763, b: 0.024653977, a: 1}
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   background: {fileID: 114900857204331286}
+  icon: {fileID: 114201885343861672}
+  heroName: {fileID: 114714334978682806}
 --- !u!114 &114565270898741006
 MonoBehaviour:
   m_ObjectHideFlags: 1
