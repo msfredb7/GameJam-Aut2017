@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class FadeFlash : MonoBehaviour
 {
-
+    public float from = 0;
     public float fadeDuration = 1f;
     public bool timeScaleIndependant = false;
     public bool transparentAtStart = false;
@@ -36,7 +36,7 @@ public class FadeFlash : MonoBehaviour
                         Text text = GetComponent<Text>();
                         if (text == null)
                             return;
-                        tween = text.DOFade(0, fadeDuration);
+                        tween = text.DOFade(from, fadeDuration);
                         break;
                     }
                 case ComponentType.Image:
@@ -44,7 +44,7 @@ public class FadeFlash : MonoBehaviour
                         Image image = GetComponent<Image>();
                         if (image == null)
                             return;
-                        tween = image.DOFade(0, fadeDuration);
+                        tween = image.DOFade(from, fadeDuration);
                         break;
                     }
                 case ComponentType.Sprite:
@@ -52,7 +52,7 @@ public class FadeFlash : MonoBehaviour
                         SpriteRenderer sprRenderer = GetComponent<SpriteRenderer>();
                         if (sprRenderer == null)
                             return;
-                        tween = sprRenderer.DOFade(0, fadeDuration);
+                        tween = sprRenderer.DOFade(from, fadeDuration);
                         break;
                     }
                 case ComponentType.CanvasGroup:
@@ -60,7 +60,7 @@ public class FadeFlash : MonoBehaviour
                         CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
                         if (canvasGroup == null)
                             return;
-                        tween = canvasGroup.DOFade(0, fadeDuration);
+                        tween = canvasGroup.DOFade(from, fadeDuration);
                         break;
                     }
                 default:
@@ -103,9 +103,9 @@ public class FadeFlash : MonoBehaviour
                     float defaultAlpha = c.a;
 
                     if (transparentAtStart)
-                        text.color = c.ChangedAlpha(0);
+                        text.color = c.ChangedAlpha(from);
 
-                    tween = text.DOFade(transparentAtStart ? defaultAlpha : 0, fadeDuration);
+                    tween = text.DOFade(transparentAtStart ? defaultAlpha : from, fadeDuration);
 
                     break;
                 }
@@ -119,9 +119,9 @@ public class FadeFlash : MonoBehaviour
                     float defaultAlpha = c.a;
 
                     if (transparentAtStart)
-                        image.color = c.ChangedAlpha(0);
+                        image.color = c.ChangedAlpha(from);
 
-                    tween = image.DOFade(transparentAtStart ? defaultAlpha : 0, fadeDuration);
+                    tween = image.DOFade(transparentAtStart ? defaultAlpha : from, fadeDuration);
 
                     break;
                 }
@@ -135,9 +135,9 @@ public class FadeFlash : MonoBehaviour
                     float defaultAlpha = c.a;
 
                     if (transparentAtStart)
-                        sprRenderer.color = c.ChangedAlpha(0);
+                        sprRenderer.color = c.ChangedAlpha(from);
 
-                    tween = sprRenderer.DOFade(transparentAtStart ? defaultAlpha : 0, fadeDuration);
+                    tween = sprRenderer.DOFade(transparentAtStart ? defaultAlpha : from, fadeDuration);
 
                     break;
                 }
@@ -150,9 +150,9 @@ public class FadeFlash : MonoBehaviour
                     float defaultAlpha = canvasGroup.alpha;
 
                     if (transparentAtStart)
-                        canvasGroup.alpha = 0;
+                        canvasGroup.alpha = from;
 
-                    tween = canvasGroup.DOFade(transparentAtStart ? defaultAlpha : 0, fadeDuration);
+                    tween = canvasGroup.DOFade(transparentAtStart ? defaultAlpha : from, fadeDuration);
 
                     break;
                 }
