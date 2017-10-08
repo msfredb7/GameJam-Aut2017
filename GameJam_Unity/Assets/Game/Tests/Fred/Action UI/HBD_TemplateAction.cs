@@ -8,6 +8,7 @@ public class HBD_TemplateAction : HBD_Button
 {
     public Text displayText;
 
+    [NonSerialized]
     public Action<HBD_TemplateAction> onClick;
 
     public HeroActionEvent actionClone;
@@ -23,6 +24,7 @@ public class HBD_TemplateAction : HBD_Button
 
     public void Click()
     {
+        print("click: " + gameObject.name);
         if (onClick != null)
             onClick(this);
     }

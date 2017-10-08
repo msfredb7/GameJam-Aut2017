@@ -14,7 +14,6 @@ public class HeroBehavior : MonoBehaviour
     public List<HeroActionEvent> temporaryCharacterActions = new List<HeroActionEvent>();
     protected HeroActionEvent currentTemporaryAction = null;
 
-    public Action<HeroActionEvent> onAddAction;
     public Action onListChange;
     public Action onTemporaryListChange;
 
@@ -83,13 +82,40 @@ public class HeroBehavior : MonoBehaviour
         return currentAction;
     }
 
+    public virtual void AddActionAt(HeroActionEvent newAction, int index)
+    {
+        characterActions.Insert(index, newAction);
+        if (characterActions.Count <= 1)
+            readyForNext = true;
+
+        if (onListChange != null)
+            onListChange.Invoke();
+    }
+
+    public virtual void AddTemporaryActionAt(HeroActionEvent newAction, int index)
+    {
+        //...
+        print("insert at: " + index);
+        temporaryCharacterActions.Insert(index, newAction);
+
+        if (temporaryCharacterActions.Count <= 1)
+            readyForNext = true;
+
+        if (index == 0)
+        {
+            readyForNext = true;
+            ExecuteNextTemporaryAction();
+        }
+
+        if (onTemporaryListChange != null)
+            onTemporaryListChange.Invoke();
+    }
+
     public virtual void AddAction(HeroActionEvent newAction)
     {
         characterActions.Add(newAction);
         if (characterActions.Count <= 1)
             readyForNext = true;
-        if (onAddAction != null)
-            onAddAction.Invoke(characterActions[characterActions.Count - 1]);
 
         if (onListChange != null)
             onListChange.Invoke();
@@ -100,8 +126,6 @@ public class HeroBehavior : MonoBehaviour
         temporaryCharacterActions.Add(newAction);
         if (temporaryCharacterActions.Count <= 1)
             readyForNext = true;
-        if (onAddAction != null)
-            onAddAction.Invoke(temporaryCharacterActions[temporaryCharacterActions.Count - 1]);
 
         if (onTemporaryListChange != null)
             onTemporaryListChange();

@@ -32,4 +32,10 @@ public class DropAction : HeroActionEvent
     {
         return dropActionInfo;
     }
+
+    public override void PostCloneCleanup()
+    {
+        dropActionInfo = new DropActionInfo();
+        onComplete = null;
+    }
 }

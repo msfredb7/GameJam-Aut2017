@@ -33,5 +33,8 @@ public class DeployAction : HeroActionEvent
         return deployActionInfo;
     }
 
-
+    public override void PostCloneCleanup()
+    {
+        deployActionInfo = new DeployActionInfo();
+    }
 }

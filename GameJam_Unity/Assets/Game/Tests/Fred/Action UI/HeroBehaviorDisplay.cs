@@ -13,12 +13,13 @@ public class HeroBehaviorDisplay : MonoBehaviour
     public HBD_ActionList tempList;
     public HBD_ActionList loopList;
 
-    [Header("Temporaire")]
-    public Toggle putInTemp;
+    public delegate void NodeEvent(Node node);
+    public delegate void NodeRequest(NodeEvent callback);
+    public NodeRequest nodeRequest;
 
     private HeroBehavior hb;
 
-    void Start()
+    void Awake()
     {
         //Templates
         templates.onNewActionClick = OnNewActionClick;
@@ -68,8 +69,8 @@ public class HeroBehaviorDisplay : MonoBehaviour
         //Instantiate une looseAction, et la remplir de l'information
         print("Nouvelle action de type: " + template.actionClone.GetHeroActionInfo().GetDisplayName());
 
-        HBD_LooseAction looseAction = Instantiate(looseActionPrefab.gameObject, transform.parent).GetComponent < HBD_LooseAction>();
-        looseAction.Fill(hb, tempList, loopList, template);
+        HBD_LooseAction looseAction = Instantiate(looseActionPrefab.gameObject, transform.parent).GetComponent<HBD_LooseAction>();
+        looseAction.Fill(this, hb, tempList, loopList, template);
 
         //looseAction.fi
         //if (putInTemp.isOn)
@@ -110,5 +111,13 @@ public class HeroBehaviorDisplay : MonoBehaviour
     List<HeroActionEvent> GetLoopActions()
     {
         return hb.characterActions;
+    }
+
+    public void BindNodeWithAction(HeroActionEvent action)
+    {
+        nodeRequest((Node theNode) =>
+        {
+            action.GetHeroActionInfo().GiveNode(theNode);
+        });
     }
 }

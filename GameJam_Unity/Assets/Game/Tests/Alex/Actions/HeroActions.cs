@@ -12,5 +12,4 @@ public abstract class HeroActions
     public abstract bool RequiresNode();
     public abstract void GiveNode(Node node);
     public abstract bool IsUnique();
-
 }

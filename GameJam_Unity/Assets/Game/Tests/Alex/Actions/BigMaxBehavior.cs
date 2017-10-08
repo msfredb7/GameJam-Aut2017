@@ -10,7 +10,6 @@ public class BigMaxBehavior : HeroBehavior {
     {
         possibleActions.Add(new GoAction());
         possibleActions.Add(new DropAction());
-        possibleActions.Add(new DeployAction());
     }
 
     public override List<HeroActionEvent> GetPossibleActionList()

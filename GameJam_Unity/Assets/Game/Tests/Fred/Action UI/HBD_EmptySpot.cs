@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class HBD_EmptySpot : MonoBehaviour
 {
-
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }

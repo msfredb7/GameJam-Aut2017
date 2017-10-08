@@ -2856,6 +2856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d47e4292e6e9a449006fe1853969c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  from: 0
   fadeDuration: 1.25
   timeScaleIndependant: 0
   transparentAtStart: 0
@@ -5684,8 +5685,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84498916}
   m_HandleRect: {fileID: 84498915}
   m_Direction: 2
-  m_Value: 0.9999991
-  m_Size: 0.81794196
+  m_Value: 0.9999987
+  m_Size: 0.817942
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

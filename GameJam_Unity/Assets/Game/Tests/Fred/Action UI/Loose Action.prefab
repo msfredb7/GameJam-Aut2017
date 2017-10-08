@@ -79,6 +79,9 @@ MonoBehaviour:
   greenButton: {fileID: 21300000, guid: ba5b2dd60f6604e4085d3015024746cd, type: 3}
   buttonImage: {fileID: 114790694889885244}
   displayName: {fileID: 114358427370880160}
+  emptySpotPrefab: {fileID: 114783341677997870, guid: 934474c011385c0499acce2330ef50e4,
+    type: 2}
+  emptySpotInstance: {fileID: 0}
   tempList: {fileID: 0}
   loopList: {fileID: 0}
   hb: {fileID: 0}

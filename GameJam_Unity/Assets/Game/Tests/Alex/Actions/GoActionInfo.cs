@@ -6,6 +6,7 @@ using UnityEngine;
 public class GoActionInfo : HeroActions
 {
     public Node destination;
+    public Action onNodeGiven;
 
     public override string GetDisplayName()
     {
@@ -20,6 +21,8 @@ public class GoActionInfo : HeroActions
     public override void GiveNode(Node node)
     {
         destination = node;
+        if (onNodeGiven != null)
+            onNodeGiven();
     }
 
     public override bool IsUnique()
