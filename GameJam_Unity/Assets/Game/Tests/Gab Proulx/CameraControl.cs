@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +33,9 @@ public class CameraControl : MonoBehaviour {
 	void Start () {
 		_screenWidth = Screen.width;
 		_screenHeight = Screen.height;
+
+        enabled = false;
+        Game.OnGameReady += () => enabled = true;
 	}
 
 	// Update is called once per frame
