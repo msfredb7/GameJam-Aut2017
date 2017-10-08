@@ -41,7 +41,6 @@ public class CharacterAction {
 
     public void OnDestinationReached()
     {
-        Debug.Log("Callback");
         if(onComplete != null)
             onComplete.Invoke();
     }
