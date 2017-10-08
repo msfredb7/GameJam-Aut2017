@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +6,23 @@ using UnityEngine;
 public class DeployAction : HeroActionEvent
 {
     DeployActionInfo deployActionInfo;
+    private Action myOnComplete;
 
     public DeployAction()
     {
         deployActionInfo = new DeployActionInfo();
+    }
+
+    public override Action OnComplete
+    {
+        get
+        {
+            return myOnComplete;
+        }
+        set
+        {
+            myOnComplete = value;
+        }
     }
 
     public override void Execute(Hero hero, Action onComplete)
@@ -19,7 +32,18 @@ public class DeployAction : HeroActionEvent
 
         if (zavierzone != null)
         {
-            zavierzone.onZoneClear += onComplete;
+            zavierzone.zonePreview.enabled = true;
+            myOnComplete = delegate ()
+            {
+                zavierzone.zonePreview.enabled = false;
+                onComplete.Invoke();
+            };
+
+            zavierzone.onZoneClear += () =>
+            {
+                ForceCompletion();
+                zavierzone.onZoneClear = null;
+            };
             zavierzone.activateDeploy = true;
         }
     }
@@ -27,5 +51,10 @@ public class DeployAction : HeroActionEvent
     public override HeroActions GetHeroActionInfo()
     {
         return deployActionInfo;
+    }
+
+    public override void PostCloneCleanup()
+    {
+        deployActionInfo = new DeployActionInfo();
     }
 }

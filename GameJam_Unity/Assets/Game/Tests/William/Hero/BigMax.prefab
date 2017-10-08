@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212891680956988728}
   - component: {fileID: 114732835543235288}
   - component: {fileID: 114389113569977958}
-  - component: {fileID: 114240878250886098}
   - component: {fileID: 58108722669860938}
   - component: {fileID: 114700751340354060}
+  - component: {fileID: 114437793115942522}
   m_Layer: 0
   m_Name: BigMax
   m_TagString: Untagged
@@ -90,19 +90,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
---- !u!114 &114240878250886098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1587722565333552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb282f6a67c55314ba346572ed9cea16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hero: {fileID: 0}
-  looping: 0
 --- !u!114 &114389113569977958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +103,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hero: {fileID: 114732835543235288}
   currentMode: 0
+--- !u!114 &114437793115942522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587722565333552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a752012b19339254d8e89f56678ce7bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hero: {fileID: 114732835543235288}
+  looping: 1
 --- !u!114 &114700751340354060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   turningSpeed: 0.5
   heroDescription: {fileID: 11400000, guid: f8e13558df3142e438e95f3cf98f6dd4, type: 2}
   carriedPizza: {fileID: 0}
-  behavior: {fileID: 114240878250886098}
+  behavior: {fileID: 114437793115942522}
   brain: {fileID: 114389113569977958}
   currentNode: {fileID: 0}
   previousNode: {fileID: 0}
@@ -221,8 +221,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1220224665
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

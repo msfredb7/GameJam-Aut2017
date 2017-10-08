@@ -8,16 +8,18 @@ public class ZavierZone : MonoBehaviour
 
     private List<Pizza> pizzas = new List<Pizza>();
     public List<Node> nodes = new List<Node>();
-    public Node waitingNode;
+    private Node waitingNode;
     public bool activateDeploy;
     public bool isMoving;
     public Action onZoneClear;
-    
+    public SpriteRenderer zonePreview;
 
     void Update()
     {
         if (activateDeploy)
         {
+            if (waitingNode == null)
+                waitingNode = GetComponent<Hero>().currentNode;
             //Si on est pas en train de d'aller faire une action, on prend une décision
             if (!isMoving)
             {
@@ -78,6 +80,7 @@ public class ZavierZone : MonoBehaviour
             {
                 onZoneClear.Invoke();
                 activateDeploy = false;
+                waitingNode = null;
             }
             else
             {

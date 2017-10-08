@@ -9,6 +9,8 @@ public class HeroIconScript : MonoBehaviour {
     public Color selectedColor;
     public Color baseColor;
     public Image background;
+    public Image icon;
+    public Text heroName;
 
     private Hero hero = null;
 
@@ -36,5 +38,7 @@ public class HeroIconScript : MonoBehaviour {
 	public void Display(Hero hero)
     {
         this.hero = hero;
+        icon.sprite = hero.heroDescription.heroFace;
+        heroName.text = hero.heroDescription.name;
     }
 }

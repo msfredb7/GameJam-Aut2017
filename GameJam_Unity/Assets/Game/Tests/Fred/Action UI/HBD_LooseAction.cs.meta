@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 50466e01a5e87ce45aa6efc823b4bb19
+timeCreated: 1507448182
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - blueButton: {fileID: 21300000, guid: 4ac0b80e597d0b042a1b214a3d9d7171, type: 3}
+  - redButton: {fileID: 21300000, guid: 362ea41cc47cf754ca5d4d848fa9d588, type: 3}
+  - yellowButton: {fileID: 21300000, guid: a107484241fb91f43af9b3fdedcf7bf0, type: 3}
+  - whiteButton: {fileID: 21300000, guid: fdf8cc3e8df7537459bd3121453a0a89, type: 3}
+  - greenButton: {fileID: 21300000, guid: ba5b2dd60f6604e4085d3015024746cd, type: 3}
+  - buttonImage: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

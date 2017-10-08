@@ -564,7 +564,7 @@ MonoBehaviour:
   currentSoundType: 0
   sound: {fileID: 8300000, guid: b8bc64c74d110ab4b8104cd2f9269e82, type: 3}
   loopOnPlay: 1
-  volume: 0.1
+  volume: 0.2
   doOnStart: 1
   doOnActivation: 0
   addDelay: 0

@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212503712169435042}
   - component: {fileID: 114582607985421310}
   - component: {fileID: 114741183114294176}
-  - component: {fileID: 114389771339922902}
   - component: {fileID: 58629548585803660}
   - component: {fileID: 114295448029341586}
+  - component: {fileID: 114848671218781150}
   m_Layer: 0
   m_Name: Hero1
   m_TagString: Untagged
@@ -102,19 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedHeroObject: {fileID: 1633081334480862}
---- !u!114 &114389771339922902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121505304613864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb282f6a67c55314ba346572ed9cea16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hero: {fileID: 0}
-  looping: 0
 --- !u!114 &114582607985421310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,7 +120,7 @@ MonoBehaviour:
   turningSpeed: 0.5
   heroDescription: {fileID: 11400000, guid: 98acbffeb6f843744bc7a764e1f4ccec, type: 2}
   carriedPizza: {fileID: 0}
-  behavior: {fileID: 114389771339922902}
+  behavior: {fileID: 114848671218781150}
   brain: {fileID: 114741183114294176}
   currentNode: {fileID: 0}
   previousNode: {fileID: 0}
@@ -151,6 +138,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hero: {fileID: 114582607985421310}
   currentMode: 0
+--- !u!114 &114848671218781150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121505304613864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efddf1009de71540ae58e9403475a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hero: {fileID: 114582607985421310}
+  looping: 0
 --- !u!212 &212503712169435042
 SpriteRenderer:
   m_ObjectHideFlags: 1

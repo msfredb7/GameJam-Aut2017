@@ -3,25 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using CCC.Manager;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FollowHero : MonoBehaviour {
 
 	private Toggle toggleHero;
 	private bool isNotifQueued;
+    private bool gameReady = false;
 
-	// Use this for initialization
+    public Image x;
+
 	void Start () 
 	{
-		toggleHero = GetComponent<Toggle>();
-	}
+        Game.OnGameReady += Init;
+    }
+
+    void Init()
+    {
+        x.color = x.color.ChangedAlpha(0);
+        gameReady = true;
+        if (GetComponent<Toggle>() != null)
+            toggleHero = GetComponent<Toggle>();
+    }
 	
-	// Update is called once per frame
 	void Update () 
 	{
-		if (toggleHero.isOn)
-		{
-			Follow ();
-		}
+        if (gameReady)
+        {
+            if (toggleHero.isOn)
+            {
+                x.DOFade(0, 0.5f);
+                Follow();
+            } else
+            {
+                x.DOFade(1, 0.5f);
+            }
+        }
 	}
 
 	void Follow()

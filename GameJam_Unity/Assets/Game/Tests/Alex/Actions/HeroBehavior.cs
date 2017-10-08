@@ -1,20 +1,21 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroBehavior : MonoBehaviour {
+public class HeroBehavior : MonoBehaviour
+{
 
     [HideInInspector]
     public List<HeroActionEvent> characterActions = new List<HeroActionEvent>();
     protected HeroActionEvent currentAction = null;
 
     [HideInInspector]
-    public List<HeroActionEvent> specialcharacterActions = new List<HeroActionEvent>();
-    protected HeroActionEvent currentSpecialAction = null;
+    public List<HeroActionEvent> temporaryCharacterActions = new List<HeroActionEvent>();
+    protected HeroActionEvent currentTemporaryAction = null;
 
-    public Action<HeroActionEvent> onAddAction;
-    public Action onOrderChange;
+    public Action onListChange;
+    public Action onTemporaryListChange;
 
     public Hero hero;
 
@@ -39,13 +40,21 @@ public class HeroBehavior : MonoBehaviour {
 
     #region ORDER
 
-    public virtual void AddAction(HeroActionEvent newAction)
+    public virtual void RemoveActionFromLoopList(HeroActionEvent theAction)
     {
-        characterActions.Add(newAction);
-        if (characterActions.Count <= 1)
-            readyForNext = true;
-        if (onAddAction != null)
-            onAddAction.Invoke(characterActions[characterActions.Count - 1]);
+        theAction.ForceCompletion();
+        characterActions.Remove(theAction);
+
+        if (onListChange != null)
+            onListChange.Invoke();
+    }
+    public virtual void RemoveActionFromTemporaryList(HeroActionEvent theAction)
+    {
+        theAction.ForceCompletion();
+        temporaryCharacterActions.Remove(theAction);
+
+        if (onTemporaryListChange != null)
+            onTemporaryListChange();
     }
 
     public virtual void MoveAction(HeroActionEvent actionToMove, int position)
@@ -53,7 +62,19 @@ public class HeroBehavior : MonoBehaviour {
         if (position > characterActions.Count || position < 0)
             return;
         characterActions.Insert(position, actionToMove);
-        onOrderChange.Invoke();
+
+        if (onListChange != null)
+            onListChange.Invoke();
+    }
+
+    public virtual void MoveTemporaryAction(HeroActionEvent actionToMove, int position)
+    {
+        if (position > temporaryCharacterActions.Count || position < 0)
+            return;
+        temporaryCharacterActions.Insert(position, actionToMove);
+
+        if (onTemporaryListChange != null)
+            onTemporaryListChange.Invoke();
     }
 
     public virtual HeroActionEvent GetCurrentAction()
@@ -61,26 +82,58 @@ public class HeroBehavior : MonoBehaviour {
         return currentAction;
     }
 
-    public virtual void AddTemporaryAction(HeroActionEvent newAction)
+    public virtual void AddActionAt(HeroActionEvent newAction, int index)
     {
-        specialcharacterActions.Add(newAction);
-        if (specialcharacterActions.Count <= 1)
+        characterActions.Insert(index, newAction);
+        if (characterActions.Count <= 1)
             readyForNext = true;
-        if (onAddAction != null)
-            onAddAction.Invoke(specialcharacterActions[specialcharacterActions.Count - 1]);
+
+        if (onListChange != null)
+            onListChange.Invoke();
     }
 
-    public virtual void MoveTemporaryAction(HeroActionEvent actionToMove, int position)
+    public virtual void AddTemporaryActionAt(HeroActionEvent newAction, int index)
     {
-        if (position > specialcharacterActions.Count || position < 0)
-            return;
-        specialcharacterActions.Insert(position, actionToMove);
-        onOrderChange.Invoke();
+        //...
+        print("insert at: " + index);
+        temporaryCharacterActions.Insert(index, newAction);
+
+        if (temporaryCharacterActions.Count <= 1)
+            readyForNext = true;
+
+        if (index == 0)
+        {
+            readyForNext = true;
+            ExecuteNextTemporaryAction();
+        }
+
+        if (onTemporaryListChange != null)
+            onTemporaryListChange.Invoke();
+    }
+
+    public virtual void AddAction(HeroActionEvent newAction)
+    {
+        characterActions.Add(newAction);
+        if (characterActions.Count <= 1)
+            readyForNext = true;
+
+        if (onListChange != null)
+            onListChange.Invoke();
+    }
+
+    public virtual void AddTemporaryAction(HeroActionEvent newAction)
+    {
+        temporaryCharacterActions.Add(newAction);
+        if (temporaryCharacterActions.Count <= 1)
+            readyForNext = true;
+
+        if (onTemporaryListChange != null)
+            onTemporaryListChange();
     }
 
     public virtual HeroActionEvent GetCurrentTemporaryAction()
     {
-        return currentSpecialAction;
+        return currentTemporaryAction;
     }
 
     #endregion
@@ -108,16 +161,18 @@ public class HeroBehavior : MonoBehaviour {
     {
         readyForNext = true;
     }
-    protected virtual void ReadyForNextSpecialAction()
+    protected virtual void ReadyForNextTemporaryAction()
     {
-        specialcharacterActions.Remove(currentSpecialAction);
+        temporaryCharacterActions.Remove(currentTemporaryAction);
+        if (onTemporaryListChange != null)
+            onTemporaryListChange();
         readyForNext = true;
     }
 
 
     protected virtual void ExecuteNext()
     {
-        if(specialcharacterActions.Count > 0)
+        if (temporaryCharacterActions.Count > 0)
         {
             ExecuteNextTemporaryAction();
             return;
@@ -135,8 +190,11 @@ public class HeroBehavior : MonoBehaviour {
 
     protected virtual void ExecuteNextTemporaryAction()
     {
-        currentSpecialAction = specialcharacterActions[specialcharacterActions.FindIndex(isCurrentSpecialAction) + 1];
-        currentSpecialAction.Execute(hero, ReadyForNextSpecialAction);
+        if (temporaryCharacterActions.Count < 1)
+            return;
+
+        currentTemporaryAction = temporaryCharacterActions[0];
+        currentTemporaryAction.Execute(hero, ReadyForNextTemporaryAction);
     }
 
     protected virtual bool isCurrentAction(HeroActionEvent action)
@@ -146,7 +204,7 @@ public class HeroBehavior : MonoBehaviour {
 
     protected virtual bool isCurrentSpecialAction(HeroActionEvent action)
     {
-        return (action == currentSpecialAction);
+        return (action == currentTemporaryAction);
     }
     #endregion
 }
