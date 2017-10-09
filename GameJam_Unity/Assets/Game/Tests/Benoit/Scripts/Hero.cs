@@ -113,7 +113,12 @@ public class Hero : MonoBehaviour
     void OnMouseDown()
     {
         if (onClick != null)
+        {
+            if (Vector3.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > 15)
+              return;
             onClick(this);
+            
+        }
     }
 
     public void DestinationReached()

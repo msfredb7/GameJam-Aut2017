@@ -14,7 +14,7 @@ public class ObjectiveDisplay : MonoBehaviour
 
     public void SetObjectiveAmount(int amount)
     {
-        objectiveText.text = "Make " + CashToString(amount);
+        objectiveText.text = "FAIRE " + CashToString(amount);
     }
     public void SetObjectiveDuration(float minutes, float seconds)
     {

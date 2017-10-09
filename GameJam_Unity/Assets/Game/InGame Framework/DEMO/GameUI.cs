@@ -13,11 +13,17 @@ public class GameUI : MonoBehaviour
     public ObjectiveDisplay objectiveDisplay;
     public DeliveryNotification DeliverNotificationObject;
     public FeedbackDisplay FeedbackDisplay;
+    public TutorialUI tutorial;
 
     public HeroPortrait portrait;
 
     private void Start()
     {
         CCC.Manager.MasterManager.Sync();
+    }
+
+    public void SetTutorialActive(bool activate)
+    {
+        tutorial.activateTutorial = activate;
     }
 }

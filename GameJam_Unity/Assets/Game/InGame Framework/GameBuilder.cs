@@ -10,15 +10,18 @@ public class GameBuilder : MonoBehaviour
 
     int waitingToLoadCount = 0;
 
+    public bool activateTutorial;
+
     private GameUI gameUI;
     private Map map;
 
-    public void Build(string mapName)
+    public void Build(string mapName, bool activateTutorial)
     {
         Debug.Log("Building game ...");
         waitingToLoadCount = 2;
 
         string sceneName = GameUI.SCENENAME;
+        this.activateTutorial = activateTutorial;
 
         // Load All Scenes
         if (!Scenes.Exists(sceneName))
@@ -36,6 +39,7 @@ public class GameBuilder : MonoBehaviour
     void OnUILoaded(Scene scene)
     {
         gameUI = scene.FindRootObject<GameUI>();
+        gameUI.SetTutorialActive(activateTutorial);
         //...
 
         waitingToLoadCount--;
