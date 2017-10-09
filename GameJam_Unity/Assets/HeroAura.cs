@@ -4,34 +4,37 @@ using UnityEngine;
 
 public class HeroAura : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject selectedHeroObject;
+    private SpriteRenderer selectedHeroObject;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		Game.OnGameStart += delegate
 		{
-		    Game.HeroManager.onActiveHeroChanged += OnHeroSelectedChanged;
+            foreach (Transform child in transform)
+            {
+                if (child.name == "selected-hero")
+                    selectedHeroObject = child.gameObject.GetComponent<SpriteRenderer>();
+            }
+            Game.HeroManager.onActiveHeroChanged += OnHeroSelectedChanged;
 		};
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
     void OnHeroSelectedChanged(Hero hero)
     {
-        SpriteRenderer renderer = selectedHeroObject.GetComponent<SpriteRenderer>();
         if (hero == GetComponent<Hero>())
         {
             //give aura
-            renderer.enabled = true;
+            selectedHeroObject.enabled = true;
         }
         else
         {
             //remove aura
-            renderer.enabled = false;
+            selectedHeroObject.enabled = false;
         }
     }
 }

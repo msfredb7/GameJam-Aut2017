@@ -34,9 +34,9 @@ public class HeroManager : MonoBehaviour
 
     public void SetActiveHero(Hero hero)
     {
+        if (hero == null)
+            return;
         activeHero = hero;
-        if (activeHero != null)
-            print("hero active");
         if (onActiveHeroChanged != null)
             onActiveHeroChanged.Invoke(activeHero);
     }
@@ -61,6 +61,21 @@ public class HeroManager : MonoBehaviour
         for (int i = 0; i < listOwnedHero.Count; i++)
         {
             if (listOwnedHero[i] == hero)
+            {
+                if ((i + 1) >= listOwnedHero.Count)
+                    return listOwnedHero[0];
+                else
+                    return listOwnedHero[i + 1];
+            }
+        }
+        return null;
+    }
+
+    public Hero FindNextHero()
+    {
+        for (int i = 0; i < listOwnedHero.Count; i++)
+        {
+            if (listOwnedHero[i] == activeHero)
             {
                 if ((i + 1) >= listOwnedHero.Count)
                     return listOwnedHero[0];

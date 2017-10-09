@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e963116f273713647baa7843167f9542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedHeroObject: {fileID: 1080068727900328}
 --- !u!114 &114274070150023766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +269,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1080068727900328}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1

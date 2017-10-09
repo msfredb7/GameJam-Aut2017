@@ -25,9 +25,9 @@ public class Brain : MonoBehaviour
         }
     }
 
-    public enum Mode { /*drop = 0 ,*/ pickup = 1 }
+    public enum Mode { drop = 0 , pickup = 1 }
 
-    public Mode currentMode;
+    public Mode currentMode= Mode.pickup;
     
     public PathOfDoom currentPath;
     public State state;
@@ -109,19 +109,19 @@ public class Brain : MonoBehaviour
 
     private void OnReachDest()
     {
-        currentPath = null;
-        hero.Stop();
-
         switch (currentMode)
         {
-            //case Mode.drop:
-            //    hero.Drop();
-            //    break;
+            case Mode.drop:
+                hero.Drop(hero.currentNode);
+                break;
             case Mode.pickup:
                 break;
             default:
                 break;
         }
+
+        currentPath = null;
+        hero.Stop();
 
         if (onDestinationReached != null)
         {
