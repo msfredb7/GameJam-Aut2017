@@ -497,7 +497,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 770073297}
-        m_MethodName: LaunchGame
+        m_MethodName: LaunchGameLevel1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1887,7 +1887,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 299175104}
-        m_MethodName: LaunchGame
+        m_MethodName: LaunchGameLevel3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2023,7 +2023,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 282986578}
-        m_MethodName: LaunchGame
+        m_MethodName: LaunchGameLevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

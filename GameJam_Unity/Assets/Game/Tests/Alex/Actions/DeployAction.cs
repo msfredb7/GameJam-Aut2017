@@ -41,10 +41,12 @@ public class DeployAction : HeroActionEvent
 
         if (zone != null)
         {
+            zone.collider.enabled = true;
             zone.zonePreview.DOFade(0.33f, 0.5f);
             myOnComplete = delegate ()
             {
                 zone.remoteUpdater = null;
+                zone.collider.enabled = false;
                 zone.zonePreview.DOFade(0, 0.5f);
                 onComplete.Invoke();
             };
@@ -70,14 +72,15 @@ public class DeployAction : HeroActionEvent
 
         if (CheckCarriedPizza())
         {
-            //Go to order
+            //Not going to pizza anymore
             currentPizzaNode = null;
             goingToPizza = false;
 
-            //Go to pizza
+            //Go to order
             if (!goingToOrder)
             {
-                hero.brain.GoToNode(currentOrderNode, Brain.Mode.pickup);
+                  hero.brain.GoToNode(currentOrderNode, Brain.Mode.drop);
+                  goingToOrder = true;
             }
         }
         else
@@ -93,7 +96,8 @@ public class DeployAction : HeroActionEvent
             //Go to pizza
             if (!goingToPizza)
             {
-                hero.brain.GoToNode(currentPizzaNode, Brain.Mode.pickup);
+                hero.brain.GoToNode(currentPizzaNode);
+                goingToPizza = true;
             }
         }
     }

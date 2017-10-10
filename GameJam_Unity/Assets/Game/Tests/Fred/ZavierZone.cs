@@ -8,6 +8,7 @@ public class ZavierZone : MonoBehaviour
     public List<Node> nodes = new List<Node>();
 
     public SpriteRenderer zonePreview;
+    public CircleCollider2D collider;
 
     public Action remoteUpdater;
 
@@ -52,6 +53,8 @@ public class ZavierZone : MonoBehaviour
         {
             if (nodes[i].pizza.Count > 0)
             {
+                if (nodes[i].Order != null)
+                    continue;
                 float dist = (nodes[i].Position - (Vector2)transform.position).sqrMagnitude;
                 if(dist < record)
                 {

@@ -21,7 +21,7 @@ namespace Assets.Game.Tests.William
         [SerializeField] private float maxSpawnRate = 30f;
         [SerializeField] private float minOrderDuration = 20f;
         [SerializeField] private float maxOrderDuration = 60f;
-        [SerializeField] private int maxPizzaPerOrder = 3;
+        [SerializeField] private int maxPizzaPerOrder = 1;
 
         public List<ScriptedOrder> ScriptedOrders;
 

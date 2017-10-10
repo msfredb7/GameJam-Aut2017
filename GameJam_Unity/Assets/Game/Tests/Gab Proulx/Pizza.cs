@@ -33,6 +33,9 @@ public class Pizza : MonoBehaviour
     {
         if (myNode == null)
             Debug.LogWarning("Weird, on viens de pick up une pizza qui netait pas sur une node.");
+        if (myNode.Order != null)
+            return; // Si une pizza est sur une node qui a une Order, on doit pas la pickup !
+
         myNode.pizza.Remove(this);
 
         myHero = hero;
