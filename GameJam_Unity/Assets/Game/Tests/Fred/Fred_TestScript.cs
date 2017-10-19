@@ -7,7 +7,7 @@ public class Fred_TestScript : MonoBehaviour
 {
     private void Awake()
     {
-        print("tolo");
+        print("Cr�ation des lien bidirectionel");
         for (int i = 0; i < transform.childCount; i++)
         {
             Node n = transform.GetChild(i).GetComponent<Node>();

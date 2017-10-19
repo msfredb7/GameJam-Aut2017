@@ -983,7 +983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &283199008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1025,7 +1025,7 @@ MonoBehaviour:
   statsPanelRight: {fileID: 1086737170}
   statsPanelMid: {fileID: 1814424774}
   hireHeroesButton: {fileID: 546230269}
-  activateTutorial: 1
+  activateTutorial: 0
   textReadTime: 7.5
 --- !u!1001 &294893528
 Prefab:
@@ -4603,7 +4603,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830514473}
   m_HandleRect: {fileID: 830514472}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5910,8 +5910,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84498916}
   m_HandleRect: {fileID: 84498915}
   m_Direction: 2
-  m_Value: 0.9999991
-  m_Size: 0.817942
+  m_Value: 0.9999996
+  m_Size: 0.81794196
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

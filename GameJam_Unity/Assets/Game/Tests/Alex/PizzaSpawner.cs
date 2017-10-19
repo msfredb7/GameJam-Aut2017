@@ -1,4 +1,4 @@
-﻿using CCC.Manager;
+using CCC.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,8 +39,6 @@ public class PizzaSpawner : MonoBehaviour
     void Spawn()
     {
         spawnPointOccupied = true;
-
-        print("spawing pizza");
 
         Pizza newPizza = Instantiate(pizzaPrefab, transform.position, transform.rotation, Game.instance.unitCountainer.transform);
         newPizza.pizzaPickedUp += delegate () { spawnPointOccupied = false; };

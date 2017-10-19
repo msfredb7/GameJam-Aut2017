@@ -62,8 +62,6 @@ public class Objectives : MonoBehaviour {
     //  dep : montant depenser
     public void OutcomeCash(int dep)
     {
-        print("tu perd du cash tarla");
-
         m_Cash -= dep;
         SoundManager.PlayStaticSFX(sfx_cashOut, 0, 0.3f);
         AfficheCash();
@@ -74,8 +72,6 @@ public class Objectives : MonoBehaviour {
     //  Rev : montant de revenus
     public void IncomeCash(int rev)
     {
-        print("Cash in bitches");
-
         m_Cash += rev;
         SoundManager.PlayStaticSFX(sfx_cashIn, 0, 0.3f);
         AfficheCash();

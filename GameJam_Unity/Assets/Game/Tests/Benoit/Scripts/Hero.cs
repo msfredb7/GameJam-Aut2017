@@ -179,8 +179,7 @@ public class Hero : MonoBehaviour
     {
         if (pizz.myHero != null)
             return;
-
-        print("Attempt pickup");
+        
         if (brain.currentMode == Brain.Mode.pickup && carriedPizza == null)
         {
             pizz.PickedUpBy(this);
@@ -190,8 +189,7 @@ public class Hero : MonoBehaviour
     public void Drop(Node onNode)
     {
         if (carriedPizza != null && onNode.pizza.Count <= 0)
-        {
-            Debug.Log("DROPING PIZZA");            
+        {          
             carriedPizza.DroppedOn(onNode);
         }
     }

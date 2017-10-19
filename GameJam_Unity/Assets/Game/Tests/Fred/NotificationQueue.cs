@@ -35,7 +35,6 @@ public class NotificationQueue : Singleton<NotificationQueue>
         base.Awake();
         RectTransform rt = GetComponent<RectTransform>();
         rt.anchoredPosition = hiddenPosition;
-        print("hide");
     }
 
     protected void CheckNotif()
