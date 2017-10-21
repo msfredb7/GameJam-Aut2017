@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class GameBootUp : MonoBehaviour
 {
     public string mapName = "Map1";
-    public bool activateTutorial;
 
     void Start()
     {
@@ -32,13 +31,12 @@ public class GameBootUp : MonoBehaviour
     private void OnGameLoaded(Scene scene)
     {
         Debug.Log("Game boot up");
-        scene.FindRootObject<GameBuilder>().Build(mapName, activateTutorial);
+        scene.FindRootObject<GameBuilder>().Build(mapName);
     }
 
     public void BootUp(string mapName, bool activateTutorial)
     {
         this.mapName = mapName;
-        this.activateTutorial = activateTutorial;
         OnGameLoaded(gameObject.scene);
     }
 }

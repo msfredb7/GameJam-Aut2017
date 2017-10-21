@@ -10,18 +10,20 @@ public class GameBuilder : MonoBehaviour
 
     int waitingToLoadCount = 0;
 
-    public bool activateTutorial;
+    public string activateTutorialOnMap;
 
     private GameUI gameUI;
     private Map map;
+    private bool activateTutorial;
 
-    public void Build(string mapName, bool activateTutorial)
+    public void Build(string mapName)
     {
         Debug.Log("Building game ...");
         waitingToLoadCount = 2;
 
+        activateTutorial = activateTutorialOnMap == mapName;
+
         string sceneName = GameUI.SCENENAME;
-        this.activateTutorial = activateTutorial;
 
         // Load All Scenes
         if (!Scenes.Exists(sceneName))

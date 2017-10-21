@@ -66,6 +66,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1466888735405008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4981368569315024}
+  - component: {fileID: 58012650922504414}
+  - component: {fileID: 114416446398750036}
+  m_Layer: 9
+  m_Name: Fred Shit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1476385280638084
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 1476385280638084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.1257658, y: 0.03367591, z: 0}
-  m_LocalScale: {x: 19.652948, y: 19.654118, z: 1}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 4867741030965022}
   m_RootOrder: 1
@@ -123,6 +140,7 @@ Transform:
   - {fileID: 4906638950550780}
   - {fileID: 4631865422587740}
   - {fileID: 4041646309904394}
+  - {fileID: 4981368569315024}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -138,6 +156,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4867741030965022}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4981368569315024
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466888735405008}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4867741030965022}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50174844343510626
 Rigidbody2D:
@@ -159,6 +190,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58012650922504414
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466888735405008}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.72
 --- !u!58 &58637891046148630
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -226,6 +272,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hero: {fileID: 114706525851821338}
   looping: 1
+--- !u!114 &114416446398750036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466888735405008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd7c25ca79e4774497240597abd1b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114464176220064028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,11 +321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5872161b693f6459c82932be1bd710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitSpeed: 0.5
-  accelerationRate: 0.2
-  carryingCapacity: 1
+  maxSpeed: 5
+  acceleration_: 50
   maxTuringAngle: 45
-  turningSpeed: 0.5
+  turningMaxSpeed: 5
   heroDescription: {fileID: 11400000, guid: 98acbffeb6f843744bc7a764e1f4ccec, type: 2}
   carriedPizza: {fileID: 0}
   behavior: {fileID: 114351482249321308}
@@ -383,7 +439,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 09e4dc85c794a8a41abdaffa01db236c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -403,7 +459,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 85be59f18cb1eb74dbe44654e02c0903, type: 3}
-  m_Color: {r: 0.20622836, g: 0.19896193, b: 0.2352941, a: 0.328}
+  m_Color: {r: 0.85490197, g: 0.8235294, b: 0.57254905, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

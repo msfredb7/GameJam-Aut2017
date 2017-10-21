@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class HeroManager : MonoBehaviour
 {
     public delegate void HeroEvent(Hero h);
-    private List<Hero> listOwnedHero = new List<Hero>();
+    public List<Hero> listOwnedHero = new List<Hero>();
     private Hero activeHero = null;
 
     public event HeroEvent onHeroAdded;

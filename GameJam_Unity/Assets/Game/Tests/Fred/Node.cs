@@ -69,6 +69,13 @@ public class Node : MonoBehaviour
         return true;
     }
 
+    public Pizza GetPizza()
+    {
+        if (pizza == null || pizza.Count <= 0)
+            return null;
+        return pizza[0];
+    }
+
     public void OnDrawGizmos()
     {
         if (voisins != null)

@@ -15,4 +15,4 @@ MonoBehaviour:
   heroBody: {fileID: 21300000, guid: 9935d48e8d498ed4b87b81e4d24e43e2, type: 3}
   heroDescription: "Connait l'emplacement de toutes les commandes dans le champs de
     ses pouvoirs t\xE9l\xE9patiques"
-  price: 1500
+  price: 30

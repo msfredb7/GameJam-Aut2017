@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +17,11 @@ namespace Assets.Game.Tests.William
     [RequireComponent(typeof(ClientManager))]
     public class OrderScripting : MonoBehaviour
     {
-        [SerializeField] private float minSpawnRate = 1f;
-        [SerializeField] private float maxSpawnRate = 30f;
-        [SerializeField] private float minOrderDuration = 20f;
-        [SerializeField] private float maxOrderDuration = 60f;
-        [SerializeField] private int maxPizzaPerOrder = 1;
+        [SerializeField] private float minSpawnDelay = 4;
+        [SerializeField] private float maxSpawnDelay = 6;
+        [SerializeField] private float minOrderDuration_ = 25f;
+        [SerializeField] private float maxOrderDuration_ = 40f;
+        [SerializeField] private int maxPizzasPerOrder = 1;
 
         public List<ScriptedOrder> ScriptedOrders;
 
@@ -50,7 +50,7 @@ namespace Assets.Game.Tests.William
                     clientManager.SpawnOrder(ScriptedOrders[index]);
                 }, ScriptedOrders[index].TimeToStart);
             }
-            timeToNextSpawn = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
+            timeToNextSpawn = UnityEngine.Random.Range(minSpawnDelay, maxSpawnDelay);
         }
 	
         // Update is called once per frame
@@ -60,15 +60,15 @@ namespace Assets.Game.Tests.William
             if (timeToNextSpawn < 0)
             {
                 SpawnRandomScriptedOrder();
-                timeToNextSpawn = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate);
+                timeToNextSpawn = UnityEngine.Random.Range(minSpawnDelay, maxSpawnDelay);
             }
         }
 
         private void SpawnRandomScriptedOrder()
         {
             ScriptedOrder scriptedOrder = new ScriptedOrder();
-            scriptedOrder.OrderDuration = UnityEngine.Random.Range(minOrderDuration, maxOrderDuration);
-            scriptedOrder.PizzaAmount = UnityEngine.Random.Range(1, maxPizzaPerOrder);
+            scriptedOrder.OrderDuration = UnityEngine.Random.Range(minOrderDuration_, maxOrderDuration_);
+            scriptedOrder.PizzaAmount = UnityEngine.Random.Range(1, maxPizzasPerOrder);
             clientManager.SpawnAtRandomClient(scriptedOrder);
         }
     }

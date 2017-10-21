@@ -983,7 +983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &283199008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3540,8 +3540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76a9423a4e38884aa699ed3793e2864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapName: Map2
-  activateTutorial: 0
+  mapName: Map3
 --- !u!114 &1421496998
 MonoBehaviour:
   m_ObjectHideFlags: 0

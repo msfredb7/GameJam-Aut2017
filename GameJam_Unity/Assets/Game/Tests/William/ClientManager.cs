@@ -145,7 +145,7 @@ public class ClientManager : MonoBehaviour
         NotificationQueue.PushNotification("Vous avez complété une commande !");
 
         Objectives currentObjectives = Game.Map.cash;
-        int income = currentObjectives.OrderBasePrice + (currentObjectives.PricePerPizza * node.pizza.Count);
+        int income = currentObjectives.OrderBaseReward + (currentObjectives.RewardPerPizza * node.pizza.Count);
         currentObjectives.IncomeCash(income);
         
 

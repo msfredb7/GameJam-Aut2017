@@ -583,7 +583,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Niveau 2
+  m_Text: 'Niveau 1
 
 '
 --- !u!222 &304310826
@@ -946,7 +946,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Niveau 3
+  m_Text: Niveau 2
 --- !u!222 &489606881
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3087,7 +3087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Niveau 1
+  m_Text: Tutoriel
 --- !u!222 &2091437655
 CanvasRenderer:
   m_ObjectHideFlags: 0

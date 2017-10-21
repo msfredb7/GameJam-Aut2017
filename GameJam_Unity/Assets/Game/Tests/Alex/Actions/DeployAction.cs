@@ -42,16 +42,16 @@ public class DeployAction : HeroActionEvent
         if (zone != null)
         {
             zone.collider.enabled = true;
-            zone.zonePreview.DOFade(0.33f, 0.5f);
+            zone.zonePreview.DOFade(1, 0.5f);
             myOnComplete = delegate ()
             {
-                zone.remoteUpdater = null;
+                zone.remoteFixedUpdater = null;
                 zone.collider.enabled = false;
                 zone.zonePreview.DOFade(0, 0.5f);
                 onComplete.Invoke();
             };
 
-            zone.remoteUpdater = RemoteUpdate;
+            zone.remoteFixedUpdater = RemoteUpdate;
         }
         else
         {

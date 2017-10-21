@@ -1,4 +1,4 @@
-﻿using CCC.Manager;
+using CCC.Manager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,9 +61,11 @@ public class TutorialUI : MonoBehaviour
 
     void DoTutorial()
     {
+        gameObject.SetActive(activateTutorial);
 
         if (activateTutorial)
         {
+
             DelayManager.LocalCallTo(delegate ()
             {
                 inputBlocker.SetActive(true);

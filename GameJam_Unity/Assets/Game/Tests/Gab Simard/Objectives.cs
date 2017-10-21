@@ -6,13 +6,13 @@ using CCC.Manager;
 
 public class Objectives : MonoBehaviour {
 
-    public int m_Cash, m_CashTarget;
+    public int startCash = 100, cashTarget = 500;
     public AudioClip sfx_cashIn, sfx_cashOut, sfx_win, sfx_fail;
 
     public float minutes = 12;
     public float seconds = 30;
-    public int OrderBasePrice = 10;
-    public int PricePerPizza = 12; 
+    public int OrderBaseReward = 10;
+    public int RewardPerPizza = 0;
 
     private float remainingSeconds;
 
@@ -24,7 +24,7 @@ public class Objectives : MonoBehaviour {
         {
             AfficheCash();
             enabled = true;
-            Game.GameUI.objectiveDisplay.SetObjectiveAmount(m_CashTarget);
+            Game.GameUI.objectiveDisplay.SetObjectiveAmount(cashTarget);
             Game.Map.cash = this;
             DelayedNotifications();
         };
@@ -62,7 +62,7 @@ public class Objectives : MonoBehaviour {
     //  dep : montant depenser
     public void OutcomeCash(int dep)
     {
-        m_Cash -= dep;
+        startCash -= dep;
         SoundManager.PlayStaticSFX(sfx_cashOut, 0, 0.3f);
         AfficheCash();
         Game.GameUI.FeedbackDisplay.PlayFeedbackAnimation(-dep);
@@ -72,11 +72,11 @@ public class Objectives : MonoBehaviour {
     //  Rev : montant de revenus
     public void IncomeCash(int rev)
     {
-        m_Cash += rev;
+        startCash += rev;
         SoundManager.PlayStaticSFX(sfx_cashIn, 0, 0.3f);
         AfficheCash();
 
-        if (m_Cash >= m_CashTarget)
+        if (startCash >= cashTarget)
         {
             SoundManager.PlayStaticSFX(sfx_win, 3);
             SoundManager.StopMusic();
@@ -90,7 +90,7 @@ public class Objectives : MonoBehaviour {
     //  Methode qui va set l'affiche de l'UI du montant d'argent
     public void AfficheCash()
     {
-        Game.GameUI.objectiveDisplay.SetCashAmount(m_Cash);
+        Game.GameUI.objectiveDisplay.SetCashAmount(startCash);
     }
 
 

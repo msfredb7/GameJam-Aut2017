@@ -95,7 +95,7 @@ public class HeroBehavior : MonoBehaviour
     public virtual void AddTemporaryActionAt(HeroActionEvent newAction, int index)
     {
         //...
-        print("insert at: " + index);
+        //print("insert at: " + index);
         temporaryCharacterActions.Insert(index, newAction);
 
         if (temporaryCharacterActions.Count <= 1)
@@ -140,7 +140,7 @@ public class HeroBehavior : MonoBehaviour
 
     #region EXECUTION
 
-    void Update()
+    void FixedUpdate()
     {
         if (readyForNext)
         {
@@ -167,6 +167,8 @@ public class HeroBehavior : MonoBehaviour
         if (onTemporaryListChange != null)
             onTemporaryListChange();
         readyForNext = true;
+        if (currentAction != null)
+            currentAction.ForceCompletion();
     }
 
 
@@ -178,13 +180,13 @@ public class HeroBehavior : MonoBehaviour
             return;
         }
 
-        if (characterActions.Count <= characterActions.FindIndex(isCurrentAction) + 1)
+        if (characterActions.Count <= characterActions.FindIndex(IsCurrentAction) + 1)
         {
             if (looping)
                 ExecuteAll();
             return;
         }
-        currentAction = characterActions[characterActions.FindIndex(isCurrentAction) + 1];
+        currentAction = characterActions[characterActions.FindIndex(IsCurrentAction) + 1];
         currentAction.Execute(hero, ReadyForNextAction);
     }
 
@@ -197,12 +199,12 @@ public class HeroBehavior : MonoBehaviour
         currentTemporaryAction.Execute(hero, ReadyForNextTemporaryAction);
     }
 
-    protected virtual bool isCurrentAction(HeroActionEvent action)
+    protected virtual bool IsCurrentAction(HeroActionEvent action)
     {
         return (action == currentAction);
     }
 
-    protected virtual bool isCurrentSpecialAction(HeroActionEvent action)
+    protected virtual bool IsCurrentSpecialAction(HeroActionEvent action)
     {
         return (action == currentTemporaryAction);
     }

@@ -10,13 +10,13 @@ public class ZavierZone : MonoBehaviour
     public SpriteRenderer zonePreview;
     public CircleCollider2D collider;
 
-    public Action remoteUpdater;
+    public Action remoteFixedUpdater;
 
-    void Update()
+    void FixedUpdate()
     {
-        if(remoteUpdater != null)
+        if(remoteFixedUpdater != null)
         {
-            remoteUpdater();
+            remoteFixedUpdater();
         }
     }
 

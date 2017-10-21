@@ -9,19 +9,20 @@ public class Hero : MonoBehaviour
 
     //  Maximum attainable speed
     [ReadOnlyInPlayMode]
-    public float limitSpeed;
+    public float maxSpeed = 10;
+
     //  Speed unit Gained by second
     [ReadOnlyInPlayMode]
-    public float accelerationRate;
-    //  Amount of pizza you carry at once
-    [ReadOnlyInPlayMode]
-    public float carryingCapacity;
+    public float acceleration_ = 10;
+    
     //  Maximum turning angle in radian
     [ReadOnlyInPlayMode]
     public float maxTuringAngle = Mathf.PI / 4;
+    
     //  Max turning Speed
     [ReadOnlyInPlayMode]
-    public float turningSpeed = Mathf.PI / 4;
+    public float turningMaxSpeed = 4;
+
     [ReadOnlyInPlayMode]
     public HeroDescription heroDescription;
 
@@ -34,8 +35,11 @@ public class Hero : MonoBehaviour
 
     private float currentSpeed;
 
+    [ReadOnly]
     public Node currentNode = null;
+    [ReadOnly]
     public Node previousNode = null;
+    [ReadOnly]
     public Node nextNode = null;
 
     private bool moving = false;
@@ -96,16 +100,10 @@ public class Hero : MonoBehaviour
             Vector2 previousLink = currentNode.Position - previousNode.Position;
             Vector2 nextLink = nextNode.Position - currentNode.Position;
 
-            float dot = Vector2.Dot(previousLink, nextLink);
-            float sumMag = previousLink.magnitude * nextLink.magnitude;
-            float angle; //= Mathf.Acos(dot / sumMag);
-
-            angle = Vector2.Angle(nextLink, previousLink);
+            float angle = Vector2.Angle(nextLink, previousLink);
 
             if (angle > maxTuringAngle)
-                currentSpeed = 0;
-            else if (currentSpeed > turningSpeed)
-                currentSpeed = turningSpeed;
+                currentSpeed = currentSpeed.Capped(turningMaxSpeed);
         }
     }
 
@@ -137,10 +135,13 @@ public class Hero : MonoBehaviour
         if (nextNode == null)
             return;
 
-        Vector2 destination = nextNode.Position;
-        Vector2 delta = destination - (Vector2)transform.position;
+        Transform tr = transform;
+        Vector3 myPos = tr.position;
 
-        if (delta.magnitude < currentSpeed)
+        Vector2 destination = nextNode.Position;
+        Vector2 delta = destination - (Vector2)myPos;
+
+        if (delta.sqrMagnitude < 0.005)
         {
             transform.position = (Vector3)destination;
             DestinationReached();
@@ -148,10 +149,10 @@ public class Hero : MonoBehaviour
         }
         else
         {
-            currentSpeed += accelerationRate * Time.deltaTime;
-            currentSpeed = currentSpeed.Capped(limitSpeed);
+            currentSpeed += acceleration_ * Time.deltaTime;
+            currentSpeed = currentSpeed.Capped(maxSpeed);
 
-            transform.position += ((Vector3)delta).normalized * currentSpeed;
+            transform.position = myPos.MovedTowards(destination, currentSpeed * Time.deltaTime);
 
             return;
         }
@@ -175,15 +176,17 @@ public class Hero : MonoBehaviour
 
     }
 
-    public void AttemptPizzaCatch(Pizza pizz)
+    public bool AttemptPizzaCatch(Pizza pizz)
     {
         if (pizz.myHero != null)
-            return;
+            return false;
         
         if (brain.currentMode == Brain.Mode.pickup && carriedPizza == null)
         {
             pizz.PickedUpBy(this);
+            return true;
         }
+        return false;
     }
 
     public void Drop(Node onNode)

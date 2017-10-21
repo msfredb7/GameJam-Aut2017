@@ -98,6 +98,9 @@ public class FAStar : BaseBehavior
             }
 
         }
+
+        Debug.LogError("Pas pu trouver de chemin entre " + start.index + " et " + goal.index);
+
         return null;
     }
 

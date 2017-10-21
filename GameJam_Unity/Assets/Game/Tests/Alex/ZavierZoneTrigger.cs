@@ -1,15 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ZavierZoneTrigger : MonoBehaviour {
 
     public ZavierZone zone;
-
-    void Start()
-    {
-        GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color.ChangedAlpha(0);
-    }
 
     public void OnTriggerEnter2D(Collider2D col)
     {

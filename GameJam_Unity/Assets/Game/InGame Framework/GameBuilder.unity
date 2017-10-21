@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a29b1d113c7e964a809decba596e0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activateTutorialOnMap: Map2
 --- !u!114 &818783957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76a9423a4e38884aa699ed3793e2864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapName: Map2
+  mapName: Map3
 --- !u!114 &818783958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0995079b5087f24e9f1c1bfe6fc8024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listOwnedHero: []
 --- !u!1 &1513672419
 GameObject:
   m_ObjectHideFlags: 0

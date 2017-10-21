@@ -7,12 +7,20 @@ public class Fred_TestScript : MonoBehaviour
 {
     private void Awake()
     {
-        print("Cr�ation des lien bidirectionel");
+        print("Creation des lien bidirectionel");
         for (int i = 0; i < transform.childCount; i++)
         {
             Node n = transform.GetChild(i).GetComponent<Node>();
             if (n != null)
             {
+                if (n.voisins.Count == 0 && !Application.isPlaying)
+                {
+                    print("node sans voisin: " + n.name);
+                    n.gameObject.SetActive(false);
+                    continue;
+                }
+                n.gameObject.SetActive(true);
+
                 for (int u = 0; u < n.voisins.Count; u++)
                 {
                     n.other = n.voisins[u];
@@ -20,5 +28,8 @@ public class Fred_TestScript : MonoBehaviour
                 }
             }
         }
+
+        if (!Application.isPlaying)
+            print("nombre de node: " + transform.childCount);
     }
 }

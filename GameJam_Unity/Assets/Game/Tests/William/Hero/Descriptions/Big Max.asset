@@ -15,4 +15,4 @@ MonoBehaviour:
   heroBody: {fileID: 21300000, guid: d5000e0dafc91884e86fc71f497cf335, type: 3}
   heroDescription: "Acc\xE9l\xE8re dans les lignes droites. Perd sa vitesse quand
     il tourne."
-  price: 1000
+  price: 20
