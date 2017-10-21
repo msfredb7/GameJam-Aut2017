@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class PizzaSpawner : MonoBehaviour
 {
-
     public Pizza pizzaPrefab;
-
-    public bool spawnPointOccupied = false;
 
     public float spawnCooldown = 2;
 
@@ -27,8 +24,10 @@ public class PizzaSpawner : MonoBehaviour
 
     void Update()
     {
+        if (myNode.GetPizza() != null)
+            return;
 
-        if (spawningIn >= 0 && !spawnPointOccupied)
+        if (spawningIn >= 0)
         {
             spawningIn -= Time.deltaTime;
             if (spawningIn < 0)
@@ -38,10 +37,7 @@ public class PizzaSpawner : MonoBehaviour
 
     void Spawn()
     {
-        spawnPointOccupied = true;
-
         Pizza newPizza = Instantiate(pizzaPrefab, transform.position, transform.rotation, Game.instance.unitCountainer.transform);
-        newPizza.pizzaPickedUp += delegate () { spawnPointOccupied = false; };
 
         newPizza.DroppedOn(myNode);
 

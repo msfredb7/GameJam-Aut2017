@@ -48,3 +48,6 @@ TagManager:
   - name: Heros
     uniqueID: 3074742631
     locked: 0
+  - name: Pizza
+    uniqueID: 2545165149
+    locked: 0

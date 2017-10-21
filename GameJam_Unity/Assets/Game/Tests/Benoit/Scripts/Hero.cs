@@ -53,7 +53,7 @@ public class Hero : MonoBehaviour
     {
         if (carriedPizza != null)
         {
-            carriedPizza.transform.position = transform.position - new Vector3(0, 0, -10);
+            carriedPizza.transform.position = transform.position + new Vector3(0.75f, 0.75f, 0);
         }
 
         if (moving)
@@ -67,22 +67,12 @@ public class Hero : MonoBehaviour
         nextNode = node;
         SetTurningSpeed();
         moving = true;
-
-        //if (carriedPizza != null && currentNode.Order != null)
-        //{
-        //    Drop();
-        //}
     }
 
     public void Stop()
     {
         moving = false;
         currentSpeed = 0;
-
-        //if (carriedPizza != null && currentNode.Order != null)
-        //{
-        //    Drop();
-        //}
     }
 
 
@@ -168,12 +158,15 @@ public class Hero : MonoBehaviour
         {
             SetToNode(closestNode);
             brain.state.stayNode = closestNode;
+
+            brain.currentMode = Brain.Mode.pickup;
+            if (closestNode.GetPizza() != null)
+                AttemptPizzaCatch(closestNode.GetPizza());
         }
         else
         {
             Destroy(gameObject);
         }
-
     }
 
     public bool AttemptPizzaCatch(Pizza pizz)

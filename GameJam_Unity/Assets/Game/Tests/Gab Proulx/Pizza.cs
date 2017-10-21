@@ -36,6 +36,8 @@ public class Pizza : MonoBehaviour
         if (myNode.Order != null)
             return; // Si une pizza est sur une node qui a une Order, on doit pas la pickup !
 
+        //transform.transform
+
         myNode.pizza.Remove(this);
 
         myHero = hero;
@@ -56,20 +58,6 @@ public class Pizza : MonoBehaviour
 
         Destroy(gameObject);
     }
-    //public void MergePizza(Pizza other_Pizza)
-    //{
-    //	Quantity += other_Pizza.Quantity;
-    //	Destroy(other_Pizza.gameObject);
-    //	UpdateQuantityDisplay ();
-    //}
-
-    //public void splitPizza(int split_Quantity)
-    //{
-    //	Quantity -= split_Quantity;
-    //	Pizza new_Pizza = Instantiate (gameObject, transform.position, transform.rotation).GetComponent<Pizza> ();
-    //	new_Pizza.Quantity = split_Quantity;
-    //	UpdateQuantityDisplay ();
-    //}
 
     void UpdateQuantityDisplay()
     {
